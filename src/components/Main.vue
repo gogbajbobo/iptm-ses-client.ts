@@ -11,9 +11,12 @@
 <template>
 
     <div>
-        TEST
+        Main page
     </div>
-    <div>Main page</div>
+
+    <el-button type="text">
+        Test button
+    </el-button>
 
 </template>
 
