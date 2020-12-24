@@ -1,8 +1,20 @@
 <script>
 
+    import { onMounted } from 'vue'
+
     export default {
 
         name: 'Main',
+
+        setup() {
+
+            onMounted(() => { console.log('Main page is mounted') })
+
+        },
+
+        methods: {
+
+        },
 
     }
 
