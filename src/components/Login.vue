@@ -1,6 +1,7 @@
 <script>
 
     import { onMounted } from 'vue'
+    import { paths } from '@/router/paths'
 
     export default {
 
@@ -12,6 +13,10 @@
 
         },
 
+        methods: {
+            backButtonClick() { this.$router.push(paths.MAIN)}
+        },
+
     }
 
 </script>
@@ -21,6 +26,8 @@
     <div>
         Login page
     </div>
+
+    <el-button type="text" @click="backButtonClick">Back to Main</el-button>
 
 </template>
 
