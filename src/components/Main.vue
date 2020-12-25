@@ -1,6 +1,7 @@
 <script>
 
     import { onMounted } from 'vue'
+    import { paths } from '@/router/paths'
 
     export default {
 
@@ -13,7 +14,7 @@
         },
 
         methods: {
-
+            testButtonClick() { this.$router.push(paths.LOGIN) }
         },
 
     }
@@ -26,7 +27,7 @@
         Main page
     </div>
 
-    <el-button type="text">
+    <el-button type="text" @click="testButtonClick">
         Test button
     </el-button>
 
