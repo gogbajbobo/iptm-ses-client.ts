@@ -32,3 +32,13 @@ export const router = createRouter({
     history: createWebHashHistory(),
     routes,
 })
+
+router.beforeEach((to, from) => {
+    console.log(to, from)
+    return true
+})
+
+router.afterEach((to, from, failure) => {
+    console.log(router.currentRoute)
+    console.log(to, from, failure)
+})
