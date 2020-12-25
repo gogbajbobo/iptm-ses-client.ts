@@ -1,9 +1,10 @@
-<script>
+<script lang="ts">
 
+    import { Options, Vue } from 'vue-class-component'
     import { onMounted } from 'vue'
     import { paths } from '@/router/paths'
 
-    export default {
+    @Options({
 
         name: 'Login',
 
@@ -17,7 +18,8 @@
             backButtonClick() { this.$router.push(paths.MAIN)}
         },
 
-    }
+    })
+    export default class Login extends Vue {}
 
 </script>
 

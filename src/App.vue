@@ -1,8 +1,9 @@
-<script>
+<script lang="ts">
 
-    export default {
-        name: 'App',
-    }
+    import { Options, Vue } from 'vue-class-component'
+
+    @Options({})
+    export default class App extends Vue {}
 
 </script>
 
