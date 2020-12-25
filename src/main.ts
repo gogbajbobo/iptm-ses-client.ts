@@ -1,13 +1,12 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 
-import { ElButton } from 'element-plus'  // full import — ~650Kib build
-import 'element-plus/lib/theme-chalk/index.css'
+import { elements } from "@/libs/element-ui"
 
 import { router } from './router'
 
 const app = createApp(App)
-app.use(ElButton)
+elements.forEach(el => app.use(el))
 app.use(router)
 
 app.mount('#app')
