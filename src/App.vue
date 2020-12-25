@@ -3,14 +3,19 @@
     import { Options, Vue } from 'vue-class-component'
 
     @Options({})
-    export default class App extends Vue {}
+    class App extends Vue {}
+    export default App
 
 </script>
 
 <template>
 
-    <img alt="Vue logo" src="./assets/logo.png">
-    <router-view></router-view>
+    <div>
+
+        <img alt="Vue logo" src="./assets/logo.png">
+        <router-view></router-view>
+
+    </div>
 
 </template>
 

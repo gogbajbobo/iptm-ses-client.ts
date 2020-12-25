@@ -15,19 +15,24 @@
         },
 
     })
-    export default class Login extends Vue {
+    class Login extends Vue {
         backButtonClick() { this.$router.push(paths.MAIN)}
     }
+    export default Login
 
 </script>
 
 <template>
 
     <div>
-        Login page
-    </div>
 
-    <el-button type="text" @click="backButtonClick">Back to Main</el-button>
+        <div>
+            Login page
+        </div>
+
+        <el-button type="text" @click="backButtonClick">Back to Main</el-button>
+
+    </div>
 
 </template>
 

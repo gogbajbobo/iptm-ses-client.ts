@@ -1,7 +1,7 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 
-import { elements } from "@/libs/element-ui"
+import { elements } from '@/libs/element-ui'
 
 import { router } from './router'
 import { createStore } from 'vuex'
@@ -11,13 +11,13 @@ interface IRootState {
 }
 
 const store = createStore({
-    state (): IRootState {
+    state(): IRootState {
         return {
             count: 0
         }
     },
     mutations: {
-        increment (state: IRootState) {
+        increment(state: IRootState) {
             state.count++
         }
     }
