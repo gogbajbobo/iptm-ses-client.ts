@@ -14,12 +14,10 @@
 
         },
 
-        methods: {
-            backButtonClick() { this.$router.push(paths.MAIN)}
-        },
-
     })
-    export default class Login extends Vue {}
+    export default class Login extends Vue {
+        backButtonClick() { this.$router.push(paths.MAIN)}
+    }
 
 </script>
 

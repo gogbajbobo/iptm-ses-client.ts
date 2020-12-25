@@ -9,17 +9,13 @@
         name: 'Main',
 
         setup() {
-
             onMounted(() => { console.log('Main page is mounted') })
-
-        },
-
-        methods: {
-            testButtonClick() { this.$router.push(paths.LOGIN) }
         },
 
     })
-    export default class Main extends Vue {}
+    export default class Main extends Vue {
+        testButtonClick() { this.$router.push(paths.LOGIN) }
+    }
 
 </script>
 
