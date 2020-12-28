@@ -3,6 +3,8 @@
     import { onMounted, defineComponent, computed } from 'vue'
     import { useStore } from 'vuex'
     import { MutationTypes } from '@/store/test/mutations'
+    import { ActionTypes } from '@/store/test/actions'
+    import { GetterTypes } from '@/store/test/getters'
     import { paths } from '@/router/paths'
     import { logger } from '@/services/logger'
 
@@ -15,7 +17,7 @@
             onMounted(() => { logger.log('Main page is mounted') })
 
             const store = useStore()
-            const count = computed(() => store.getters[`test/counter`])
+            const count = computed(() => store.getters[`test/${ GetterTypes.COUNTER }`])
             const test = 666
 
             return { count, store, test }
@@ -26,7 +28,11 @@
 
             testButtonClick() { this.$router.push(paths.LOGIN) },
 
-            testVuexPlusButtonClick() { this.store.commit(`test/${ MutationTypes.INCREMENT_COUNTER }`) },
+            testVuexPlusButtonClick() {
+                this.store.dispatch(`test/${ ActionTypes.INCREMENT_COUNTER }`)
+                    .then(data => logger.log(`action complete: ${ data }`))
+                    .catch(logger.error)
+            },
 
             testVuexMinusButtonClick() { this.store.commit(`test/${ MutationTypes.DECREMENT_COUNTER }`) },
 

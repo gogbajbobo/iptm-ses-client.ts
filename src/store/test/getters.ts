@@ -1,9 +1,13 @@
 import { StoreState } from './state'
 
+export enum GetterTypes {
+    COUNTER = 'COUNTER',
+}
+
 export type Getters = {
-    counter(state: StoreState): number
+    [GetterTypes.COUNTER](state: StoreState): number
 }
 
 export const getters: Getters = {
-    counter: (state) => state.count,
+    [GetterTypes.COUNTER]: (state) => state.count,
 }
