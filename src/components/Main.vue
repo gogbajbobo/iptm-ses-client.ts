@@ -1,7 +1,8 @@
-<script lang="ts">
+<script lang='ts'>
 
     import { onMounted, defineComponent, computed } from 'vue'
-    import { useStore } from 'vuex'
+    import { useStore } from '@/store'
+    import { RootMutationTypes } from '@/store/root/mutations'
     import { paths } from '@/router/paths'
     import { logger } from '@/services/logger'
 
@@ -14,7 +15,7 @@
             onMounted(() => { logger.log('Main page is mounted') })
 
             const store = useStore()
-            const count = computed(() => store.state.count)
+            const count = computed(() => store.getters.counter)
             const test = 666
 
             return { count, store, test }
@@ -25,7 +26,7 @@
 
             testButtonClick() { this.$router.push(paths.LOGIN) },
 
-            testVuexButtonClick() { this.store.commit('increment') },
+            testVuexButtonClick() { this.store.commit(RootMutationTypes.INCREMENT_COUNTER) },
 
         },
 
