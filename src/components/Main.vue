@@ -3,6 +3,7 @@
     import { onMounted, defineComponent, computed } from 'vue'
     import { useStore } from 'vuex'
     import { paths } from '@/router/paths'
+    import { logger } from '@/services/logger'
 
     export default defineComponent({
 
@@ -10,7 +11,7 @@
 
         setup() {
 
-            onMounted(() => { console.log('Main page is mounted') })
+            onMounted(() => { logger.log('Main page is mounted') })
 
             const store = useStore()
             const count = computed(() => store.state.count)

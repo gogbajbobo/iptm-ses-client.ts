@@ -1,5 +1,7 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 
+import { logger } from "@/services/logger"
+
 import components from '@/components'
 import { paths } from '@/router/paths'
 
@@ -34,11 +36,11 @@ export const router = createRouter({
 })
 
 router.beforeEach((to, from) => {
-    console.log(to, from)
+    logger.log(to, from)
     return true
 })
 
 router.afterEach((to, from, failure) => {
-    console.log(router.currentRoute)
-    console.log(to, from, failure)
+    logger.log(router.currentRoute)
+    logger.log(to, from, failure)
 })

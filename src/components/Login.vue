@@ -2,6 +2,7 @@
 
     import { defineComponent, onMounted } from 'vue'
     import { paths } from '@/router/paths'
+    import { logger } from '@/services/logger'
 
     export default defineComponent({
 
@@ -9,7 +10,7 @@
 
         setup() {
 
-            onMounted(() => { console.log('Login page is mounted') })
+            onMounted(() => { logger.log('Login page is mounted') })
 
         },
 
