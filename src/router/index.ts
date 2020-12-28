@@ -1,6 +1,6 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 
-import { logger } from "@/services/logger"
+import { logger } from '@/services/logger'
 
 import components from '@/components'
 import { paths } from '@/router/paths'
