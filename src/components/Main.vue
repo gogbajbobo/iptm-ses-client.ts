@@ -26,7 +26,9 @@
 
             testButtonClick() { this.$router.push(paths.LOGIN) },
 
-            testVuexButtonClick() { this.store.commit(`test/${ MutationTypes.INCREMENT_COUNTER }`) },
+            testVuexPlusButtonClick() { this.store.commit(`test/${ MutationTypes.INCREMENT_COUNTER }`) },
+
+            testVuexMinusButtonClick() { this.store.commit(`test/${ MutationTypes.DECREMENT_COUNTER }`) },
 
         },
 
@@ -50,8 +52,12 @@
             Test button
         </el-button>
 
-        <el-button type="text" @click="testVuexButtonClick">
-            Test Vuex
+        <el-button type="text" @click="testVuexPlusButtonClick">
+            + Vuex
+        </el-button>
+
+        <el-button type="text" @click="testVuexMinusButtonClick">
+            - Vuex
         </el-button>
 
     </div>
