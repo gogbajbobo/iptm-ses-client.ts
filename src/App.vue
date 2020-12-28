@@ -1,10 +1,8 @@
 <script lang="ts">
 
-    import { Options, Vue } from 'vue-class-component'
+    import { defineComponent } from 'vue'
 
-    @Options({})
-    class App extends Vue {}
-    export default App
+    export default defineComponent({})
 
 </script>
 

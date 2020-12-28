@@ -1,11 +1,10 @@
 <script lang="ts">
 
-    import { Options, Vue } from 'vue-class-component'
-    import { onMounted, ref } from 'vue'
+    import { onMounted, defineComponent, computed } from 'vue'
     import { useStore } from 'vuex'
     import { paths } from '@/router/paths'
 
-    @Options({
+    export default defineComponent({
 
         name: 'Main',
 
@@ -14,22 +13,22 @@
             onMounted(() => { console.log('Main page is mounted') })
 
             const store = useStore()
-            const count = ref(store.state.count)
+            const count = computed(() => store.state.count)
             const test = 666
 
-            return { count, store, increment: () => store.commit('increment'), test }
+            return { count, store, test }
+
+        },
+
+        methods: {
+
+            testButtonClick() { this.$router.push(paths.LOGIN) },
+
+            testVuexButtonClick() { this.store.commit('increment') },
 
         },
 
     })
-    class Main extends Vue {
-
-        testButtonClick() { this.$router.push(paths.LOGIN) }
-
-        testVuexButtonClick() { console.log('testVuexButtonClick') }
-
-    }
-    export default Main
 
 </script>
 
