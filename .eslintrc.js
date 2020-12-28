@@ -7,7 +7,8 @@ module.exports = {
     },
     extends: [
         'plugin:vue/essential',
-        'eslint:recommended'
+        'eslint:recommended',
+        '@vue/typescript',
     ],
     parserOptions: {
         parser: 'babel-eslint'
@@ -22,6 +23,6 @@ module.exports = {
         'one-var': ['off', 'consecutive'],
         'template-curly-spacing': ["error", "always"],
         'space-before-function-paren': ["error", {"anonymous": "always", "named": "never", "asyncArrow": "always"}],
-        'no-multiple-empty-lines': ["error", { "max": 2, "maxEOF": 1 }]
+        'no-multiple-empty-lines': ["error", { "max": 2, "maxEOF": 1 }],
     }
 }
