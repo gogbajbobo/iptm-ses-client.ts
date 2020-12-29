@@ -41,13 +41,13 @@
 
             submitForm() {
 
-                const loginForm = this.$refs.loginForm as typeof ElForm
-                loginForm.validate()
+                const loginFormElement = this.$refs.loginForm as typeof ElForm
+                loginFormElement.validate()
                     .then(() => {
 
                         this.busy = true
 
-                        return this.store.dispatch(`auth/${ ActionTypes.LOGIN }`, loginForm)
+                        return this.store.dispatch(`auth/${ ActionTypes.LOGIN }`, this.loginForm)
                             .catch(Messages.showError)
 
                     })
