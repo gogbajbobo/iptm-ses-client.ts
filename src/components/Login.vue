@@ -1,7 +1,6 @@
 <script lang="ts">
 
     import { defineComponent, onMounted } from 'vue'
-    import { paths } from '@/router/paths'
     import { logger } from '@/services/logger'
 
     export default defineComponent({
@@ -14,8 +13,47 @@
 
         },
 
+        data() {
+            return {
+                busy: false,
+                loginForm: {
+                    login: null,
+                    password: null,
+                },
+                rules: {
+                    login: [
+                        { required: true, message: 'Введите имя пользователя', trigger: 'blur' }
+                    ],
+                    password: [
+                        { required: true, message: 'Введите пароль', trigger: 'blur' }
+                    ]
+                },
+            }
+        },
+
         methods: {
-            backButtonClick() { this.$router.push(paths.MAIN)}
+
+            submitForm() {
+
+                logger.log('submitForm');
+
+                (this.$refs.loginForm as any).validate()
+                    .then(() => {
+
+                        this.busy = true
+
+                        logger.log('form valid')
+                        // NetworkService
+                        //     .login(this.loginForm.email, this.loginForm.password)
+                        //     .catch(MessageService.showError)
+                        //     .then(() => { this.busy = false })
+
+                    })
+                    .catch((err: Error) => logger.error(`login form validation fail: ${ err.message }`))
+                    .then(() => { this.busy = false })
+
+            },
+
         },
 
     })
@@ -24,18 +62,34 @@
 
 <template>
 
-    <div>
+    <el-form v-loading.fullscreen.lock="busy"
+             :model="loginForm"
+             @keyup.enter.native="submitForm"
+             :rules="rules"
+             class='login-form'
+             ref='loginForm'>
 
-        <div>
-            Login page
-        </div>
+        <el-form-item prop='login'>
+            <el-input v-model.trim='loginForm.login' placeholder='Имя пользователя'></el-input>
+        </el-form-item>
 
-        <el-button type="text" @click="backButtonClick">Back to Main</el-button>
+        <el-form-item prop='password'>
+            <el-input v-model.trim='loginForm.password' placeholder='Пароль' type='password'></el-input>
+        </el-form-item>
 
-    </div>
+        <el-form-item>
+            <el-button type="primary" @click="submitForm">Войти</el-button>
+        </el-form-item>
+
+    </el-form>
 
 </template>
 
 <style scoped>
+
+    .login-form {
+        width: 256px;
+        margin: auto;
+    }
 
 </style>
