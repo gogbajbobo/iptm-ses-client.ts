@@ -1,7 +1,11 @@
 <script lang="ts">
 
-    import { defineComponent, onMounted } from 'vue'
+    import { defineComponent } from 'vue'
     import { logger } from '@/services/logger'
+    import * as Messages from '@/services/messages'
+    import { useStore } from 'vuex'
+    import { ActionTypes } from '@/store/auth/types'
+    import { ElForm } from 'element-plus'
 
     export default defineComponent({
 
@@ -9,7 +13,9 @@
 
         setup() {
 
-            onMounted(() => { logger.log('Login page is mounted') })
+            return {
+                store: useStore(),
+            }
 
         },
 
@@ -35,21 +41,17 @@
 
             submitForm() {
 
-                logger.log('submitForm');
-
-                (this.$refs.loginForm as any).validate()
+                const loginForm = this.$refs.loginForm as typeof ElForm
+                loginForm.validate()
                     .then(() => {
 
                         this.busy = true
 
-                        logger.log('form valid')
-                        // NetworkService
-                        //     .login(this.loginForm.email, this.loginForm.password)
-                        //     .catch(MessageService.showError)
-                        //     .then(() => { this.busy = false })
+                        return this.store.dispatch(`auth/${ ActionTypes.LOGIN }`, loginForm)
+                            .catch(Messages.showError)
 
                     })
-                    .catch((err: Error) => logger.error(`login form validation fail: ${ err.message }`))
+                    .catch((invalidFields: object) => logger.error(`login form validation fail: `, invalidFields))
                     .then(() => { this.busy = false })
 
             },
