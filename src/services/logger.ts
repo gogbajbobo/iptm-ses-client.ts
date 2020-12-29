@@ -1,6 +1,5 @@
 import { isProduction } from '@/services/helper'
 
-
 /* eslint-disable no-console */
 export const logger = {
 
