@@ -1,7 +1,7 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 
-import { elements } from '@/libs/element-ui'
+import { elements } from '@/libs/element-plus'
 
 import { router } from './router'
 import { store } from './store'
