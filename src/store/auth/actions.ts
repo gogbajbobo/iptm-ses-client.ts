@@ -12,8 +12,11 @@ export interface IActions {
 
 export const actions: ActionTree <StoreState, IRootState> & IActions = {
     [ActionTypes.LOGIN]({ commit }, credentials) {
-        return new Promise(resolve => {
-            resolve(credentials)
+        return new Promise((resolve) => {
+            setTimeout(() => {
+                commit(MutationTypes.LOGIN)
+                resolve('ok')
+            }, 1000)
         })
     },
     [ActionTypes.LOGOUT]({ commit }) {
