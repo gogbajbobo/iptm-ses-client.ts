@@ -2,9 +2,7 @@
 
     import { onMounted, defineComponent, computed } from 'vue'
     import { useStore } from 'vuex'
-    import { MutationTypes } from '@/store/test/mutations'
-    import { ActionTypes } from '@/store/test/actions'
-    import { GetterTypes } from '@/store/test/getters'
+    import { MutationTypes, ActionTypes, GetterTypes } from '@/store/test/types'
     import { paths } from '@/router/paths'
     import { logger } from '@/services/logger'
 

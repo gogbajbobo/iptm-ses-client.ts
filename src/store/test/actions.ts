@@ -1,12 +1,9 @@
 import { ActionContext, ActionTree } from 'vuex'
 
 import { StoreState } from './state'
-import { MutationTypes } from './mutations'
 import { IRootState } from '@/store/interfaces'
 
-export enum ActionTypes {
-    INCREMENT_COUNTER = 'INCREMENT_COUNTER'
-}
+import { ActionTypes, MutationTypes } from './types'
 
 export interface IActions {
     [ActionTypes.INCREMENT_COUNTER](context: ActionContext<StoreState, IRootState>): Promise<any>

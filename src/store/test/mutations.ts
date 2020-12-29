@@ -1,9 +1,5 @@
 import { StoreState } from './state'
-
-export enum MutationTypes {
-    INCREMENT_COUNTER = 'INCREMENT_COUNTER',
-    DECREMENT_COUNTER = 'DECREMENT_COUNTER',
-}
+import { MutationTypes } from './types'
 
 export type Mutations = {
     [MutationTypes.INCREMENT_COUNTER](state: StoreState): void

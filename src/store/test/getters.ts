@@ -1,8 +1,5 @@
 import { StoreState } from './state'
-
-export enum GetterTypes {
-    COUNTER = 'COUNTER',
-}
+import { GetterTypes } from './types'
 
 export type Getters = {
     [GetterTypes.COUNTER](state: StoreState): number
