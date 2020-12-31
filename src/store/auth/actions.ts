@@ -16,7 +16,7 @@ export const actions: ActionTree <StoreState, IRootState> & IActions = {
     [ActionTypes.LOGIN]: ({ commit }, credentials) => {
 
         return login(credentials)
-            .then(response => console.log(response))
+            .then(data => commit(MutationTypes.LOGIN, data))
 
     },
 
