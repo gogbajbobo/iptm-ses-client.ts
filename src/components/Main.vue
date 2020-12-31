@@ -1,6 +1,6 @@
 <script lang='ts'>
 
-    import { onMounted, defineComponent, computed } from 'vue'
+    import { defineComponent, computed } from 'vue'
     import { useStore } from 'vuex'
     import { MutationTypes, ActionTypes, GetterTypes } from '@/store/test/types'
     import { paths } from '@/router/paths'
@@ -11,8 +11,6 @@
         name: 'Main',
 
         setup() {
-
-            onMounted(() => { logger.log('Main page is mounted') })
 
             const store = useStore()
             const count = computed(() => store.getters[`test/${ GetterTypes.COUNTER }`])
