@@ -1,10 +1,10 @@
 <script lang="ts">
 
-    import { defineComponent } from 'vue'
+    import { defineComponent, computed } from 'vue'
     import { logger } from '@/services/logger'
     import * as Messages from '@/services/messages'
     import { useStore } from 'vuex'
-    import { ActionTypes } from '@/store/auth/types'
+    import { ActionTypes, GetterTypes } from '@/store/auth/types'
     import { ElForm } from 'element-plus'
 
     export default defineComponent({
@@ -13,8 +13,12 @@
 
         setup() {
 
+            const store = useStore()
+            const user = computed(() => store.getters[`auth/${ GetterTypes.USER }`])
+
             return {
-                store: useStore(),
+                store,
+                user,
             }
 
         },
@@ -82,6 +86,8 @@
         <el-form-item>
             <el-button type="primary" @click="submitForm">Войти</el-button>
         </el-form-item>
+
+        {{ user }}
 
     </el-form>
 
