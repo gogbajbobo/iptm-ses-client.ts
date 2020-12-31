@@ -1,18 +1,16 @@
 import { Router } from 'vue-router'
-import { store } from '@/store'
-import { GetterTypes } from '@/store/auth/types'
 import { paths } from './paths'
+import { isAuthorized } from '@/services/helper'
 
-const isAuthorized = !!store.getters[`auth/${ GetterTypes.USER }`]
 
 export const guardsInit = (router: Router) => {
 
     router.beforeEach((to, from) => {
 
-        if (!isAuthorized && !to.meta.anonymousAccess)
+        if (!isAuthorized() && !to.meta.anonymousAccess)
             return paths.LOGIN
 
-        if (isAuthorized && to.path === paths.LOGIN)
+        if (isAuthorized() && to.path === paths.LOGIN)
             return paths.ROOT
 
         return true
