@@ -4,7 +4,7 @@ import { IRootState } from '@/store/interfaces'
 import { StoreState } from './state'
 import { ActionTypes, MutationTypes, CredentialsType } from './types'
 
-import { login } from '@/services/network'
+import { login, logout } from '@/services/network'
 
 export interface IActions {
     [ActionTypes.LOGIN](context: ActionContext<StoreState, IRootState>, credentials: CredentialsType): Promise<any>
@@ -14,17 +14,11 @@ export interface IActions {
 export const actions: ActionTree <StoreState, IRootState> & IActions = {
 
     [ActionTypes.LOGIN]: ({ commit }, credentials) => {
-
-        return login(credentials)
-            .then(data => commit(MutationTypes.LOGIN, data))
-
+        return login(credentials).then(data => commit(MutationTypes.LOGIN, data))
     },
 
-    [ActionTypes.LOGOUT]({ commit }) {
-        return new Promise( resolve => {
-            commit(MutationTypes.LOGOUT)
-            resolve('logout ok')
-        })
+    [ActionTypes.LOGOUT]: ({ commit }) => {
+        return logout().then(() => commit(MutationTypes.LOGOUT))
     },
 
 }

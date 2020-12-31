@@ -2,8 +2,8 @@
 
     import { defineComponent, computed } from 'vue'
     import { useStore } from 'vuex'
-    import { paths } from '@/router/paths'
     import * as testStore from '@/store/test/types'
+    import * as authStore from '@/store/auth/types'
     import { logger } from '@/services/logger'
 
     export default defineComponent({
@@ -22,7 +22,7 @@
 
         methods: {
 
-            testButtonClick() { this.$router.push(paths.LOGIN) },
+            logoutButtonClick() { return this.store.dispatch(`auth/${ authStore.ActionTypes.LOGOUT }`) },
 
             testVuexPlusButtonClick() {
                 this.store.dispatch(`test/${ testStore.ActionTypes.INCREMENT_COUNTER }`)
@@ -50,8 +50,8 @@
             {{ count }} {{ test }}
         </div>
 
-        <el-button type="text" @click="testButtonClick">
-            Test button
+        <el-button type="primary" @click="logoutButtonClick">
+            Выйти
         </el-button>
 
         <el-button type="text" @click="testVuexPlusButtonClick">
