@@ -2,8 +2,8 @@
 
     import { defineComponent, computed } from 'vue'
     import { useStore } from 'vuex'
-    import { MutationTypes, ActionTypes, GetterTypes } from '@/store/test/types'
     import { paths } from '@/router/paths'
+    import * as testStore from '@/store/test/types'
     import { logger } from '@/services/logger'
 
     export default defineComponent({
@@ -13,7 +13,7 @@
         setup() {
 
             const store = useStore()
-            const count = computed(() => store.getters[`test/${ GetterTypes.COUNTER }`])
+            const count = computed(() => store.getters[`test/${ testStore.GetterTypes.COUNTER }`])
             const test = 666
 
             return { count, store, test }
@@ -25,12 +25,12 @@
             testButtonClick() { this.$router.push(paths.LOGIN) },
 
             testVuexPlusButtonClick() {
-                this.store.dispatch(`test/${ ActionTypes.INCREMENT_COUNTER }`)
+                this.store.dispatch(`test/${ testStore.ActionTypes.INCREMENT_COUNTER }`)
                     .then(data => logger.log(`action complete: ${ data }`))
                     .catch(logger.error)
             },
 
-            testVuexMinusButtonClick() { this.store.commit(`test/${ MutationTypes.DECREMENT_COUNTER }`) },
+            testVuexMinusButtonClick() { this.store.commit(`test/${ testStore.MutationTypes.DECREMENT_COUNTER }`) },
 
         },
 
