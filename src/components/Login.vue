@@ -2,7 +2,6 @@
 
     import { defineComponent, computed } from 'vue'
     import { logger } from '@/services/logger'
-    import * as Messages from '@/services/messages'
     import { useStore } from 'vuex'
     import { ActionTypes, GetterTypes } from '@/store/auth/types'
     import { ElForm } from 'element-plus'
@@ -43,20 +42,17 @@
 
         methods: {
 
+            login() { return this.store.dispatch(`auth/${ ActionTypes.LOGIN }`, this.loginForm).catch(logger.error) },
+
             submitForm() {
+
+                this.busy = true
 
                 const loginFormElement = this.$refs.loginForm as typeof ElForm
                 loginFormElement.validate()
-                    .then(() => {
-
-                        this.busy = true
-
-                        return this.store.dispatch(`auth/${ ActionTypes.LOGIN }`, this.loginForm)
-                            .catch(Messages.showError)
-
-                    })
+                    .then(this.login)
                     .catch((invalidFields: object) => logger.error(`login form validation fail: `, invalidFields))
-                    .then(() => { this.busy = false })
+                    .finally(() => { this.busy = false })
 
             },
 
