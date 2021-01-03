@@ -7,7 +7,7 @@ module.exports = {
     publicPath: './',
 
     devServer: {
-        port: 8082,
+        port: 8022,
         overlay: {
             warnings: false,
             errors: true

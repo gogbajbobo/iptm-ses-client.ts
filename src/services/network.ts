@@ -2,7 +2,7 @@ import axios from 'axios'
 import { showError } from './messages'
 
 const axiosInstance = axios.create()
-axiosInstance.defaults.baseURL = 'http://localhost:8000'
+axiosInstance.defaults.baseURL = 'http://localhost:8021'
 
 export const login = (payload: object) =>
     axiosInstance.post('/login', payload)
