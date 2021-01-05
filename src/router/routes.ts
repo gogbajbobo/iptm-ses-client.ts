@@ -2,7 +2,7 @@ import components from '@/components'
 import { paths } from '@/router/paths'
 import { RouteRecordRaw } from 'vue-router'
 
-const { Login, Main } = components
+const { Login, Main, ExamineeList } = components
 
 const root: RouteRecordRaw = {
     path: paths.ROOT,
@@ -24,8 +24,15 @@ const login: RouteRecordRaw = {
     }
 }
 
+const examineeList: RouteRecordRaw = {
+    path: paths.EXAMINEE_LIST,
+    name: ExamineeList.name,
+    component: ExamineeList,
+}
+
 export const routes: RouteRecordRaw[] = [
     root,
     main,
     login,
+    examineeList,
 ]
