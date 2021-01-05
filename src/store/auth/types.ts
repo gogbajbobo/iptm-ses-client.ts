@@ -1,3 +1,5 @@
+import { UserRole } from '@/services/constants'
+
 export enum ActionTypes {
     LOGIN = 'LOGIN',
     LOGOUT = 'LOGOUT',
@@ -15,8 +17,9 @@ export enum MutationTypes {
 
 export type UserType = {
     id: string
-    name: string
-    accessToken: string
+    username: string
+    accessToken: string,
+    roles: UserRole[]
 }
 
 export type CredentialsType = {

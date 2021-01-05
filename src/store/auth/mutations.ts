@@ -10,9 +10,8 @@ export const mutations: Mutations = {
 
     [MutationTypes.LOGIN](state, data) {
 
-        const { user, accessToken } = data
+        const { user } = data
         state.user = user
-        state.accessToken = accessToken
 
     },
 
