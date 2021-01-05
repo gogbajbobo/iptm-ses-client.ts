@@ -22,7 +22,7 @@
 
     <div>
         <h3>Экзамены по охране труда и технике безопасности</h3>
-        <span>{{ user.login }}</span>
+        <span>{{ user.username }}</span>
     </div>
 
 </template>

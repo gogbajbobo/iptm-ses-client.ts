@@ -20,6 +20,6 @@ export type UserType = {
 }
 
 export type CredentialsType = {
-    login: string
+    username: string
     password: string
 }

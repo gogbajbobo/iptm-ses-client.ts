@@ -26,11 +26,11 @@
             return {
                 busy: false,
                 loginForm: {
-                    login: null,
+                    username: null,
                     password: null,
                 },
                 rules: {
-                    login: [
+                    username: [
                         { required: true, message: 'Введите имя пользователя', trigger: 'blur' }
                     ],
                     password: [
@@ -71,8 +71,8 @@
              class='login-form'
              ref='loginForm'>
 
-        <el-form-item prop='login'>
-            <el-input v-model.trim='loginForm.login' placeholder='Имя пользователя'></el-input>
+        <el-form-item prop='username'>
+            <el-input v-model.trim='loginForm.username' placeholder='Имя пользователя'></el-input>
         </el-form-item>
 
         <el-form-item prop='password'>
