@@ -4,8 +4,10 @@ import {
     ElForm,
     ElFormItem,
     ElInput,
-
     ElLoading,
+    ElDropdown,
+    ElDropdownItem,
+    ElDropdownMenu,
 
 } from 'element-plus'  // full import — ~650Kib build
 
@@ -17,7 +19,9 @@ export const elements = [
     ElForm,
     ElFormItem,
     ElInput,
-
     ElLoading,
+    ElDropdown,
+    ElDropdownItem,
+    ElDropdownMenu,
 
 ]
