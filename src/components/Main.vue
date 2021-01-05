@@ -5,6 +5,7 @@
     import * as testStore from '@/store/test/types'
     import * as authStore from '@/store/auth/types'
     import { logger } from '@/services/logger'
+    import { showError } from '@/services/messages'
 
     export default defineComponent({
 
@@ -22,7 +23,9 @@
 
         methods: {
 
-            logoutButtonClick() { return this.store.dispatch(`auth/${ authStore.ActionTypes.LOGOUT }`) },
+            logoutButtonClick() {
+                return this.store.dispatch(`auth/${ authStore.ActionTypes.LOGOUT }`).catch(showError)
+            },
 
             testVuexPlusButtonClick() {
                 this.store.dispatch(`test/${ testStore.ActionTypes.INCREMENT_COUNTER }`)
