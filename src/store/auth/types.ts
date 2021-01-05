@@ -5,6 +5,7 @@ export enum ActionTypes {
 
 export enum GetterTypes {
     USER = 'USER',
+    ACCESS_TOKEN = 'ACCESS_TOKEN'
 }
 
 export enum MutationTypes {

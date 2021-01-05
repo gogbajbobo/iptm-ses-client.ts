@@ -1,16 +1,23 @@
-import { StoreState } from './state'
-import { MutationTypes, UserType } from './types'
+import { state as initialState, StoreState } from './state'
+import { MutationTypes } from './types'
 
 export type Mutations = {
-    [MutationTypes.LOGIN](state: StoreState, user: UserType): void
+    [MutationTypes.LOGIN](state: StoreState, user: Record<string, any>): void
     [MutationTypes.LOGOUT](state: StoreState): void
 }
 
 export const mutations: Mutations = {
-    [MutationTypes.LOGIN](state, user) {
+
+    [MutationTypes.LOGIN](state, data) {
+
+        const { user, accessToken } = data
         state.user = user
+        state.accessToken = accessToken
+
     },
+
     [MutationTypes.LOGOUT](state) {
-        state.user = null
+        Object.assign(state, initialState)
     },
+
 }
