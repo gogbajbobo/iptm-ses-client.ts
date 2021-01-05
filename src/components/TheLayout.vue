@@ -1,10 +1,18 @@
 <script lang='ts'>
 
     import { defineComponent } from 'vue'
+    import { isAuthenticated } from '@/services/helper'
+    import TheHeader from '@/components/TheHeader.vue'
 
     export default defineComponent({
 
         name: 'TheLayout',
+
+        components: { TheHeader },
+
+        setup() {
+            return { isAuthenticated }
+        },
 
     })
 
@@ -13,8 +21,21 @@
 <template>
 
     <div>
-        <img alt="Vue logo" src="../assets/logo.png" class='logo-image'>
+        <template v-if='isAuthenticated()'>
+            <TheHeader></TheHeader>
+        </template>
+
+        <template v-else>
+
+            <img alt="Vue logo" src="../assets/logo.png" class='logo-image'>
+            <div>
+                <h3>Экзамены по охране труда и технике безопасности</h3>
+            </div>
+
+        </template>
+
         <router-view></router-view>
+
     </div>
 
 </template>
