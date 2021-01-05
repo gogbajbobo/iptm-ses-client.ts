@@ -3,13 +3,12 @@ import { logger } from '@/services/logger'
 import { authUrls } from '@/services/network/urls'
 import { store } from '@/store'
 import { GetterTypes } from '@/store/auth/types'
+import { tokenPrefix, baseURL } from '@/services/constants'
 
-const axiosInstance = axios.create()
-axiosInstance.defaults.baseURL = 'http://localhost:8021'
+const axiosInstance = axios.create({ baseURL })
 
 const authorizedConfig = (config: AxiosRequestConfig) => {
 
-    const tokenPrefix = 'Bearer '
     const accessToken = store.getters[`auth/${ GetterTypes.ACCESS_TOKEN }`]
     if (accessToken) config.headers.Authorization = `${ tokenPrefix }${ accessToken }`
 
