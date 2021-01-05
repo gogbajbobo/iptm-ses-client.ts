@@ -40,11 +40,11 @@ axiosInstance.interceptors.response.use(response => {
 
     if (error.response) {
 
-        const isLoginUrl = error.response.config.url.slice(-authUrls.login.length) === authUrls.login
+        // const isLoginUrl = error.response.config.url.slice(-authUrls.login.length) === authUrls.login
 
-        if (error.response.status === 401 && !isLoginUrl) {
-            return Promise.resolve({ data: { response: 401 } }) // do not show error box if 401
-        }
+        // if (error.response.status === 401 && !isLoginUrl) {
+        //     return Promise.resolve({ data: { response: 401 } }) // do not show error box if 401
+        // }
 
     }
 
