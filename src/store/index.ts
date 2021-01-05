@@ -1,7 +1,6 @@
 import { createStore, createLogger } from 'vuex'
 import createPersistedState from 'vuex-persistedstate'
 
-import { test } from './test'
 import { auth } from './auth'
 import * as authStore from '@/store/auth/types'
 import { router } from '@/router'
@@ -11,7 +10,6 @@ import { showError } from '@/services/messages'
 export const store = createStore({
 
     modules: {
-        test,
         auth,
     },
 
