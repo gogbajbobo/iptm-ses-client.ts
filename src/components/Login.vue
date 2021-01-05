@@ -3,6 +3,7 @@
     import { defineComponent, computed } from 'vue'
     import { logger } from '@/services/logger'
     import { useStore } from 'vuex'
+    import { showError } from '@/services/messages'
     import { ActionTypes, GetterTypes } from '@/store/auth/types'
     import { ElForm } from 'element-plus'
 
@@ -42,7 +43,7 @@
 
         methods: {
 
-            login() { return this.store.dispatch(`auth/${ ActionTypes.LOGIN }`, this.loginForm).catch(logger.error) },
+            login() { return this.store.dispatch(`auth/${ ActionTypes.LOGIN }`, this.loginForm).catch(showError) },
 
             submitForm() {
 

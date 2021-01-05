@@ -6,3 +6,5 @@ export const isProduction = process.env.NODE_ENV === 'production'
 export const currentUser = () => store.getters[`auth/${ authStore.GetterTypes.USER }`]
 
 export const isAuthenticated = () => !!currentUser()
+
+export const rejectError = (err: Error) => Promise.reject(err)
