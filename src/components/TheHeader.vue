@@ -5,10 +5,13 @@
     import * as authStore from '@/store/auth/types'
     import { showError } from '@/services/messages'
     import { currentUser } from '@/services/helper'
+    import TheMenu from '@/components/TheMenu.vue'
 
     export default defineComponent({
 
         name: 'TheHeader',
+
+        components: { TheMenu },
 
         setup() {
             return {
@@ -29,17 +32,28 @@
 <template>
 
     <div>
+
+        <div class='menu-button'>
+            <TheMenu></TheMenu>
+        </div>
+
         <h3>Экзамены по охране труда и технике безопасности</h3>
+
         <span>{{ user.username }}</span>
         <el-button type="danger" size='mini' @click="logoutButtonClick" class='logout-button'>
             Выйти
         </el-button>
+
     </div>
 
 </template>
 
 <style scoped>
 
+    .menu-button {
+        position: fixed;
+        margin-left: 24px;
+    }
     .logout-button {
         margin-left: 12px;
     }
