@@ -4,7 +4,7 @@ import { IRootState, CredentialsType } from '@/store/interfaces'
 import { StoreState } from './state'
 import { ActionTypes, MutationTypes } from './types'
 
-import { login, logout } from '@/services/network/auth'
+import { login, logout } from '@/services/network/modules/auth'
 
 export interface IActions {
     [ActionTypes.LOGIN](context: ActionContext<StoreState, IRootState>, credentials: CredentialsType): Promise<any>

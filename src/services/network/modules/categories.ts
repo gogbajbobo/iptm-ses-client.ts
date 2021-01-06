@@ -1,4 +1,4 @@
-import axiosInstance from '@/services/network/index'
+import axiosInstance from '@/services/network'
 import { rejectError } from '@/services/helper'
 import { categoriesUrls } from '@/services/network/urls'
 

@@ -4,7 +4,7 @@ import { IRootState } from '@/store/interfaces'
 import { StoreState } from './state'
 import { ActionTypes, MutationTypes } from './types'
 
-import { getCategories } from '@/services/network/categories'
+import { getCategories } from '@/services/network/modules/categories'
 
 export interface IActions {
     [ActionTypes.GET_CATEGORIES]: (context: ActionContext<StoreState, IRootState>) => Promise<any>

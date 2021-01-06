@@ -4,7 +4,7 @@ import { IRootState } from '@/store/interfaces'
 import { StoreState } from './state'
 import { ActionTypes, MutationTypes } from './types'
 
-import { getExaminees } from '@/services/network/examinees'
+import { getExaminees } from '@/services/network/modules/examinees'
 
 export interface IActions {
     [ActionTypes.GET_EXAMINEES]: (context: ActionContext<StoreState, IRootState>) => Promise<any>
