@@ -3,6 +3,7 @@ import createPersistedState from 'vuex-persistedstate'
 
 import { auth } from './auth'
 import { examinees } from '@/store/examinees'
+import { categories } from '@/store/categories'
 import * as authStore from '@/store/auth/types'
 import { router } from '@/router'
 import { paths } from '@/router/paths'
@@ -13,6 +14,7 @@ export const store = createStore({
     modules: {
         auth,
         examinees,
+        categories,
     },
 
     strict: process.env.NODE_ENV !== 'production',
