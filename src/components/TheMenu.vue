@@ -3,6 +3,9 @@
     import { defineComponent } from 'vue'
     import { paths } from '@/router/paths'
     import { UserRole } from '@/services/constants'
+    import components from '@/components'
+
+    const { Main, ExamineeList } = components
 
     export default defineComponent({
 
@@ -11,8 +14,8 @@
         data() {
             return {
                 menuItems: [
-                    { title: 'Главная', command: paths.MAIN },
-                    { title: 'Пользователи', command: paths.EXAMINEE_LIST, roles: [ UserRole.EXAMINER ] }
+                    { title: Main.localname, command: paths.MAIN },
+                    { title: ExamineeList.localname, command: paths.EXAMINEE_LIST, roles: [ UserRole.EXAMINER ] }
                 ]
             }
         },

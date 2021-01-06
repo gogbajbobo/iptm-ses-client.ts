@@ -6,6 +6,8 @@
 
         name: 'Main',
 
+        localname: 'Главная',
+
         setup() {},
 
         methods: {},

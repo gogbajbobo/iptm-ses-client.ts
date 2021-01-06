@@ -6,6 +6,8 @@
 
         name: 'ExamineeList',
 
+        localname: 'Пользователи',
+
     })
 
 </script>
