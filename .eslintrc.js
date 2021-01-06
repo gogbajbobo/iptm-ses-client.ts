@@ -12,7 +12,8 @@ module.exports = {
     },
     plugins: ['@typescript-eslint'],
     extends: [
-        'plugin:vue/essential',
+        'plugin:vue/vue3-essential',
+        // 'plugin:vue/essential',
         'eslint:recommended',
         '@vue/typescript',
         // 'plugin:@typescript-eslint/recommended',
@@ -28,6 +29,8 @@ module.exports = {
         'template-curly-spacing': ["error", "always"],
         'space-before-function-paren': ["error", {"anonymous": "always", "named": "never", "asyncArrow": "always"}],
         'no-multiple-empty-lines': ["error", { "max": 2, "maxEOF": 1 }],
+        "no-unused-vars": "off",
+        "@typescript-eslint/no-unused-vars": "error",
         // '@typescript-eslint/member-delimiter-style': ['error', {
         //     multiline: {
         //         delimiter: 'none', requireLast: true,
