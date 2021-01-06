@@ -2,6 +2,7 @@ import { createStore, createLogger } from 'vuex'
 import createPersistedState from 'vuex-persistedstate'
 
 import { auth } from './auth'
+import { examinees } from '@/store/examinees'
 import * as authStore from '@/store/auth/types'
 import { router } from '@/router'
 import { paths } from '@/router/paths'
@@ -11,6 +12,7 @@ export const store = createStore({
 
     modules: {
         auth,
+        examinees,
     },
 
     strict: process.env.NODE_ENV !== 'production',
