@@ -2,13 +2,16 @@
 
     import { defineComponent } from 'vue'
 
+    const localname = 'Главная'
+
     export default defineComponent({
 
         name: 'Main',
+        localname,
 
-        localname: 'Главная',
-
-        setup() {},
+        setup() {
+            return { localname }
+        },
 
         methods: {},
 
@@ -21,7 +24,7 @@
     <div>
 
         <div>
-            Main page
+            {{ localname }}
         </div>
 
     </div>
