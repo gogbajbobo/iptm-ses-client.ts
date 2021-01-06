@@ -1,5 +1,6 @@
 import { StoreState } from './state'
-import { GetterTypes, UserType } from './types'
+import { GetterTypes } from './types'
+import { UserType } from '@/store/interfaces'
 
 export type Getters = {
     [GetterTypes.USER](state: StoreState): UserType | null

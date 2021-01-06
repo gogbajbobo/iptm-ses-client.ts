@@ -1,8 +1,8 @@
 import { ActionContext, ActionTree } from 'vuex'
 
-import { IRootState } from '@/store/interfaces'
+import { IRootState, CredentialsType } from '@/store/interfaces'
 import { StoreState } from './state'
-import { ActionTypes, MutationTypes, CredentialsType } from './types'
+import { ActionTypes, MutationTypes } from './types'
 
 import { login, logout } from '@/services/network/auth'
 

@@ -1,4 +1,4 @@
-import { UserType } from './types'
+import { UserType } from '@/store/interfaces'
 
 export type StoreState = {
     user: UserType | null
