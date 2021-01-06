@@ -1,9 +1,10 @@
 <script lang='ts'>
 
-import { defineComponent } from 'vue'
+import { defineComponent, computed } from 'vue'
 import { paths } from '@/router/paths'
 import { UserRole } from '@/services/constants'
 import components from '@/components'
+import { currentUser, checkRoles } from '@/services/helper'
 
 const { Main, ExamineeList, CategoryList } = components
 
@@ -11,20 +12,22 @@ const { Main, ExamineeList, CategoryList } = components
 
         name: 'TheMenu',
 
-        data() {
-            return {
-                menuItems: [
-                    { title: Main.localname, command: paths.MAIN },
-                    { title: ExamineeList.localname, command: paths.EXAMINEE_LIST, roles: [ UserRole.EXAMINER ] },
-                    { title: CategoryList.localname, command: paths.CATEGORY_LIST, roles: [ UserRole.EXAMINER ] },
-                ]
-            }
-        },
-
         setup() {
 
+            const menuItems = [
+                { title: Main.localname, command: paths.MAIN },
+                { title: ExamineeList.localname, command: paths.EXAMINEE_LIST, roles: [ UserRole.EXAMINER ] },
+                { title: CategoryList.localname, command: paths.CATEGORY_LIST, roles: [ UserRole.EXAMINER ] },
+            ]
+
+            const user = computed(() => currentUser())
+
+            const userMenuItems = computed(
+                () => menuItems.filter((item: any) => checkRoles(user.value, item.roles))
+            )
+
             return {
-                paths
+                userMenuItems
             }
 
         },
@@ -48,7 +51,7 @@ const { Main, ExamineeList, CategoryList } = components
         <template #dropdown>
             <el-dropdown-menu>
 
-                <el-dropdown-item v-for='item in menuItems'
+                <el-dropdown-item v-for='item in userMenuItems'
                                   :key='item.title'
                                   :command='item.command'>{{ item.title }}</el-dropdown-item>
 
