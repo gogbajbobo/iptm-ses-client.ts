@@ -3,6 +3,7 @@
     import { defineComponent, computed } from 'vue'
     import { useStore } from 'vuex'
     import { ActionTypes, GetterTypes } from '@/store/examinees/types'
+    import ExamineeItem from '@/components/ExamineeItem.vue'
 
     const localname = 'Пользователи'
 
@@ -10,6 +11,8 @@
 
         name: 'ExamineeList',
         localname,
+
+        components: { ExamineeItem },
 
         setup() {
 
@@ -32,7 +35,11 @@
 <template>
 
     <div>
+
         {{ localname }}
+
+        <ExamineeItem v-for='examinee in examineeList' :key='examinee.id' :examinee='examinee'></ExamineeItem>
+
     </div>
 
 </template>
