@@ -3,14 +3,14 @@ import { UserRole } from '@/services/constants'
 export interface IRootState {
 }
 
-export type UserType = {
+export interface UserType {
     id: string
     username: string
     accessToken?: string,
     roles: UserRole[]
 }
 
-export type CredentialsType = {
+export interface CredentialsType {
     username: string
     password: string
 }
