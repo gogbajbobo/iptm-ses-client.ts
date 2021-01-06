@@ -8,6 +8,7 @@ import {
     ElDropdown,
     ElDropdownItem,
     ElDropdownMenu,
+    ElDivider,
 
 } from 'element-plus'  // full import — ~650Kib build
 
@@ -24,5 +25,6 @@ export const elements = [
     ElDropdown,
     ElDropdownItem,
     ElDropdownMenu,
+    ElDivider,
 
 ]
