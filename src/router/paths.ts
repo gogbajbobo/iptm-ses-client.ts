@@ -2,5 +2,6 @@ export const paths = {
     ROOT: '/',
     MAIN: '/main',
     LOGIN: '/login',
-    EXAMINEE_LIST: '/examinee-list',
+    EXAMINEE_LIST: '/examinees',
+    CATEGORY_LIST: '/categories',
 }
