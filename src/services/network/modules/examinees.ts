@@ -1,8 +1,4 @@
-import axiosInstance from '@/services/network'
-import { rejectError } from '@/services/helper'
 import { examineesUrls } from '@/services/network/urls'
+import { get } from '@/services/network/methods'
 
-export const getExaminees = () =>
-    axiosInstance.get(examineesUrls.getExaminees)
-        .then(response => response.data)
-        .catch(rejectError)
+export const getExaminees = () => get(examineesUrls.getExaminees)
