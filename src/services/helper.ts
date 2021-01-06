@@ -1,6 +1,6 @@
 import { store } from '@/store'
 import * as authStore from '@/store/auth/types'
-import { UserType } from '@/store/auth/types'
+import { UserType } from '@/store/interfaces'
 import { UserRole } from '@/services/constants'
 
 export const isProduction = process.env.NODE_ENV === 'production'
