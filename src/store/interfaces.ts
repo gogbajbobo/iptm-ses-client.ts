@@ -4,7 +4,7 @@ export interface IRootState {
 }
 
 export interface UserType {
-    id: string
+    id: number
     username: string
     accessToken?: string
     roles: UserRole[]
