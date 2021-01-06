@@ -27,9 +27,13 @@
 
         <template v-else>
 
-            <img alt="Vue logo" src="../assets/logo.png" class='logo-image'>
-            <div>
-                <h3>Экзамены по охране труда и технике безопасности</h3>
+            <div class='main-logo'>
+
+                <img alt="Vue logo" src="../assets/logo.png" class='logo-image'>
+                <div>
+                    <h3>Экзамены по охране труда и технике безопасности</h3>
+                </div>
+
             </div>
 
         </template>
@@ -44,6 +48,10 @@
 
     .logo-image {
         margin-top: 24px;
+        margin-bottom: 24px;
+    }
+
+    .main-logo {
         margin-bottom: 24px;
     }
 

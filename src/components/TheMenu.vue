@@ -38,7 +38,7 @@
 <template>
 
     <el-dropdown @command='menuItemClick' placement='bottom-start'>
-        <el-button type="primary">
+        <el-button size='mini'>
             Меню
         </el-button>
         <template #dropdown>

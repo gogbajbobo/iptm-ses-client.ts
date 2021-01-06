@@ -39,10 +39,16 @@
 
         <h3>Экзамены по охране труда и технике безопасности</h3>
 
-        <span>{{ user.username }}</span>
-        <el-button type="danger" size='mini' @click="logoutButtonClick" class='logout-button'>
-            Выйти
-        </el-button>
+        <div class='user-block'>
+
+            <span>{{ user.username }}</span>
+            <el-button type="danger" size='mini' @click="logoutButtonClick" class='logout-button'>
+                Выйти
+            </el-button>
+
+        </div>
+
+        <el-divider></el-divider>
 
     </div>
 
@@ -52,8 +58,16 @@
 
     .menu-button {
         position: fixed;
-        margin-left: 24px;
+        left: 24px;
+        top: 16px;
     }
+
+    .user-block {
+        position: fixed;
+        top: 16px;
+        right: 24px;
+    }
+
     .logout-button {
         margin-left: 12px;
     }
