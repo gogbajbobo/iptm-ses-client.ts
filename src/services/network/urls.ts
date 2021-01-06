@@ -6,3 +6,7 @@ export const authUrls = {
 export const examineesUrls = {
     getExaminees: '/examinees'
 }
+
+export const categoriesUrls = {
+    getCategories: '/categories'
+}
