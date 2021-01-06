@@ -6,7 +6,7 @@ import { actions } from './actions'
 import { getters } from './getters'
 import { IRootState } from '@/store/interfaces'
 
-export const examinees: Module <StoreState, IRootState> = {
+export const categories: Module <StoreState, IRootState> = {
 
     namespaced: true,
     state,
