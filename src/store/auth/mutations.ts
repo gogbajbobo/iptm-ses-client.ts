@@ -1,4 +1,4 @@
-import { state as initialState, StoreState } from './state'
+import { initialState, StoreState } from './state'
 import { MutationTypes } from './types'
 
 export type Mutations = {
@@ -16,7 +16,7 @@ export const mutations: Mutations = {
     },
 
     [MutationTypes.LOGOUT](state) {
-        Object.assign(state, initialState)
+        Object.assign(state, initialState())
     },
 
 }

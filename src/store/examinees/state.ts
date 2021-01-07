@@ -4,6 +4,8 @@ export type StoreState = {
     examineeList: UserType[] | null
 }
 
-export const state: StoreState = {
+export const initialState = (): StoreState => ({
     examineeList: null,
-}
+})
+
+export const state: StoreState = initialState()
