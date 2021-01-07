@@ -9,6 +9,7 @@ export enum GetterTypes {
 }
 
 export enum MutationTypes {
+    RESET = 'RESET',
     LOGIN = 'LOGIN',
     LOGOUT = 'LOGOUT',
 }

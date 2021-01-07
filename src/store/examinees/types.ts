@@ -7,5 +7,6 @@ export enum GetterTypes {
 }
 
 export enum MutationTypes {
+    RESET = 'RESET',
     SET_EXAMINEE_LIST = 'SET_EXAMINEE_LIST',
 }
