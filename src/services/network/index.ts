@@ -5,7 +5,7 @@ import { store } from '@/store'
 import { GetterTypes } from '@/store/auth/types'
 import { tokenPrefix, baseURL } from '@/services/constants'
 import { router } from '@/router'
-import Main from '@/components/Main.vue'
+import { paths } from '@/router/paths'
 
 const axiosInstance = axios.create({ baseURL })
 
@@ -42,7 +42,7 @@ axiosInstance.interceptors.response.use(response => {
     if (error.response) {
 
         if (error.response.status === 403) {
-            router.push({ name: Main.name }).catch(() => {})
+            router.push({ path: paths.MAIN }).catch(() => {})
         }
 
     }
