@@ -1,11 +1,20 @@
-import { Router } from 'vue-router'
+import { Router, RouteLocationNormalized as RLN, NavigationGuardNext as NGN } from 'vue-router'
 import { paths } from './paths'
-import { isAuthenticated } from '@/services/helper'
+import { isAuthenticated, checkRoles, currentUser } from '@/services/helper'
 
+const checkRequiredRoles = (to: RLN): string | boolean => {
+
+    if (!to.meta.requireRoles) return true
+
+    return checkRoles(currentUser(), to.meta.requireRoles)
+        ? true
+        : paths.MAIN
+
+}
 
 export const guardsInit = (router: Router) => {
 
-    router.beforeEach((to, from) => {
+    router.beforeEach((to) => {
 
         if (!isAuthenticated() && !to.meta.anonymousAccess)
             return paths.LOGIN
@@ -13,11 +22,8 @@ export const guardsInit = (router: Router) => {
         if (isAuthenticated() && to.path === paths.LOGIN)
             return paths.ROOT
 
-        return true
-
-    })
-
-    router.afterEach((to, from, failure) => {
+        if (isAuthenticated())
+            return checkRequiredRoles(to)
 
     })
 
