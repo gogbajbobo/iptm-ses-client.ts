@@ -15,7 +15,9 @@
 
             const store = useStore()
             const categories = computed(() => store.getters[`categories/${ GetterTypes.CATEGORY_LIST }`])
-            const getCategories = (() => store.dispatch(`categories/${ ActionTypes.GET_CATEGORIES }`))()
+            const getCategories = (() => {
+                store.dispatch(`categories/${ ActionTypes.GET_CATEGORIES }`).catch(() => {})
+            })()
 
             return { localname, categories, getCategories }
 

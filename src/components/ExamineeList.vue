@@ -18,7 +18,9 @@
 
             const store = useStore()
             const examineeList = computed(() => store.getters[`examinees/${ GetterTypes.EXAMINEE_LIST }`])
-            const getExamineeList = (() => store.dispatch(`examinees/${ ActionTypes.GET_EXAMINEES }`))()
+            const getExamineeList = (() => {
+                store.dispatch(`examinees/${ ActionTypes.GET_EXAMINEES }`).catch(() => {})
+            })()
 
             return {
                 localname,
