@@ -34,9 +34,8 @@ export const store = createStore({
 
 const resetStore = (store: Store<IRootState>) => {
 
-    console.log(store.state)
-    store.commit(`examinees/RESET`)
-    store.commit(`categories/RESET`)
+    const modules = Object.keys(store.state)
+    modules.forEach(module => store.commit(`${ module }/RESET`))
 
 }
 
