@@ -67,7 +67,7 @@
 
     <el-form v-loading.fullscreen.lock="busy"
              :model="loginForm"
-             @keyup.enter.native="submitForm"
+             @keyup.enter="submitForm"
              :rules="rules"
              class='login-form'
              ref='loginForm'>
