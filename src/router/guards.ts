@@ -1,8 +1,8 @@
-import { Router, RouteLocationNormalized as RLN, NavigationGuardNext as NGN } from 'vue-router'
+import { Router, RouteLocationNormalized } from 'vue-router'
 import { paths } from './paths'
 import { isAuthenticated, checkRoles, currentUser } from '@/services/helper'
 
-const checkRequiredRoles = (to: RLN): string | boolean => {
+const checkRequiredRoles = (to: RouteLocationNormalized): string | boolean => {
 
     if (!to.meta.requireRoles) return true
 
