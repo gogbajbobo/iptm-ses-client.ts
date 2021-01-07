@@ -4,6 +4,8 @@ import { authUrls } from '@/services/network/urls'
 import { store } from '@/store'
 import { GetterTypes } from '@/store/auth/types'
 import { tokenPrefix, baseURL } from '@/services/constants'
+import { router } from '@/router'
+import Main from '@/components/Main.vue'
 
 const axiosInstance = axios.create({ baseURL })
 
@@ -39,16 +41,13 @@ axiosInstance.interceptors.response.use(response => {
 
     if (error.response) {
 
-        // const isLoginUrl = error.response.config.url.slice(-authUrls.login.length) === authUrls.login
-
-        // if (error.response.status === 401 && !isLoginUrl) {
-        //     return Promise.resolve({ data: { response: 401 } }) // do not show error box if 401
-        // }
+        if (error.response.status === 403) {
+            router.push({ name: Main.name }).catch(() => {})
+        }
 
     }
 
-    const message = error.response && error.response.data && error.response.data.message
-    return Promise.reject(message ? new Error(message) : error)
+    return Promise.reject(error)
 
 })
 
