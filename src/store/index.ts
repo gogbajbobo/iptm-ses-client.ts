@@ -1,5 +1,6 @@
 import { createStore, createLogger } from 'vuex'
 import createPersistedState from 'vuex-persistedstate'
+import createMultiTabState from 'vuex-multi-tab-state'
 
 import { auth } from './auth'
 import { examinees } from '@/store/examinees'
@@ -22,6 +23,7 @@ export const store = createStore({
     plugins: [
         createLogger(),
         createPersistedState(),
+        createMultiTabState(),
     ],
 
 })
