@@ -17,11 +17,22 @@
 
             const store = useStore()
             const categories = computed(() => store.getters[`categories/${ GetterTypes.CATEGORY_LIST }`])
-            const getCategories = (() => {
+            const getCategories = () => {
                 store.dispatch(`categories/${ ActionTypes.GET_CATEGORIES }`).catch(() => {})
-            })()
+            }
+            const addCategory = ({ value: title }: Record<string, string>) => {
+                store.dispatch(`categories/${ ActionTypes.ADD_CATEGORY }`, { title })
+            }
+            const updateCategory = (category: CategoryType) => {
+                store.dispatch(`categories/${ ActionTypes.UPDATE_CATEGORY }`, category)
+            }
+            const deleteCategory = (categoryId: number) => {
+                store.dispatch(`categories/${ ActionTypes.DELETE_CATEGORY }`, categoryId)
+            }
 
-            return { localname, store, categories, getCategories }
+            getCategories()
+
+            return { localname, store, categories, addCategory, updateCategory, deleteCategory }
 
         },
 
@@ -30,9 +41,7 @@
             addCategoryButtonClicked() {
 
                 showPrompt('Название категории:', 'Добавить категорию')
-                    .then(({ value: title }) => {
-                        this.store.dispatch(`categories/${ ActionTypes.ADD_CATEGORY }`, { title })
-                    })
+                    .then(this.addCategory)
                     .catch(() => {})
 
             },
@@ -47,7 +56,7 @@
                             title
                         }
 
-                        this.store.dispatch(`categories/${ ActionTypes.UPDATE_CATEGORY }`, newCategory)
+                        this.updateCategory(newCategory)
 
                     })
                     .catch(() => {})
@@ -58,7 +67,7 @@
 
                 showWarningConfirm(`Удалить категорию «${ category.title }»?`, 'Внимание!')
                     .then(() => {
-                        this.store.dispatch(`categories/${ ActionTypes.DELETE_CATEGORY }`, category.id)
+                        this.deleteCategory(category.id)
                     })
                     .catch(() => {})
 
