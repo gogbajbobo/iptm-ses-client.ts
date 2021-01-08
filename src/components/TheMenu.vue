@@ -53,6 +53,7 @@ const { Main, ExamineeList, CategoryList } = components
 
                 <el-dropdown-item v-for='item in userMenuItems'
                                   :key='item.title'
+                                  divided
                                   :command='item.command'>{{ item.title }}</el-dropdown-item>
 
             </el-dropdown-menu>
