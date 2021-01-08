@@ -8,6 +8,7 @@ import { store } from './store'
 
 const app = createApp(App)
 
+app.config.globalProperties.$ELEMENT = { size: 'mini' }
 elements.forEach(el => app.use(el))
 
 app.use(router)
