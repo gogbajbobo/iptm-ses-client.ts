@@ -1,4 +1,4 @@
 import { examineesUrls } from '@/services/network/urls'
-import { get } from '@/services/network/methods'
+import { getRequest } from '@/services/network/methods'
 
-export const getExaminees = () => get(examineesUrls.getExaminees)
+export const getExaminees = () => getRequest(examineesUrls.getExaminees)
