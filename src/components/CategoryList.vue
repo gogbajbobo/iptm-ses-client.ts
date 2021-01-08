@@ -46,7 +46,11 @@
 
         <div>{{ localname }}</div>
 
-        <el-button type='primary' @click='addCategoryButtonClicked'>Добавить категорию</el-button>
+        <div>
+            <el-button type='primary' @click='addCategoryButtonClicked'>Добавить категорию</el-button>
+        </div>
+
+        {{ categories }}
 
     </div>
 
