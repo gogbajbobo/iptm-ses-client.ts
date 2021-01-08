@@ -6,6 +6,7 @@ export type Mutations = {
     [MutationTypes.RESET]: (state: StoreState) => void
     [MutationTypes.SET_CATEGORIES]: (state: StoreState, categoryList: CategoryType[] | null) => void
     [MutationTypes.ADD_CATEGORY]: (state: StoreState, category: CategoryType) => void
+    [MutationTypes.REPLACE_CATEGORY]: (state: StoreState, category: CategoryType) => void
     [MutationTypes.DELETE_CATEGORY]: (state: StoreState, categoryId: number) => void
 }
 
@@ -19,6 +20,12 @@ export const mutations: Mutations = {
 
     [MutationTypes.ADD_CATEGORY]: (state, category) => {
         state.categoryList?.push(category)
+    },
+
+    [MutationTypes.REPLACE_CATEGORY]: (state, category) => {
+        state.categoryList = state.categoryList?.map(cat => {
+            return cat.id === category.id ? category : cat
+        }) || null
     },
 
     [MutationTypes.DELETE_CATEGORY]: (state, categoryId) => {
