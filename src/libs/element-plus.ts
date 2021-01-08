@@ -9,6 +9,8 @@ import {
     ElForm,
     ElFormItem,
     ElInput,
+    ElOption,
+    ElSelect,
     ElTable,
     ElTableColumn,
 
@@ -28,6 +30,8 @@ export const elements = [
     ElForm,
     ElFormItem,
     ElInput,
+    ElOption,
+    ElSelect,
     ElTable,
     ElTableColumn,
 
