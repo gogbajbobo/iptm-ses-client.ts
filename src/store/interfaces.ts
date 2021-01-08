@@ -8,6 +8,7 @@ export interface UserType {
     username: string
     accessToken?: string
     roles: UserRole[]
+    categories: CategoryType[]
 }
 
 export interface CredentialsType {
