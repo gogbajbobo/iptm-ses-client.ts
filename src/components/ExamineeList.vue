@@ -17,15 +17,15 @@
         setup() {
 
             const store = useStore()
-            const examineeList = computed(() => store.getters[`examinees/${ GetterTypes.EXAMINEE_LIST }`])
-            const getExamineeList = (() => {
+            const examinees = computed(() => store.getters[`examinees/${ GetterTypes.EXAMINEE_LIST }`])
+            const getExaminees = (() => {
                 store.dispatch(`examinees/${ ActionTypes.GET_EXAMINEES }`).catch(() => {})
             })()
 
             return {
                 localname,
-                examineeList,
-                getExamineeList,
+                examinees,
+                getExaminees,
             }
 
         },
@@ -40,7 +40,7 @@
 
         {{ localname }}
 
-        <ExamineeItem v-for='examinee in examineeList' :key='examinee.id' :examinee='examinee'></ExamineeItem>
+        <ExamineeItem v-for='examinee in examinees' :key='examinee.id' :examinee='examinee'></ExamineeItem>
 
     </div>
 
