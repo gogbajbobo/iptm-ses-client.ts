@@ -1,8 +1,10 @@
 <script lang='ts'>
 
-    import { defineComponent, computed } from 'vue'
+    import { defineComponent, computed, ref } from 'vue'
     import { useStore } from 'vuex'
     import { ActionTypes, GetterTypes } from '@/store/examinees/types'
+    import { UserType } from '@/store/interfaces'
+    import ExamineeForm from '@/components/ExamineeForm.vue'
 
     const localname = 'Пользователи'
 
@@ -11,19 +13,35 @@
         name: 'ExamineeList',
         localname,
 
+        components: { ExamineeForm },
+
         setup() {
 
             const store = useStore()
             const examinees = computed(() => store.getters[`examinees/${ GetterTypes.EXAMINEE_LIST }`])
-            const getExaminees = (() => {
-                store.dispatch(`examinees/${ ActionTypes.GET_EXAMINEES }`).catch(() => {})
-            })()
+            const getExaminees = () => store.dispatch(`examinees/${ ActionTypes.GET_EXAMINEES }`)
+            getExaminees().catch(() => {})
+
+            let examineeFormVisible = ref(false)
+            let selectedExaminee: any = null
 
             return {
                 localname,
                 examinees,
-                getExaminees,
+                examineeFormVisible,
+                selectedExaminee,
             }
+
+        },
+
+        methods: {
+
+            editExamineeButtonPressed(examinee: UserType) {
+
+                this.selectedExaminee = examinee
+                this.examineeFormVisible = true
+
+            },
 
         },
 
@@ -57,7 +75,37 @@
                 label="Имя">
             </el-table-column>
 
+            <el-table-column
+                prop="categories"
+                label="Категории">
+            </el-table-column>
+
+            <el-table-column>
+                <template #default="scope">
+
+                    <el-button type='warning'
+                               plain
+                               @click='editExamineeButtonPressed(scope.row)'>Редактировать</el-button>
+
+                </template>
+            </el-table-column>
+
         </el-table>
+
+        <el-dialog title="Пользователь"
+                   :model-value="examineeFormVisible"
+                   width="30%">
+
+            <ExamineeForm :examinee='selectedExaminee'></ExamineeForm>
+
+            <template #footer>
+                <span class="dialog-footer">
+                    <el-button @click="examineeFormVisible = false">Отменить</el-button>
+                    <el-button type="primary" @click="examineeFormVisible = false">Сохранить</el-button>
+                </span>
+            </template>
+
+        </el-dialog>
 
     </div>
 

@@ -1,6 +1,7 @@
 import {
 
     ElButton,
+    ElDialog,
     ElDivider,
     ElDropdown,
     ElDropdownItem,
@@ -19,6 +20,7 @@ import 'element-plus/lib/theme-chalk/el-reset.css'
 export const elements = [
 
     ElButton,
+    ElDialog,
     ElDivider,
     ElDropdown,
     ElDropdownItem,
