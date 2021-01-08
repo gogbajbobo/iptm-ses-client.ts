@@ -1,5 +1,4 @@
-import { ElMessage } from 'element-plus'
-import { ElMessageBox } from 'element-plus/'
+import { ElMessage, ElMessageBox } from 'element-plus'
 import { logger } from '@/services/logger'
 
 export const showError = (err: Error) =>  {
