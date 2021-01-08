@@ -2,8 +2,9 @@
 
     import { defineComponent, computed } from 'vue'
     import { useStore } from 'vuex'
+    import { CategoryType } from '@/store/interfaces'
     import { ActionTypes, GetterTypes } from '@/store/categories/types'
-    import { showPrompt, showError } from '@/services/messages'
+    import { showPrompt, showWarningConfirm } from '@/services/messages'
 
     const localname = 'Категории'
 
@@ -25,6 +26,7 @@
         },
 
         methods: {
+
             addCategoryButtonClicked() {
 
                 showPrompt('Название категории:', 'Добавить категорию')
@@ -34,6 +36,16 @@
                     .catch(() => {})
 
             },
+            deleteCategoryButtonClicked(category: CategoryType) {
+
+                showWarningConfirm(`Удалить категорию «${ category.title }»?`, 'Внимание!')
+                    .then(() => {
+                        this.store.dispatch(`categories/${ ActionTypes.DELETE_CATEGORY }`, category.id)
+                    })
+                    .catch(() => {})
+
+            },
+
         },
 
     })
@@ -66,6 +78,16 @@
             <el-table-column
                 prop="title"
                 label="Категория">
+            </el-table-column>
+
+            <el-table-column>
+                <template #default="scope">
+
+                    <el-button type='danger'
+                               plain
+                               @click='deleteCategoryButtonClicked(scope.row)'>Удалить</el-button>
+
+                </template>
             </el-table-column>
 
         </el-table>
