@@ -12,6 +12,10 @@ export const showPrompt = (message: string, title: string): Promise<any> => {
     return ElMessageBox.prompt(message, title)
 }
 
+export const showWarningConfirm = (message: string, title: string): Promise<any> => {
+    return ElMessageBox.confirm(message, title, { type: 'warning' })
+}
+
 export const showConfirm = (message: string, title: string): Promise<any> => {
     return ElMessageBox.confirm(message, title)
 }
