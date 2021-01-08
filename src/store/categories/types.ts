@@ -1,6 +1,7 @@
 export enum ActionTypes {
     GET_CATEGORIES = 'GET_CATEGORIES',
     ADD_CATEGORY = 'ADD_CATEGORY',
+    DELETE_CATEGORY = 'DELETE_CATEGORY',
 }
 
 export enum GetterTypes {
@@ -11,4 +12,5 @@ export enum MutationTypes {
     RESET = 'RESET',
     SET_CATEGORY_LIST = 'SET_CATEGORY_LIST',
     ADD_CATEGORY_TO_LIST = 'ADD_CATEGORY_TO_LIST',
+    DELETE_CATEGORY = 'DELETE_CATEGORY',
 }
