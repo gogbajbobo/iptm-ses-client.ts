@@ -9,3 +9,5 @@ const request = (requestPromise: Promise<any>) =>
 export const get = (url: string) => request(axiosInstance.get(url))
 
 export const post = (url: string, payload?: object) => request(axiosInstance.post(url, payload))
+
+export const deleteRequest = (url: string, id: number) => request(axiosInstance.delete(`${ url }/${ id }`))
