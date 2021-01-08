@@ -25,7 +25,6 @@
 
         data() {
             return {
-                busy: false,
                 loginForm: {
                     username: null,
                     password: null,
@@ -47,13 +46,10 @@
 
             submitForm() {
 
-                this.busy = true
-
                 const loginFormElement = this.$refs.loginForm as typeof ElForm
                 loginFormElement.validate()
                     .then(this.login)
                     .catch((invalidFields: object) => logger.error(`login form validation fail: `, invalidFields))
-                    .finally(() => { this.busy = false })
 
             },
 
@@ -65,8 +61,7 @@
 
 <template>
 
-    <el-form v-loading.fullscreen.lock="busy"
-             :model="loginForm"
+    <el-form :model="loginForm"
              @keyup.enter="submitForm"
              :rules="rules"
              class='login-form'
