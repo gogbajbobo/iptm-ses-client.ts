@@ -10,4 +10,8 @@ export const getRequest = (url: string) => request(axiosInstance.get(url))
 
 export const postRequest = (url: string, payload?: object) => request(axiosInstance.post(url, payload))
 
+export const putRequest = (url: string, id: number, payload: object) => {
+    return request(axiosInstance.put(`${ url }/${ id }`, payload))
+}
+
 export const deleteRequest = (url: string, id: number) => request(axiosInstance.delete(`${ url }/${ id }`))
