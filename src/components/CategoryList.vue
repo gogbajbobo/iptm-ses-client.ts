@@ -4,7 +4,7 @@
     import { useStore } from 'vuex'
     import { CategoryType } from '@/store/interfaces'
     import { ActionTypes, GetterTypes } from '@/store/categories/types'
-    import { showPrompt, showWarningConfirm } from '@/services/messages'
+    import { showPrompt, showPromptWithValue, showWarningConfirm } from '@/services/messages'
 
     const localname = 'Категории'
 
@@ -36,6 +36,24 @@
                     .catch(() => {})
 
             },
+
+            editCategoryButtonClicked(category: CategoryType) {
+
+                showPromptWithValue('Название категории:', 'Редактировать категорию', category.title)
+                    .then(({ value: title }) => {
+
+                        const newCategory = {
+                            id: category.id,
+                            title
+                        }
+
+                        this.store.dispatch(`categories/${ ActionTypes.UPDATE_CATEGORY }`, newCategory)
+
+                    })
+                    .catch(() => {})
+
+            },
+
             deleteCategoryButtonClicked(category: CategoryType) {
 
                 showWarningConfirm(`Удалить категорию «${ category.title }»?`, 'Внимание!')
@@ -82,6 +100,10 @@
 
             <el-table-column>
                 <template #default="scope">
+
+                    <el-button type='warning'
+                               plain
+                               @click='editCategoryButtonClicked(scope.row)'>Редактировать</el-button>
 
                     <el-button type='danger'
                                plain
