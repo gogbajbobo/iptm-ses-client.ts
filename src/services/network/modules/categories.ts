@@ -1,4 +1,4 @@
-import { categoriesUrls } from '@/services/network/urls'
 import { get } from '@/services/network/methods'
+import { categoriesUrl } from '@/services/network/urls'
 
-export const getCategories = () => get(categoriesUrls.getCategories)
+export const getCategories = () => get(categoriesUrl)

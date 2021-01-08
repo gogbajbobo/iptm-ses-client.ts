@@ -7,6 +7,4 @@ export const examineesUrls = {
     getExaminees: '/examinees'
 }
 
-export const categoriesUrls = {
-    getCategories: '/categories'
-}
+export const categoriesUrl = '/categories'
