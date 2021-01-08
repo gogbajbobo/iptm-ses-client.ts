@@ -13,7 +13,7 @@ export interface IActions {
 export const actions: ActionTree <StoreState, IRootState> & IActions = {
 
     [ActionTypes.GET_EXAMINEES]: ({ commit }) => {
-        return getExaminees().then(data => commit(MutationTypes.SET_EXAMINEE_LIST, data))
+        return getExaminees().then(data => commit(MutationTypes.SET_EXAMINEES, data))
     },
 
 }

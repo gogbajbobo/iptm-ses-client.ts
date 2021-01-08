@@ -18,11 +18,11 @@ export interface IActions {
 export const actions: Actions & IActions = {
 
     [ActionTypes.GET_CATEGORIES]: ({ commit }) => {
-        return getCategories().then(categories => commit(MutationTypes.SET_CATEGORY_LIST, categories))
+        return getCategories().then(categories => commit(MutationTypes.SET_CATEGORIES, categories))
     },
 
     [ActionTypes.ADD_CATEGORY]: ({ commit }, category) => {
-        return addCategory({ category }).then(category => commit(MutationTypes.ADD_CATEGORY_TO_LIST, category))
+        return addCategory({ category }).then(category => commit(MutationTypes.ADD_CATEGORY, category))
     },
 
     [ActionTypes.DELETE_CATEGORY]: ({ commit }, categoryId) => {
