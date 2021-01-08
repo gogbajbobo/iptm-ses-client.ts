@@ -8,8 +8,12 @@ export const showError = (err: Error) =>  {
 
 }
 
+export const showPromptWithValue = (message: string, title: string, inputValue?: string): Promise<any> => {
+    return ElMessageBox.prompt(message, title, { inputValue })
+}
+
 export const showPrompt = (message: string, title: string): Promise<any> => {
-    return ElMessageBox.prompt(message, title)
+    return showPromptWithValue(message, title)
 }
 
 export const showWarningConfirm = (message: string, title: string): Promise<any> => {
