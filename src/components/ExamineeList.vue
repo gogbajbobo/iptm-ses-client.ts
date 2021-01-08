@@ -38,7 +38,10 @@
 
     <div>
 
-        {{ localname }}
+        <div>
+            {{ localname }}
+        </div>
+
 
         <ExamineeItem v-for='examinee in examinees' :key='examinee.id' :examinee='examinee'></ExamineeItem>
 
