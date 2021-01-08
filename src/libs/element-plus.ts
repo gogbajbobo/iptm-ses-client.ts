@@ -4,7 +4,6 @@ import {
     ElForm,
     ElFormItem,
     ElInput,
-    ElLoading,
     ElDropdown,
     ElDropdownItem,
     ElDropdownMenu,
@@ -33,5 +32,4 @@ export const elements = [
 ]
 
 export const elementPlugins = [
-    ElLoading,
 ]
