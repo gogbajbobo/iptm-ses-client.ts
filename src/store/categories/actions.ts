@@ -18,7 +18,7 @@ export const actions: ActionTree <StoreState, IRootState> & IActions = {
     },
 
     [ActionTypes.ADD_CATEGORY]: ({ commit }, category) => {
-        return addCategory(category).then(category => commit(MutationTypes.ADD_CATEGORY_TO_LIST, category))
+        return addCategory({ category }).then(category => commit(MutationTypes.ADD_CATEGORY_TO_LIST, category))
     },
 
 }
