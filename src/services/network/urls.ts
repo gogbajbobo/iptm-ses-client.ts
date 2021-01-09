@@ -3,8 +3,5 @@ export const authUrls = {
     logout: '/logout',
 }
 
-export const examineesUrls = {
-    getExaminees: '/examinees'
-}
-
+export const examineesUrl = '/examinees'
 export const categoriesUrl = '/categories'
