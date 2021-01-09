@@ -18,7 +18,9 @@
         setup() {
 
             const store = useStore()
+
             const examinees = computed(() => store.getters[`examinees/${ GetterTypes.EXAMINEE_LIST }`])
+
             const getExaminees = () => store.dispatch(`examinees/${ ActionTypes.GET_EXAMINEES }`)
             getExaminees().catch(() => {})
 
@@ -66,25 +68,20 @@
 
         <el-table :data="examinees">
 
-            <el-table-column
-                type="index"
-                width="50">
+            <el-table-column type="index"
+                             width="50">
             </el-table-column>
 
-            <el-table-column
-                prop="id"
-                label="#"
-                width="180">
+            <el-table-column prop="id"
+                             label="#"
+                             width="180">
             </el-table-column>
 
-            <el-table-column
-                prop="username"
-                label="Имя">
+            <el-table-column prop="username"
+                             label="Имя">
             </el-table-column>
 
-            <el-table-column
-                prop="categories"
-                label="Категории">
+            <el-table-column label="Категории">
             </el-table-column>
 
             <el-table-column>
