@@ -39,11 +39,16 @@ axiosInstance.interceptors.response.use(response => {
 
 }, error => {
 
-    if (error.response) {
+    const { response } = error
 
-        if (error.response.status === 403) {
+    if (response) {
+
+        if (response.status === 403) {
             router.push({ path: paths.MAIN }).catch(() => {})
         }
+
+        if (response.data.error)
+            logger.error(response.data.error)
 
     }
 
