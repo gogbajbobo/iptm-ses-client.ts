@@ -1,9 +1,10 @@
 <script lang='ts'>
 
-    import { defineComponent, PropType, computed, toRefs } from 'vue'
+    import { defineComponent, PropType, computed } from 'vue'
     import { useStore } from 'vuex'
     import { UserType } from '@/store/interfaces'
-    import { ActionTypes, GetterTypes } from '@/store/categories/types'
+    import * as categoryStore from '@/store/categories/types'
+    import * as examineeStore from '@/store/examinees/types'
 
     export default defineComponent({
 
@@ -16,17 +17,28 @@
             }
         },
 
-        setup(props) {
+        data() {
+            return {
+                selectedCategories: [ ...this.examinee.categories ],
+            }
+        },
+
+        setup() {
 
             const store = useStore()
-            const categories = computed(() => store.getters[`categories/${ GetterTypes.CATEGORY_LIST }`])
-            const getCategories = () => store.dispatch(`categories/${ ActionTypes.GET_CATEGORIES }`)
+            const categories = computed(() => {
+                return store.getters[`categories/${ categoryStore.GetterTypes.CATEGORY_LIST }`]
+            })
+            const getCategories = () => {
+                return store.dispatch(`categories/${ categoryStore.ActionTypes.GET_CATEGORIES }`)
+            }
+            const updateExaminee = (examinee: UserType) => {
+                return store.dispatch(`examinees/${ examineeStore.ActionTypes.UPDATE_EXAMINEE }`, examinee)
+            }
 
             getCategories().catch(() => {})
 
-            const { categories: selectedCategories } = toRefs(props.examinee)
-
-            return { categories, selectedCategories }
+            return { categories, updateExaminee }
 
         },
 
@@ -36,7 +48,13 @@
 
             cancelExamineeForm() { this.closeForm() },
 
-            saveExamineeForm() { this.closeForm() },
+            saveExamineeForm() {
+
+                return this.updateExaminee({ ...this.examinee, categories: this.selectedCategories })
+                    .then(() => this.closeForm())
+                    .catch(() => {})
+
+            },
 
         },
 
