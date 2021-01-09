@@ -52,6 +52,10 @@
 
             },
 
+            categoriesString(examinee: UserType) {
+                return examinee.categories.map(category => category.title).join(',')
+            },
+
         },
 
     })
@@ -82,6 +86,11 @@
             </el-table-column>
 
             <el-table-column label="Категории">
+
+                <template #default="scope">
+                    {{ categoriesString(scope.row) }}
+                </template>
+
             </el-table-column>
 
             <el-table-column>
