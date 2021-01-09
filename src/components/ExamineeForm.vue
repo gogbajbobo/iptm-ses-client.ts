@@ -19,7 +19,7 @@
 
         data() {
             return {
-                selectedCategories: [ ...this.examinee.categories ],
+                selectedCategories: [ ...this.examinee.categories ].map(c => c.id),
             }
         },
 
@@ -50,7 +50,8 @@
 
             saveExamineeForm() {
 
-                return this.updateExaminee({ ...this.examinee, categories: this.selectedCategories })
+                const newCategories = [ ...this.categories ].filter(c => this.selectedCategories.includes(c.id))
+                return this.updateExaminee({ ...this.examinee, categories: newCategories })
                     .then(() => this.closeForm())
                     .catch(() => {})
 
@@ -72,7 +73,7 @@
             <el-option v-for="category in categories"
                        :key="category.id"
                        :label="category.title"
-                       :value="category.title">
+                       :value="category.id">
             </el-option>
         </el-select>
 
