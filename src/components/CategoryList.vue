@@ -18,16 +18,16 @@
             const store = useStore()
             const categories = computed(() => store.getters[`categories/${ GetterTypes.CATEGORY_LIST }`])
             const getCategories = () => {
-                store.dispatch(`categories/${ ActionTypes.GET_CATEGORIES }`).catch(() => {})
+                return store.dispatch(`categories/${ ActionTypes.GET_CATEGORIES }`).catch(() => {})
             }
             const addCategory = ({ value: title }: Record<string, string>) => {
-                store.dispatch(`categories/${ ActionTypes.ADD_CATEGORY }`, { title })
+                return store.dispatch(`categories/${ ActionTypes.ADD_CATEGORY }`, { title })
             }
             const updateCategory = (category: CategoryType) => {
-                store.dispatch(`categories/${ ActionTypes.UPDATE_CATEGORY }`, category)
+                return store.dispatch(`categories/${ ActionTypes.UPDATE_CATEGORY }`, category)
             }
             const deleteCategory = (categoryId: number) => {
-                store.dispatch(`categories/${ ActionTypes.DELETE_CATEGORY }`, categoryId)
+                return store.dispatch(`categories/${ ActionTypes.DELETE_CATEGORY }`, categoryId)
             }
 
             getCategories()
@@ -56,7 +56,7 @@
                             title
                         }
 
-                        this.updateCategory(newCategory)
+                        return this.updateCategory(newCategory)
 
                     })
                     .catch(() => {})
@@ -66,9 +66,7 @@
             deleteCategoryButtonClicked(category: CategoryType) {
 
                 showWarningConfirm(`Удалить категорию «${ category.title }»?`, 'Внимание!')
-                    .then(() => {
-                        this.deleteCategory(category.id)
-                    })
+                    .then(() => this.deleteCategory(category.id))
                     .catch(() => {})
 
             },
