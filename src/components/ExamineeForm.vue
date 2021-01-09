@@ -30,6 +30,16 @@
 
         },
 
+        methods: {
+
+            closeForm() { this.$emit('close-form') },
+
+            cancelExamineeForm() { this.closeForm() },
+
+            saveExamineeForm() { this.closeForm() },
+
+        },
+
     })
 
 </script>
@@ -48,10 +58,21 @@
             </el-option>
         </el-select>
 
+        <div class='form-buttons'>
+
+            <el-button @click="cancelExamineeForm">Отменить</el-button>
+            <el-button type="primary" @click="saveExamineeForm">Сохранить</el-button>
+
+        </div>
+
     </div>
 
 </template>
 
 <style scoped>
+
+    .form-buttons {
+        margin-top: 24px;
+    }
 
 </style>

@@ -43,18 +43,10 @@
 
             },
 
-            cancelExamineeForm() {
-                this.examineeFormVisible = false
-            },
-
-            saveExamineeForm() {
-                this.examineeFormVisible = false
-            },
-
             closeExamineeForm() {
 
                 this.examineeFormVisible = false
-                this.selectedExaminee = null
+                // this.selectedExaminee = null
 
             },
 
@@ -110,16 +102,10 @@
         <el-dialog title="Пользователь"
                    :model-value="examineeFormVisible"
                    @closed='closeExamineeForm'
+                   :destroy-on-close='true'
                    width="30%">
 
-            <ExamineeForm :examinee='selectedExaminee'></ExamineeForm>
-
-            <template #footer>
-                <span class="dialog-footer">
-                    <el-button @click="cancelExamineeForm">Отменить</el-button>
-                    <el-button type="primary" @click="saveExamineeForm">Сохранить</el-button>
-                </span>
-            </template>
+            <ExamineeForm :examinee='selectedExaminee' @close-form='closeExamineeForm'></ExamineeForm>
 
         </el-dialog>
 
