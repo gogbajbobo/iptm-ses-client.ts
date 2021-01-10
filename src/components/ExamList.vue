@@ -49,11 +49,29 @@
     <div>
 
         <div> {{ localname }} </div>
-        {{ exams }}
 
         <div>
             <el-button type='primary' @click='addExamButtonClicked'>Добавить экзамен</el-button>
         </div>
+
+        <el-table :data="exams">
+
+            <el-table-column type="index"
+                             fixed
+                             width="50">
+            </el-table-column>
+
+            <el-table-column prop="id"
+                             fixed
+                             label="#"
+                             width="50">
+            </el-table-column>
+
+            <el-table-column prop="title"
+                             label="Экзамен">
+            </el-table-column>
+
+        </el-table>
 
     </div>
 
