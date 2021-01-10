@@ -1,6 +1,8 @@
 <script lang='ts'>
 
-    import { defineComponent } from 'vue'
+    import { defineComponent, computed } from 'vue'
+    import { useStore } from 'vuex'
+    import * as examStore from '@/store/exams/types'
 
     const localname = 'Экзамены'
 
@@ -10,7 +12,23 @@
         localname,
 
         setup() {
-            return { localname }
+
+            const store = useStore()
+
+            const exams = computed(() => store.getters[`exams/${ examStore.Getters.ITEM_LIST }`])
+
+            const getExams = () => store.dispatch(`exams/${ examStore.Actions.GET_ITEMS }`)
+            getExams().catch(() => {})
+
+            return { localname, exams }
+
+        },
+
+        methods: {
+
+            addExamButtonClicked() {
+            },
+
         },
 
     })
@@ -20,7 +38,14 @@
 <template>
 
     <div>
-        {{ localname }}
+
+        <div> {{ localname }} </div>
+        {{ exams }}
+
+        <div>
+            <el-button type='primary' @click='addExamButtonClicked'>Добавить экзамен</el-button>
+        </div>
+
     </div>
 
 </template>
