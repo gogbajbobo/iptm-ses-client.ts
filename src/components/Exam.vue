@@ -4,6 +4,7 @@
     import { useStore } from 'vuex'
     import { ExamType } from '@/store/interfaces'
     import * as examStore from '@/store/exams/types'
+    import { paths } from '@/router/paths'
 
     const localname = 'Экзамен'
 
@@ -29,6 +30,14 @@
 
         },
 
+        methods: {
+
+            backToExamsButtonClicked() {
+                this.$router.push(paths.EXAM_LIST)
+            }
+
+        },
+
     })
 
 </script>
@@ -36,7 +45,17 @@
 <template>
 
     <div>
-        <div>{{ localname }} {{ examId }} {{ exam.title }}</div>
+
+        <div>{{ localname }} {{ examId }}</div>
+
+        <template v-if='exam'>
+            <div>{{ exam.title }}</div>
+        </template>
+        <template v-else>
+            <div>Такого экзамена не существует.</div>
+            <el-button type='text' @click='backToExamsButtonClicked'>К списку экзаменов</el-button>
+        </template>
+
     </div>
 
 </template>
