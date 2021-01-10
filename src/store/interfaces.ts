@@ -20,3 +20,9 @@ export interface CategoryType {
     id: number
     title: string
 }
+
+export interface ExamType {
+    id: number
+    title: string
+    sections?: any[]
+}
