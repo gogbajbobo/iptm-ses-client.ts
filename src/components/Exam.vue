@@ -5,6 +5,7 @@
     import { ExamType } from '@/store/interfaces'
     import * as examStore from '@/store/exams/types'
     import { paths } from '@/router/paths'
+    import SectionList from '@/components/SectionList.vue'
 
     const localname = 'Экзамен'
 
@@ -12,6 +13,8 @@
 
         name: 'Exam',
         localname,
+
+        components: { SectionList },
 
         props: {
             examId: {
@@ -49,11 +52,17 @@
         <div>{{ localname }} {{ examId }}</div>
 
         <template v-if='exam'>
+
             <div>{{ exam.title }}</div>
+
+            <SectionList :exam-id='Number(examId)'></SectionList>
+
         </template>
         <template v-else>
+
             <div>Такого экзамена не существует.</div>
             <el-button type='text' @click='backToExamsButtonClicked'>К списку экзаменов</el-button>
+
         </template>
 
     </div>
