@@ -5,6 +5,7 @@
     import * as examStore from '@/store/exams/types'
     import { showPrompt, showPromptWithValue, showWarningConfirm } from '@/services/messages'
     import { ExamType } from '@/store/interfaces'
+    import Exam from '@/components/Exam.vue'
 
     const localname = 'Экзамены'
 
@@ -71,6 +72,10 @@
 
             },
 
+            examTitleClicked(exam: ExamType) {
+                this.$router.push({ name: Exam.name, params: { examId: exam.id }})
+            }
+
         },
 
     })
@@ -96,6 +101,11 @@
             </el-table-column>
 
             <el-table-column prop="title" label="Экзамен">
+                <template #default="scope">
+
+                    <el-button type='text' @click='examTitleClicked(scope.row)'>{{ scope.row.title }}</el-button>
+
+                </template>
             </el-table-column>
 
             <el-table-column fixed="right" width='256'>
