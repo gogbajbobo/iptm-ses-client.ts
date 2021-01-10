@@ -1,7 +1,9 @@
 <script lang='ts'>
 
-import {defineComponent, PropType} from 'vue'
-import { ExamType } from '@/store/interfaces'
+    import { defineComponent } from 'vue'
+    import { useStore } from 'vuex'
+    import { ExamType } from '@/store/interfaces'
+    import * as examStore from '@/store/exams/types'
 
     const localname = 'Экзамен'
 
@@ -17,8 +19,14 @@ import { ExamType } from '@/store/interfaces'
             }
         },
 
-        setup() {
-            return { localname }
+        setup(props) {
+
+            const store = useStore()
+            const exams = store.getters[`exams/${ examStore.Getters.ITEM_LIST }`]
+            const exam = exams.find((e: ExamType) => e.id === Number(props.examId))
+
+            return { localname, exam }
+
         },
 
     })
@@ -28,7 +36,7 @@ import { ExamType } from '@/store/interfaces'
 <template>
 
     <div>
-        <div>{{ localname }} {{ examId }}</div>
+        <div>{{ localname }} {{ examId }} {{ exam.title }}</div>
     </div>
 
 </template>
