@@ -3,7 +3,13 @@ import { paths } from '@/router/paths'
 import { RouteRecordRaw } from 'vue-router'
 import { UserRole } from '@/services/constants'
 
-const { Login, Main, ExamineeList, CategoryList } = components
+const {
+    Login,
+    Main,
+    ExamineeList,
+    CategoryList,
+    ExamList
+} = components
 
 const root: RouteRecordRaw = {
     path: paths.ROOT,
@@ -43,10 +49,20 @@ const categoryList: RouteRecordRaw = {
     },
 }
 
+const examList: RouteRecordRaw = {
+    path: paths.EXAM_LIST,
+    name: ExamList.name,
+    component: ExamList,
+    meta: {
+        requireRoles: [ UserRole.EXAMINER ],
+    },
+}
+
 export const routes: RouteRecordRaw[] = [
     root,
     main,
     login,
     examineeList,
     categoryList,
+    examList,
 ]

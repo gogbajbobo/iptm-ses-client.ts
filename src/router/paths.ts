@@ -4,4 +4,5 @@ export const paths = {
     LOGIN: '/login',
     EXAMINEE_LIST: '/examinees',
     CATEGORY_LIST: '/categories',
+    EXAM_LIST: '/exams',
 }
