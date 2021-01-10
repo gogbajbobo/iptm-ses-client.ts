@@ -18,7 +18,7 @@
             const store = useStore()
             const categories = computed(() => store.getters[`categories/${ GetterTypes.CATEGORY_LIST }`])
             const getCategories = () => {
-                return store.dispatch(`categories/${ ActionTypes.GET_CATEGORIES }`).catch(() => {})
+                return store.dispatch(`categories/${ ActionTypes.GET_CATEGORIES }`)
             }
             const addCategory = ({ value: title }: Record<string, string>) => {
                 return store.dispatch(`categories/${ ActionTypes.ADD_CATEGORY }`, { title })
@@ -30,7 +30,7 @@
                 return store.dispatch(`categories/${ ActionTypes.DELETE_CATEGORY }`, categoryId)
             }
 
-            getCategories()
+            getCategories().catch(() => {})
 
             return { localname, store, categories, addCategory, updateCategory, deleteCategory }
 
