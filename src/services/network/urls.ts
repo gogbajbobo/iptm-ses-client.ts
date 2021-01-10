@@ -5,3 +5,4 @@ export const authUrls = {
 
 export const examineesUrl = '/examinees'
 export const categoriesUrl = '/categories'
+export const examsUrl = '/exams'
