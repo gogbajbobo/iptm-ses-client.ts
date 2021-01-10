@@ -1,12 +1,11 @@
 <script lang='ts'>
 
     import { defineComponent, computed } from 'vue'
-    import { paths } from '@/router/paths'
-    import { UserRole } from '@/services/constants'
+    import { routes } from '@/router/routes'
     import components from '@/components'
     import { currentUser, checkRoles } from '@/services/helper'
 
-    const { Main, ExamineeList, CategoryList } = components
+    const { Main, ExamineeList, CategoryList, ExamList } = components
 
     export default defineComponent({
 
@@ -14,11 +13,26 @@
 
         setup() {
 
+            const menuItem = (component: any) => {
+
+                const route = routes.find(r => r.component === component)
+                if (!route)
+                    return null
+
+                return {
+                    title: component.localname,
+                    command: route.path,
+                    roles: route.meta?.requireRoles,
+                }
+
+            }
+
             const menuItems = [
-                { title: Main.localname, command: paths.MAIN },
-                { title: ExamineeList.localname, command: paths.EXAMINEE_LIST, roles: [ UserRole.EXAMINER ] },
-                { title: CategoryList.localname, command: paths.CATEGORY_LIST, roles: [ UserRole.EXAMINER ] },
-            ]
+                Main,
+                ExamineeList,
+                CategoryList,
+                ExamList
+            ].map(menuItem)
 
             const user = computed(() => currentUser())
 
