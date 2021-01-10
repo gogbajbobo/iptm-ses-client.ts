@@ -1,12 +1,12 @@
 <script lang='ts'>
 
-import { defineComponent, computed } from 'vue'
-import { paths } from '@/router/paths'
-import { UserRole } from '@/services/constants'
-import components from '@/components'
-import { currentUser, checkRoles } from '@/services/helper'
+    import { defineComponent, computed } from 'vue'
+    import { paths } from '@/router/paths'
+    import { UserRole } from '@/services/constants'
+    import components from '@/components'
+    import { currentUser, checkRoles } from '@/services/helper'
 
-const { Main, ExamineeList, CategoryList } = components
+    const { Main, ExamineeList, CategoryList } = components
 
     export default defineComponent({
 
