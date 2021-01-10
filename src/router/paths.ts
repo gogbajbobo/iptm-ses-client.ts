@@ -5,4 +5,5 @@ export const paths = {
     EXAMINEE_LIST: '/examinees',
     CATEGORY_LIST: '/categories',
     EXAM_LIST: '/exams',
+    EXAM_ITEM: '/exams/:examId'
 }
