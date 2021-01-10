@@ -1,5 +1,5 @@
 import { createStore, createLogger, Store } from 'vuex'
-import createPersistedState from 'vuex-persistedstate'
+// import createPersistedState from 'vuex-persistedstate'  TODO: check if it needed with 'vuex-multi-tab-state'
 import createMultiTabState from 'vuex-multi-tab-state'
 
 import { IRootState } from '@/store/interfaces'
@@ -26,7 +26,7 @@ export const store = createStore({
 
     plugins: [
         createLogger(),
-        createPersistedState(),
+        // createPersistedState(),
         createMultiTabState(),
     ],
 
