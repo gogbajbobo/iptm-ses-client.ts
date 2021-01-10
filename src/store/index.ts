@@ -7,6 +7,8 @@ import { IRootState } from '@/store/interfaces'
 import { auth } from './auth'
 import { examinees } from '@/store/examinees'
 import { categories } from '@/store/categories'
+import { store as exams } from '@/store/exams'
+
 import * as authStore from '@/store/auth/types'
 
 import { router } from '@/router'
@@ -20,6 +22,7 @@ export const store = createStore({
         auth,
         examinees,
         categories,
+        exams,
     },
 
     strict: process.env.NODE_ENV !== 'production',
