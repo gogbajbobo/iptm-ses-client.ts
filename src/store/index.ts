@@ -1,6 +1,6 @@
 import { createStore, createLogger, Store } from 'vuex'
-// import createPersistedState from 'vuex-persistedstate'  TODO: check if it needed with 'vuex-multi-tab-state'
-import createMultiTabState from 'vuex-multi-tab-state'
+import createPersistedState from 'vuex-persistedstate'  // TODO: check if it needed with 'vuex-multi-tab-state'
+// import createMultiTabState from 'vuex-multi-tab-state'  // TODO: this plugin prevent new module attaching to the store
 
 import { IRootState } from '@/store/interfaces'
 
@@ -29,8 +29,8 @@ export const store = createStore({
 
     plugins: [
         createLogger(),
-        // createPersistedState(),
-        createMultiTabState(),
+        createPersistedState(),
+        // createMultiTabState(),
     ],
 
 })
