@@ -6,6 +6,7 @@
     import SectionForm from '@/components/SectionForm.vue'
     import { SectionType } from '@/store/interfaces'
     import { showWarningConfirm } from '@/services/messages'
+    import Section from '@/components/Section.vue'
 
     const localname = 'Разделы экзамена'
 
@@ -79,6 +80,10 @@
 
             categoryTitle(section: SectionType) { return section.category?.title },
 
+            sectionTitleClicked(section: SectionType) {
+                this.$router.push({ name: Section.name, params: { sectionId: section.id }})
+            },
+
         },
 
     })
@@ -104,6 +109,11 @@
             </el-table-column>
 
             <el-table-column prop="title" label="Раздел">
+                <template #default="scope">
+
+                    <el-button type='text' @click='sectionTitleClicked(scope.row)'>{{ scope.row.title }}</el-button>
+
+                </template>
             </el-table-column>
 
             <el-table-column prop="category" label="Категория">
