@@ -52,16 +52,21 @@
 
         methods: {
 
-            addSectionButtonClicked() {
-                this.sectionFormVisible = true
-            },
+            showSectionForm() { this.sectionFormVisible = true },
+            closeSectionForm() { this.sectionFormVisible = false },
 
-            closeSectionForm() {
-                this.sectionFormVisible = false
+            addSectionButtonClicked() {
+
+                this.selectedSection = null
+                this.showSectionForm()
+
             },
 
             editSectionButtonClicked(section: SectionType) {
-                console.log('edit', section)
+
+                this.selectedSection = section
+                this.showSectionForm()
+
             },
 
             deleteSectionButtonClicked(section: SectionType) {

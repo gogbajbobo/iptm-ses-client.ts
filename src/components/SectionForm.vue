@@ -37,11 +37,14 @@
             const addSection = (section: SectionEmbryo) => {
                 return store.dispatch(`sections/${ sectionStore.Actions.ADD_ITEM }`, section)
             }
+            const updateSection = (section: any) => {
+                return store.dispatch(`sections/${ sectionStore.Actions.UPDATE_ITEM }`, section)
+            }
 
-            const selectedCategory = ref(props.section?.category)
-            const sectionTitle = ref('')
+            const selectedCategory = ref(props.section?.category.id)
+            const sectionTitle = ref(props.section?.title || '')
 
-            return { categories, selectedCategory, sectionTitle, addSection }
+            return { categories, selectedCategory, sectionTitle, addSection, updateSection }
 
         },
 
@@ -59,15 +62,32 @@
                 if (!this.selectedCategory)
                     return showAlert('Не выбрана категория', 'Ошибка!').catch(() => {})
 
-                const section: SectionEmbryo = {
-                    title: this.sectionTitle,
-                    category: this.selectedCategory,
-                    exam: this.examId,
-                }
+                if (this.section) {
 
-                this.addSection(section)
-                    .then(this.closeForm)
-                    .catch(() => {})
+                    const section = {
+                        ...this.section,
+                        title: this.sectionTitle,
+                        category: this.selectedCategory
+                    }
+
+                    this.updateSection(section)
+                        .then(this.closeForm)
+                        .catch(() => {})
+
+
+                } else {
+
+                    const section: SectionEmbryo = {
+                        title: this.sectionTitle,
+                        category: this.selectedCategory,
+                        exam: this.examId,
+                    }
+
+                    this.addSection(section)
+                        .then(this.closeForm)
+                        .catch(() => {})
+
+                }
 
             },
 
