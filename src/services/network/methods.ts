@@ -13,7 +13,9 @@ const request = (requestPromise: Promise<any>) => {
 
 }
 
-export const getRequest = (url: string) => request(axiosInstance.get(url))
+export const getRequest = (url: string, params?: Record<string, string|number>) => {
+    return request(axiosInstance.get(url, { params }))
+}
 
 export const postRequest = (url: string, payload?: object) => request(axiosInstance.post(url, payload))
 

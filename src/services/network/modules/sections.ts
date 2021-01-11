@@ -5,7 +5,7 @@ import { getRequest, postRequest, putRequest, deleteRequest } from '@/services/n
 
 export type ItemKey = 'item'
 
-export const getItems = () => getRequest(url)
+export const getItems = (params?: Record<string, string|number>) => getRequest(url, params)
 
 export const addItem = (item: Record<ItemKey, ItemType>) => postRequest(url, item)
 

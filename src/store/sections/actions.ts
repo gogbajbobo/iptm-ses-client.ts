@@ -10,7 +10,7 @@ type Context = ActionContext<StoreState, IRootState>
 type ActionsType = ActionTree <StoreState, IRootState>
 
 export interface IActions<T> {
-    [Actions.GET_ITEMS]: (context: Context) => Promise<void>
+    [Actions.GET_ITEMS]: (context: Context, params: Record<string, string|number>) => Promise<void>
     [Actions.ADD_ITEM]: (context: Context, item: T) => Promise<void>
     [Actions.UPDATE_ITEM]: (context: Context, item: T) => Promise<void>
     [Actions.DELETE_ITEM]: (context: Context, id: number) => Promise<void>
@@ -18,8 +18,8 @@ export interface IActions<T> {
 
 export const actions: ActionsType & IActions<SectionType> = {
 
-    [Actions.GET_ITEMS]: ({ commit }) => {
-        return getItems().then(items => commit(Mutations.SET_ITEMS, items))
+    [Actions.GET_ITEMS]: ({ commit }, params) => {
+        return getItems(params).then(items => commit(Mutations.SET_ITEMS, items))
     },
 
     [Actions.ADD_ITEM]: ({ commit }, item) => {
