@@ -1,6 +1,8 @@
 <script lang='ts'>
 
-    import { defineComponent } from 'vue'
+    import { defineComponent, computed } from 'vue'
+    import { useStore } from 'vuex'
+    import * as sectionStore from '@/store/sections/types'
 
     const localname = 'Разделы экзамена'
 
@@ -16,8 +18,25 @@
             }
         },
 
-        setup() {
-            return { localname }
+        setup(props) {
+
+            const store = useStore()
+
+            const sections = computed(() => store.getters[`sections/${ sectionStore.Getters.ITEM_LIST }`])
+
+            const getSections = () => {
+
+                return store.dispatch(
+                    `sections/${ sectionStore.Actions.GET_ITEMS }`,
+                    { exam: props.examId }
+                    )
+
+            }
+
+            getSections().catch(() => {})
+
+            return { localname, sections }
+
         },
 
     })
@@ -29,6 +48,7 @@
     <div>
 
         <div>{{ localname }} {{ examId }}</div>
+        <div>{{ sections }}</div>
 
     </div>
 
