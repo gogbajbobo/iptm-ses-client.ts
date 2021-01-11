@@ -4,7 +4,8 @@
     import { useStore } from 'vuex'
     import * as sectionStore from '@/store/sections/types'
     import SectionForm from '@/components/SectionForm.vue'
-    import { SectionType, CategoryType } from '@/store/interfaces'
+    import { SectionType } from '@/store/interfaces'
+    import { showWarningConfirm } from '@/services/messages'
 
     const localname = 'Разделы экзамена'
 
@@ -38,10 +39,14 @@
             }
             getSections().catch(() => {})
 
+            const deleteSection = (sectionId: number) => {
+                return store.dispatch(`sections/${ sectionStore.Actions.DELETE_ITEM }`, sectionId)
+            }
+
             let sectionFormVisible = ref(false)
             let selectedSection: any = null
 
-            return { localname, sections, sectionFormVisible, selectedSection }
+            return { localname, sections, sectionFormVisible, selectedSection, deleteSection }
 
         },
 
@@ -60,7 +65,11 @@
             },
 
             deleteSectionButtonClicked(section: SectionType) {
-                console.log('delete', section)
+
+                showWarningConfirm(`Удалить категорию «${ section.title }»?`, 'Внимание!')
+                    .then(() => this.deleteSection(section.id))
+                    .catch(() => {})
+
             },
 
             categoryTitle(section: SectionType) { return section.category?.title },
