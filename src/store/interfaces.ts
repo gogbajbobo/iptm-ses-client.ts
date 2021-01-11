@@ -31,7 +31,7 @@ export interface ExamType extends BaseType {
 export interface SectionEmbryo {
     title: string
     exam: number
-    category: number
+    category: number & CategoryType
 }
 
 export interface SectionType extends SectionEmbryo, BaseType {

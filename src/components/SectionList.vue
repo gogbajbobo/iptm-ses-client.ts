@@ -1,9 +1,10 @@
 <script lang='ts'>
 
-import {defineComponent, computed, ref} from 'vue'
+    import { defineComponent, computed, ref } from 'vue'
     import { useStore } from 'vuex'
     import * as sectionStore from '@/store/sections/types'
     import SectionForm from '@/components/SectionForm.vue'
+    import { SectionType, CategoryType } from '@/store/interfaces'
 
     const localname = 'Разделы экзамена'
 
@@ -54,6 +55,16 @@ import {defineComponent, computed, ref} from 'vue'
                 this.sectionFormVisible = false
             },
 
+            editSectionButtonClicked(section: SectionType) {
+                console.log('edit', section)
+            },
+
+            deleteSectionButtonClicked(section: SectionType) {
+                console.log('delete', section)
+            },
+
+            categoryTitle(section: SectionType) { return section.category?.title },
+
         },
 
     })
@@ -65,11 +76,43 @@ import {defineComponent, computed, ref} from 'vue'
     <div>
 
         <div>{{ localname }} {{ examId }}</div>
-        <div>{{ sections }}</div>
 
         <div>
             <el-button type='primary' @click='addSectionButtonClicked'>Добавить раздел</el-button>
         </div>
+
+        <el-table :data="sections">
+
+            <el-table-column type="index" fixed width="50">
+            </el-table-column>
+
+            <el-table-column prop="id" fixed label="#" width="50">
+            </el-table-column>
+
+            <el-table-column prop="title" label="Раздел">
+            </el-table-column>
+
+            <el-table-column prop="category" label="Категория">
+                <template #default="scope">
+                    {{ categoryTitle(scope.row) }}
+                </template>
+            </el-table-column>
+
+            <el-table-column fixed='right' width='256'>
+                <template #default="scope">
+
+                    <el-button type='warning'
+                               plain
+                               @click='editSectionButtonClicked(scope.row)'>Редактировать</el-button>
+
+                    <el-button type='danger'
+                               plain
+                               @click='deleteSectionButtonClicked(scope.row)'>Удалить</el-button>
+
+                </template>
+            </el-table-column>
+
+        </el-table>
 
         <el-dialog title="Раздел экзамена"
                    :model-value="sectionFormVisible"
