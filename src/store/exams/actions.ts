@@ -35,6 +35,6 @@ export const actions: ActionsType & IActions<ExamType> = {
 
     [Actions.DELETE_ITEM]: ({ commit }, id) => {
         return deleteItem(id).then(() => commit(Mutations.DELETE_ITEM, id))
-    }
+    },
 
 }
