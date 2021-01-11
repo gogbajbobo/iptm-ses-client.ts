@@ -58,7 +58,7 @@
 
 <template>
 
-    <el-dropdown @command='menuItemClick' placement='bottom-start'>
+    <el-dropdown @command='menuItemClick' placement='bottom-start' trigger="click">
         <el-button size='mini'>
             Меню
         </el-button>
