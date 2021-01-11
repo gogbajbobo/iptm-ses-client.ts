@@ -23,3 +23,7 @@ export const showWarningConfirm = (message: string, title: string): Promise<any>
 export const showConfirm = (message: string, title: string): Promise<any> => {
     return ElMessageBox.confirm(message, title)
 }
+
+export const showAlert = (message: string, title: string): Promise<any> => {
+    return ElMessageBox.alert(message, title, { type: 'error' })
+}
