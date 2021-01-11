@@ -27,6 +27,12 @@ export interface ExamType {
     sections?: any[]
 }
 
+export interface SectionEmbryo {
+    title: string
+    exam: number
+    category: number
+}
+
 export interface SectionType {
     id: number
     title: string
