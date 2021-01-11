@@ -40,3 +40,8 @@ export interface SectionType extends BaseType {
     category: CategoryType
     questions?: any[]
 }
+
+export interface QuestionType extends BaseType {
+    text: string
+    section: number
+}

@@ -9,6 +9,7 @@ import { examinees } from '@/store/examinees'
 import { categories } from '@/store/categories'
 import { store as exams } from '@/store/exams'
 import { store as sections } from '@/store/sections'
+import { store as questions } from '@/store/questions'
 
 import * as authStore from '@/store/auth/types'
 
@@ -25,6 +26,7 @@ export const store = createStore({
         categories,
         exams,
         sections,
+        questions,
     },
 
     strict: process.env.NODE_ENV !== 'production',
