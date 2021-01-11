@@ -1,7 +1,7 @@
 <script lang="ts">
 
     import { defineComponent } from 'vue'
-    import TheLayout from '@/components/TheLayout.vue'
+    import TheLayout from '@/components/common/TheLayout.vue'
 
     export default defineComponent({
         name: 'App',

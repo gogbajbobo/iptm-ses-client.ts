@@ -2,7 +2,7 @@
 
     import { defineComponent } from 'vue'
     import { isAuthenticated } from '@/services/helper'
-    import TheHeader from '@/components/TheHeader.vue'
+    import TheHeader from '@/components/common/TheHeader.vue'
 
     export default defineComponent({
 
@@ -29,7 +29,7 @@
 
             <div class='main-logo'>
 
-                <img alt="Vue logo" src="../assets/logo.png" class='logo-image'>
+                <img alt="Vue logo" src="../../assets/logo.png" class='logo-image'>
                 <div>
                     <h3>Экзамены по охране труда и технике безопасности</h3>
                 </div>
