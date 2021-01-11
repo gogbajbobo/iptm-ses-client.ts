@@ -10,6 +10,7 @@ const {
     CategoryList,
     ExamList,
     Exam,
+    Section,
 } = components
 
 const root: RouteRecordRaw = {
@@ -69,6 +70,16 @@ const examItem: RouteRecordRaw = {
     },
 }
 
+const sectionItem: RouteRecordRaw = {
+    path: paths.SECTION_ITEM,
+    name: Section.name,
+    component: Section,
+    props: true,
+    meta: {
+        requireRoles: [ UserRole.EXAMINER ],
+    },
+}
+
 export const routes: RouteRecordRaw[] = [
     root,
     main,
@@ -77,4 +88,5 @@ export const routes: RouteRecordRaw[] = [
     categoryList,
     examList,
     examItem,
+    sectionItem,
 ]
