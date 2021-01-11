@@ -74,7 +74,7 @@
 
             examTitleClicked(exam: ExamType) {
                 this.$router.push({ name: Exam.name, params: { examId: exam.id }})
-            }
+            },
 
         },
 
