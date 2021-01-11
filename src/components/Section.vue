@@ -4,6 +4,7 @@
     import { useStore } from 'vuex'
     import * as sectionStore from '@/store/sections/types'
     import { SectionType } from '@/store/interfaces'
+    import QuestionList from '@/components/QuestionList.vue'
 
     const localname = 'Раздел экзамена'
 
@@ -11,6 +12,8 @@
 
         name: 'Section',
         localname,
+
+        components: { QuestionList },
 
         props: {
             sectionId: { type: [ Number, String ], required: true }
@@ -47,6 +50,8 @@
         <template v-if='section'>
 
             <div>{{ section.title }}</div>
+
+            <QuestionList :section-id='section.id'></QuestionList>
 
         </template>
         <template v-else>
