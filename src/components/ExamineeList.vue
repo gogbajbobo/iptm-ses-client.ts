@@ -72,17 +72,13 @@
 
         <el-table :data="examinees">
 
-            <el-table-column type="index"
-                             width="50">
+            <el-table-column type="index" width="50">
             </el-table-column>
 
-            <el-table-column prop="id"
-                             label="#"
-                             width="180">
+            <el-table-column prop="id" label="#" width="180">
             </el-table-column>
 
-            <el-table-column prop="username"
-                             label="Имя">
+            <el-table-column prop="username" label="Имя">
             </el-table-column>
 
             <el-table-column label="Категории">

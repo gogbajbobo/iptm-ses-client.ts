@@ -89,19 +89,13 @@
 
         <el-table :data="categories">
 
-            <el-table-column type="index"
-                             fixed
-                             width="50">
+            <el-table-column type="index" fixed width="50">
             </el-table-column>
 
-            <el-table-column prop="id"
-                             fixed
-                             label="#"
-                             width="50">
+            <el-table-column prop="id" fixed label="#" width="50">
             </el-table-column>
 
-            <el-table-column prop="title"
-                             label="Категория">
+            <el-table-column prop="title" label="Категория">
             </el-table-column>
 
             <el-table-column fixed='right' width='256'>
