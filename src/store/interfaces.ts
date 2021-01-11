@@ -3,8 +3,11 @@ import { UserRole } from '@/services/constants'
 export interface IRootState {
 }
 
-export interface UserType {
+interface BaseType {
     id: number
+}
+
+export interface UserType extends BaseType {
     username: string
     accessToken?: string
     roles: UserRole[]
@@ -16,15 +19,13 @@ export interface CredentialsType {
     password: string
 }
 
-export interface CategoryType {
-    id: number
+export interface CategoryType extends BaseType {
     title: string
 }
 
-export interface ExamType {
-    id: number
+export interface ExamType extends BaseType {
     title: string
-    sections?: any[]
+    sections?: SectionType[]
 }
 
 export interface SectionEmbryo {
@@ -33,10 +34,6 @@ export interface SectionEmbryo {
     category: number
 }
 
-export interface SectionType {
-    id: number
-    title: string
-    exam: number
-    category: number
+export interface SectionType extends SectionEmbryo, BaseType {
     questions?: any[]
 }
