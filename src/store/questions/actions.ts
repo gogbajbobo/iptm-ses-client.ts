@@ -4,7 +4,10 @@ import { IRootState, QuestionType } from '@/store/interfaces'
 import { StoreState } from './state'
 import { Actions, Mutations } from './types'
 
-import { getItems, addItem, updateItem, deleteItem } from '@/services/network/modules/questions'
+import { questionsUrl } from '@/services/network/urls'
+import { apiRequests } from '@/services/network/modules'
+
+const { getItems, addItem, updateItem, deleteItem } = apiRequests<QuestionType>(questionsUrl)
 
 type Context = ActionContext<StoreState, IRootState>
 type ActionsType = ActionTree <StoreState, IRootState>

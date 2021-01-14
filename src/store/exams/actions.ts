@@ -4,7 +4,10 @@ import { IRootState, ExamType } from '@/store/interfaces'
 import { StoreState } from './state'
 import { Actions, Mutations } from './types'
 
-import { getItems, addItem, updateItem, deleteItem } from '@/services/network/modules/exams'
+import { examsUrl } from '@/services/network/urls'
+import { apiRequests } from '@/services/network/modules'
+
+const { getItems, addItem, updateItem, deleteItem } = apiRequests<ExamType>(examsUrl)
 
 type Context = ActionContext<StoreState, IRootState>
 type ActionsType = ActionTree <StoreState, IRootState>
