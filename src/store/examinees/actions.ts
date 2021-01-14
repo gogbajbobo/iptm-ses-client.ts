@@ -4,7 +4,10 @@ import { IRootState, UserType } from '@/store/interfaces'
 import { StoreState } from './state'
 import { ActionTypes, MutationTypes } from './types'
 
-import { getExaminees, updateExaminee } from '@/services/network/modules/examinees'
+import { examineesUrl } from '@/services/network/urls'
+import { apiRequests } from '@/services/network/modules'
+
+const { getItems, updateItem } = apiRequests<UserType>(examineesUrl)
 
 type Context = ActionContext<StoreState, IRootState>
 type Actions = ActionTree <StoreState, IRootState>
@@ -17,13 +20,13 @@ export interface IActions {
 export const actions: Actions & IActions = {
 
     [ActionTypes.GET_EXAMINEES]: ({ commit }) => {
-        return getExaminees().then(data => commit(MutationTypes.SET_EXAMINEES, data))
+        return getItems().then(items => commit(MutationTypes.SET_EXAMINEES, items))
     },
 
-    [ActionTypes.UPDATE_EXAMINEE]: ({ commit }, examinee) => {
+    [ActionTypes.UPDATE_EXAMINEE]: ({ commit }, item) => {
 
-        return updateExaminee(examinee.id, { examinee })
-            .then(examinee => commit(MutationTypes.REPLACE_EXAMINEE, examinee))
+        return updateItem(item.id, { item })
+            .then(item => commit(MutationTypes.REPLACE_EXAMINEE, item))
 
     },
 
