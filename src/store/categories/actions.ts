@@ -4,7 +4,10 @@ import { IRootState, CategoryType } from '@/store/interfaces'
 import { StoreState } from './state'
 import { ActionTypes, MutationTypes } from './types'
 
-import { getCategories, addCategory, updateCategory, deleteCategory } from '@/services/network/modules/categories'
+import { categoriesUrl } from '@/services/network/urls'
+import { apiRequests } from '@/services/network/modules'
+
+const { getItems, addItem, updateItem, deleteItem } = apiRequests<CategoryType>(categoriesUrl)
 
 type Context = ActionContext<StoreState, IRootState>
 type Actions = ActionTree <StoreState, IRootState>
@@ -19,22 +22,22 @@ export interface IActions {
 export const actions: Actions & IActions = {
 
     [ActionTypes.GET_CATEGORIES]: ({ commit }) => {
-        return getCategories().then(categories => commit(MutationTypes.SET_CATEGORIES, categories))
+        return getItems().then(items => commit(MutationTypes.SET_CATEGORIES, items))
     },
 
-    [ActionTypes.ADD_CATEGORY]: ({ commit }, category) => {
-        return addCategory({ category }).then(category => commit(MutationTypes.ADD_CATEGORY, category))
+    [ActionTypes.ADD_CATEGORY]: ({ commit }, item) => {
+        return addItem({ item }).then(item => commit(MutationTypes.ADD_CATEGORY, item))
     },
 
-    [ActionTypes.UPDATE_CATEGORY]: ({ commit }, category) => {
+    [ActionTypes.UPDATE_CATEGORY]: ({ commit }, item) => {
 
-        return updateCategory(category.id, { category })
-            .then(category => commit(MutationTypes.REPLACE_CATEGORY, category))
+        return updateItem(item.id, { item })
+            .then(item => commit(MutationTypes.REPLACE_CATEGORY, item))
 
     },
 
-    [ActionTypes.DELETE_CATEGORY]: ({ commit }, categoryId) => {
-        return deleteCategory(categoryId).then(() => commit(MutationTypes.DELETE_CATEGORY, categoryId))
-    }
+    [ActionTypes.DELETE_CATEGORY]: ({ commit }, id) => {
+        return deleteItem(id).then(() => commit(MutationTypes.DELETE_CATEGORY, id))
+    },
 
 }
