@@ -1,12 +1,15 @@
 <script lang='ts'>
 
     import { defineComponent, computed, ref } from 'vue'
+
     import { useStore } from 'vuex'
     import * as sectionStore from '@/store/sections/types'
-    import SectionForm from '@/components/SectionForm.vue'
     import * as categoryStore from '@/store/categories/types'
     import { SectionType } from '@/store/interfaces'
+
     import { showWarningConfirm } from '@/services/messages'
+
+    import SectionForm from '@/components/SectionForm.vue'
     import Section from '@/components/Section.vue'
 
     const localname = 'Разделы экзамена'
