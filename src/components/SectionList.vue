@@ -4,6 +4,7 @@
     import { useStore } from 'vuex'
     import * as sectionStore from '@/store/sections/types'
     import SectionForm from '@/components/SectionForm.vue'
+    import * as categoryStore from '@/store/categories/types'
     import { SectionType } from '@/store/interfaces'
     import { showWarningConfirm } from '@/services/messages'
     import Section from '@/components/Section.vue'
@@ -30,6 +31,10 @@
 
             const sections = computed(() => store.getters[`sections/${ sectionStore.Getters.ITEM_LIST }`])
 
+            const getCategories = () => {
+                return store.dispatch(`categories/${ categoryStore.ActionTypes.GET_CATEGORIES }`)
+            }
+
             const getSections = () => {
 
                 return store.dispatch(
@@ -38,7 +43,6 @@
                     )
 
             }
-            getSections().catch(() => {})
 
             const deleteSection = (sectionId: number) => {
                 return store.dispatch(`sections/${ sectionStore.Actions.DELETE_ITEM }`, sectionId)
@@ -46,6 +50,10 @@
 
             let sectionFormVisible = ref(false)
             let selectedSection: any = null
+
+            getSections()
+                .then(getCategories)
+                .catch(() => {})
 
             return { localname, sections, sectionFormVisible, selectedSection, deleteSection }
 

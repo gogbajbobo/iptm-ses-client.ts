@@ -29,10 +29,6 @@
             const categories = computed(() => {
                 return store.getters[`categories/${ categoryStore.GetterTypes.CATEGORY_LIST }`]
             })
-            const getCategories = () => {
-                return store.dispatch(`categories/${ categoryStore.ActionTypes.GET_CATEGORIES }`)
-            }
-            getCategories().catch(() => {})
 
             const addSection = (section: SectionEmbryo) => {
                 return store.dispatch(`sections/${ sectionStore.Actions.ADD_ITEM }`, section)
