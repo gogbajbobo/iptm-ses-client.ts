@@ -14,11 +14,8 @@ export function apiRequests<T>(url: string): RequestCollection<T> {
     return {
 
         getItems: (params?) => getRequest(url, params),
-
         addItem: (item) => postRequest(url, item),
-
         updateItem: (id, item) => putRequest(url, id, item),
-
         deleteItem: (id) => deleteRequest(url, id),
 
     }
