@@ -1,10 +1,10 @@
 import { ElMessage, ElMessageBox } from 'element-plus'
 import { logger } from '@/services/logger'
 
-export const showError = (err: Error) =>  {
+export const showError = (err: Error, showInConsole: boolean = true) =>  {
 
     ElMessage.error(`${ err.name }: ${ err.message }`)
-    logger.error(err.message)
+    showInConsole && logger.error(err.message)
 
 }
 
