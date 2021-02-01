@@ -3,6 +3,7 @@
     import { defineComponent, computed } from 'vue'
     import { useStore } from 'vuex'
     import * as questionStore from '@/store/questions/types'
+    import QuestionForm from './QuestionForm.vue'
 
     const localname = 'Вопросы раздела'
 
@@ -10,6 +11,8 @@
 
         name: 'QuestionList',
         localname,
+
+        components: { QuestionForm },
 
         props: {
             sectionId: {
@@ -48,6 +51,8 @@
 
         <div>{{ localname }}</div>
         {{ questions }}
+
+        <QuestionForm></QuestionForm>
 
     </div>
 
