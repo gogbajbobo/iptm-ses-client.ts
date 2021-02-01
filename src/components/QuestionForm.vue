@@ -1,8 +1,21 @@
-<script>
+<script lang='ts'>
 
-    export default {
+    import { defineComponent } from 'vue'
+    import { useStore } from 'vuex'
+    import * as questionStore from '@/store/questions/types'
+    import { QuestionType } from '@/store/interfaces'
+    import { showError } from '@/services/messages'
+
+    export default defineComponent({
 
         name: 'QuestionForm',
+
+        props: {
+            section: {
+                type: Number,
+                required: true,
+            },
+        },
 
         data() {
             return {
@@ -10,13 +23,37 @@
             }
         },
 
-        methods: {
+        setup() {
 
-            saveFormData() { console.log('saveFormData') },
+            const store = useStore()
+
+            const addQuestion = (question: QuestionType) => {
+                return store.dispatch(`questions/${ questionStore.Actions.ADD_ITEM }`, question)
+            }
+
+            return {
+                addQuestion,
+            }
 
         },
 
-    }
+        computed: {
+            saveButtonDisabled() { return this.questionText.trim().length <= 0 },
+        },
+
+        methods: {
+
+            saveFormData() {
+
+                this.addQuestion({ text: this.questionText, section: this.section })
+                    .then(() => { this.questionText = '' })
+                    .catch(err => showError(err, false))
+
+            },
+
+        },
+
+    })
 
 </script>
 
@@ -28,7 +65,7 @@
 
         <div class='form-buttons'>
 
-            <el-button type="primary" @click="saveFormData">Сохранить</el-button>
+            <el-button type="primary" @click="saveFormData" :disabled='saveButtonDisabled'>Сохранить</el-button>
 
         </div>
 

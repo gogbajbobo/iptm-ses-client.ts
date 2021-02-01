@@ -52,7 +52,7 @@
         <div>{{ localname }}</div>
         {{ questions }}
 
-        <QuestionForm></QuestionForm>
+        <QuestionForm :section='sectionId'></QuestionForm>
 
     </div>
 
