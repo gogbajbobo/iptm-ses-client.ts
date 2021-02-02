@@ -4,6 +4,8 @@
     import { useStore } from 'vuex'
     import * as questionStore from '@/store/questions/types'
     import QuestionForm from './QuestionForm.vue'
+    import { QuestionType } from '@/store/interfaces'
+    import { showWarningConfirm } from '@/services/messages'
 
     const localname = 'Вопросы раздела'
 
@@ -35,7 +37,11 @@
             }
             getQuestions().catch(() => {})
 
-            return { localname, questions }
+            const deleteQuestion = (question: QuestionType) => {
+                return store.dispatch(`questions/${ questionStore.Actions.DELETE_ITEM }`, question.id)
+            }
+
+            return { localname, questions, deleteQuestion }
 
         },
 
@@ -45,7 +51,13 @@
 
             editQuestionButtonClicked() { console.log('editQuestionButtonClicked') },
 
-            deleteQuestionButtonClicked() { console.log('deleteQuestionButtonClicked') },
+            deleteQuestionButtonClicked(question: QuestionType) {
+
+                showWarningConfirm(`Удалить вопрос «${ question.text }»?`, 'Внимание!')
+                    .then(() => this.deleteQuestion(question))
+                    .catch(() => {})
+
+            },
 
         },
 
