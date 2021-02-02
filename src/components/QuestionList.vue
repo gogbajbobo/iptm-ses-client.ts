@@ -90,7 +90,7 @@
             <el-table-column prop="text" label="Вопрос">
                 <template #default="scope">
 
-                    <template v-if='selectedQuestion.id === scope.row.id'>
+                    <template v-if='selectedQuestion?.id === scope.row.id'>
                         <QuestionForm :question='selectedQuestion'></QuestionForm>
                     </template>
                     <template v-else>

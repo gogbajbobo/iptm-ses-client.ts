@@ -1,6 +1,6 @@
 <script lang='ts'>
 
-    import { defineComponent, PropType } from 'vue'
+    import { defineComponent, PropType, ref } from 'vue'
     import { useStore } from 'vuex'
     import * as questionStore from '@/store/questions/types'
     import { QuestionType } from '@/store/interfaces'
@@ -19,13 +19,7 @@
             },
         },
 
-        data() {
-            return {
-                questionText: '',
-            }
-        },
-
-        setup() {
+        setup(props) {
 
             const store = useStore()
 
@@ -33,8 +27,11 @@
                 return store.dispatch(`questions/${ questionStore.Actions.ADD_ITEM }`, question)
             }
 
+            const questionText: string = ref(props.question?.text || '')
+
             return {
                 addQuestion,
+                questionText,
             }
 
         },
@@ -47,9 +44,17 @@
 
             saveFormData() {
 
-                this.addQuestion({ text: this.questionText, section: this.section })
-                    .then(() => { this.questionText = '' })
-                    .catch(err => showError(err, false))
+                if (!this.question) {
+
+                    this.addQuestion({ text: this.questionText, section: this.section })
+                        .then(() => { this.questionText = '' })
+                        .catch(err => showError(err, false))
+
+                }
+
+                const { id: questionId } = this.question
+
+                console.log('update existing question', questionId)
 
             },
 
