@@ -42,6 +42,9 @@
         },
 
         methods: {
+
+            questionTextClicked() { console.log('questionTextClicked') },
+
             editQuestionButtonClicked() { console.log('editQuestionButtonClicked') },
             deleteQuestionButtonClicked() { console.log('deleteQuestionButtonClicked') },
         },
@@ -65,6 +68,11 @@
             </el-table-column>
 
             <el-table-column prop="text" label="Вопрос">
+                <template #default="scope">
+
+                    <el-button type='text' @click='questionTextClicked(scope.row)'>{{ scope.row.text }}</el-button>
+
+                </template>
             </el-table-column>
 
             <el-table-column fixed='right' width='256'>
