@@ -46,7 +46,9 @@
             questionTextClicked() { console.log('questionTextClicked') },
 
             editQuestionButtonClicked() { console.log('editQuestionButtonClicked') },
+
             deleteQuestionButtonClicked() { console.log('deleteQuestionButtonClicked') },
+
         },
 
     })
