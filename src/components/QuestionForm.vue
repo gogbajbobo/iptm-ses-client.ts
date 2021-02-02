@@ -1,6 +1,6 @@
 <script lang='ts'>
 
-    import { defineComponent } from 'vue'
+    import { defineComponent, PropType } from 'vue'
     import { useStore } from 'vuex'
     import * as questionStore from '@/store/questions/types'
     import { QuestionType } from '@/store/interfaces'
@@ -13,7 +13,9 @@
         props: {
             section: {
                 type: Number,
-                required: true,
+            },
+            question: {
+                type: Object as PropType<QuestionType>,
             },
         },
 

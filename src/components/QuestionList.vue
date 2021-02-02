@@ -20,6 +20,12 @@
             sectionId: {
                 type: Number,
                 required: true,
+            },
+        },
+
+        data() {
+            return {
+                selectedQuestion: null as QuestionType | null,
             }
         },
 
@@ -49,7 +55,9 @@
 
             questionTextClicked() { console.log('questionTextClicked') },
 
-            editQuestionButtonClicked() { console.log('editQuestionButtonClicked') },
+            editQuestionButtonClicked(question: QuestionType) {
+                this.selectedQuestion = question
+            },
 
             deleteQuestionButtonClicked(question: QuestionType) {
 
@@ -82,7 +90,12 @@
             <el-table-column prop="text" label="Вопрос">
                 <template #default="scope">
 
-                    <el-button type='text' @click='questionTextClicked(scope.row)'>{{ scope.row.text }}</el-button>
+                    <template v-if='selectedQuestion.id === scope.row.id'>
+                        <QuestionForm :question='selectedQuestion'></QuestionForm>
+                    </template>
+                    <template v-else>
+                        <el-button type='text' @click='questionTextClicked(scope.row)'>{{ scope.row.text }}</el-button>
+                    </template>
 
                 </template>
             </el-table-column>
