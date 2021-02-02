@@ -29,10 +29,8 @@
 
             const getQuestions = () => {
 
-                return store.dispatch(
-                    `questions/${ questionStore.Actions.GET_ITEMS }`,
-                    { section: props.sectionId }
-                    )
+                const payload = { section: props.sectionId }
+                return store.dispatch(`questions/${ questionStore.Actions.GET_ITEMS }`, payload)
 
             }
             getQuestions().catch(() => {})
