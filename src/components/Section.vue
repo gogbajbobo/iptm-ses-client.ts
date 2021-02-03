@@ -36,7 +36,7 @@
         },
 
         methods: {
-            backToSectionsButtonClicked() {},
+            backToListButtonClicked() {},
         },
 
     })
@@ -60,7 +60,7 @@
         <template v-else>
 
             <div>Такого раздела не существует.</div>
-            <el-button type='text' @click='backToSectionsButtonClicked'>К списку разделов</el-button>
+            <el-button type='text' @click='backToListButtonClicked'>К списку разделов</el-button>
 
         </template>
 

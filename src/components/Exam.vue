@@ -35,7 +35,7 @@
 
         methods: {
 
-            backToExamsButtonClicked() {
+            backToListButtonClicked() {
                 this.$router.push(paths.EXAM_LIST)
             }
 
@@ -61,7 +61,7 @@
         <template v-else>
 
             <div>Такого экзамена не существует.</div>
-            <el-button type='text' @click='backToExamsButtonClicked'>К списку экзаменов</el-button>
+            <el-button type='text' @click='backToListButtonClicked'>К списку экзаменов</el-button>
 
         </template>
 
