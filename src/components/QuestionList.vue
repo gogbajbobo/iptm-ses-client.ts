@@ -97,10 +97,17 @@
                 <template #default="scope">
 
                     <template v-if='isCurrentRowSelected(scope.row)'>
-                        <QuestionForm :question='selectedQuestion'></QuestionForm>
+
+                        <QuestionForm :question='selectedQuestion'
+                                      @close-form='cancelEditQuestionButtonClicked'></QuestionForm>
+
                     </template>
+
                     <template v-else>
-                        <el-button type='text' @click='questionTextClicked(scope.row)'>{{ scope.row.text }}</el-button>
+
+                        <el-button type='text'
+                                   @click='questionTextClicked(scope.row)'>{{ scope.row.text }}</el-button>
+
                     </template>
 
                 </template>

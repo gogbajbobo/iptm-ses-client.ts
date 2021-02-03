@@ -27,10 +27,15 @@
                 return store.dispatch(`questions/${ questionStore.Actions.ADD_ITEM }`, question)
             }
 
+            const updateQuestion = (question: QuestionType) => {
+                return store.dispatch(`questions/${ questionStore.Actions.UPDATE_ITEM }`, question)
+            }
+
             const questionText = ref(props.question?.text || '')
 
             return {
                 addQuestion,
+                updateQuestion,
                 questionText,
             }
 
@@ -50,8 +55,12 @@
 
                 if (this.question) {
 
-                    const { id: questionId } = this.question
-                    return console.log('update existing question', questionId)
+                    return this.updateQuestion({
+                        ...this.question,
+                        text: this.questionText,
+                    })
+                        .then(() => { this.$emit('close-form') })
+                        .catch(err => showError(err, false))
 
                 }
 
