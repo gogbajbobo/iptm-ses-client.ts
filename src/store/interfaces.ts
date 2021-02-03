@@ -41,7 +41,12 @@ export interface SectionType extends BaseType {
     questions?: any[]
 }
 
-export interface QuestionType extends BaseType {
+export interface QuestionEmbryo {
     text: string
     section: number
+}
+
+export interface QuestionType extends BaseType {
+    text: string
+    section: SectionType
 }

@@ -3,7 +3,7 @@
     import { defineComponent, PropType, ref } from 'vue'
     import { useStore } from 'vuex'
     import * as questionStore from '@/store/questions/types'
-    import { QuestionType } from '@/store/interfaces'
+    import { QuestionEmbryo, QuestionType } from '@/store/interfaces'
     import { showError } from '@/services/messages'
 
     export default defineComponent({
@@ -23,11 +23,11 @@
 
             const store = useStore()
 
-            const addQuestion = (question: QuestionType) => {
+            const addQuestion = (question: QuestionEmbryo) => {
                 return store.dispatch(`questions/${ questionStore.Actions.ADD_ITEM }`, question)
             }
 
-            const questionText: string = ref(props.question?.text || '')
+            const questionText = ref(props.question?.text || '')
 
             return {
                 addQuestion,
@@ -36,25 +36,26 @@
 
         },
 
-        computed: {
-            saveButtonDisabled() { return this.questionText.trim().length <= 0 },
-        },
-
         methods: {
 
             saveFormData() {
 
-                if (!this.question) {
+                if (!this.question && this.section) {
 
-                    this.addQuestion({ text: this.questionText, section: this.section })
+                    return this.addQuestion({ text: this.questionText, section: this.section })
                         .then(() => { this.questionText = '' })
                         .catch(err => showError(err, false))
 
                 }
 
-                const { id: questionId } = this.question
+                if (this.question) {
 
-                console.log('update existing question', questionId)
+                    const { id: questionId } = this.question
+                    return console.log('update existing question', questionId)
+
+                }
+
+                showError(new Error('either question or section should be set'))
 
             },
 
@@ -72,7 +73,11 @@
 
         <div class='form-buttons'>
 
-            <el-button type="primary" @click="saveFormData" :disabled='saveButtonDisabled'>Сохранить</el-button>
+            <el-button type="primary"
+                       @click="saveFormData"
+                       :disabled='questionText.trim().length <= 0'>
+                Сохранить
+            </el-button>
 
         </div>
 
