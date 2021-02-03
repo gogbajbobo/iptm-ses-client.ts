@@ -16,7 +16,10 @@
         components: { QuestionList },
 
         props: {
-            sectionId: { type: [ Number, String ], required: true }
+            sectionId: {
+                type: [ Number, String ],
+                required: true,
+            }
         },
 
         setup(props) {
