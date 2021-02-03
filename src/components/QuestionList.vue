@@ -56,7 +56,12 @@
         methods: {
 
             questionTextClicked(question: QuestionType) {
-                this.$router.push({ name: Question.name, params: { questionId: question.id }})
+
+                this.$router.push({
+                    name: Question.name,
+                    params: { questionId: question.id, sectionId: this.sectionId }
+                })
+
             },
 
             isCurrentRowSelected(question: QuestionType) { return this.selectedQuestion?.id === question.id },
