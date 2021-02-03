@@ -3,9 +3,11 @@
     import { defineComponent, computed } from 'vue'
     import { useStore } from 'vuex'
     import * as questionStore from '@/store/questions/types'
-    import QuestionForm from './QuestionForm.vue'
     import { QuestionType } from '@/store/interfaces'
     import { showWarningConfirm } from '@/services/messages'
+
+    import QuestionForm from '@/components/QuestionForm.vue'
+    import Question from '@/components/Question.vue'
 
     const localname = 'Вопросы раздела'
 
@@ -53,7 +55,9 @@
 
         methods: {
 
-            questionTextClicked() { console.log('questionTextClicked') },
+            questionTextClicked(question: QuestionType) {
+                this.$router.push({ name: Question.name, params: { questionId: question.id }})
+            },
 
             isCurrentRowSelected(question: QuestionType) { return this.selectedQuestion?.id === question.id },
 
