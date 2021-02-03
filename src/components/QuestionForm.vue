@@ -74,7 +74,7 @@
                   type='textarea'
                   class='question-input'></el-input>
 
-        <div class='form-buttons'>
+        <div>
 
             <el-button type="primary"
                        @click="saveFormData"
