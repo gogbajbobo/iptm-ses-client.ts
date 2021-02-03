@@ -5,6 +5,7 @@
     import * as sectionStore from '@/store/sections/types'
     import { SectionType } from '@/store/interfaces'
     import QuestionList from '@/components/QuestionList.vue'
+    import { paths } from '@/router/paths'
 
     const localname = 'Раздел экзамена'
 
@@ -36,7 +37,9 @@
         },
 
         methods: {
-            backToListButtonClicked() {},
+            backToListButtonClicked() {
+                this.$router.push(paths.EXAM_LIST)
+            },
         },
 
     })
@@ -60,7 +63,7 @@
         <template v-else>
 
             <div>Такого раздела не существует.</div>
-            <el-button type='text' @click='backToListButtonClicked'>К списку разделов</el-button>
+            <el-button type='text' @click='backToListButtonClicked'>К списку экзаменов</el-button>
 
         </template>
 
