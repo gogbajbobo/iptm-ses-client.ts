@@ -5,6 +5,7 @@ import CategoryList from '@/components/CategoryList.vue'
 import ExamList from '@/components/ExamList.vue'
 import Exam from '@/components/Exam.vue'
 import Section from '@/components/Section.vue'
+import Question from '@/components/Question.vue'
 
 export default {
     Login,
@@ -14,4 +15,5 @@ export default {
     ExamList,
     Exam,
     Section,
+    Question,
 }
