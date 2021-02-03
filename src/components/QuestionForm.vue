@@ -69,7 +69,10 @@
 
     <div>
 
-        <el-input v-model='questionText' placeholder='Вопрос' type='textarea' class='question-input'></el-input>
+        <el-input v-model='questionText'
+                  placeholder='Вопрос'
+                  type='textarea'
+                  class='question-input'></el-input>
 
         <div class='form-buttons'>
 
