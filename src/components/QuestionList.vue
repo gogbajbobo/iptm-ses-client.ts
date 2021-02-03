@@ -55,8 +55,14 @@
 
             questionTextClicked() { console.log('questionTextClicked') },
 
+            isCurrentRowSelected(question: QuestionType) { return this.selectedQuestion?.id === question.id },
+
             editQuestionButtonClicked(question: QuestionType) {
                 this.selectedQuestion = question
+            },
+
+            cancelEditQuestionButtonClicked() {
+                this.selectedQuestion = null
             },
 
             deleteQuestionButtonClicked(question: QuestionType) {
@@ -90,7 +96,7 @@
             <el-table-column prop="text" label="Вопрос">
                 <template #default="scope">
 
-                    <template v-if='selectedQuestion?.id === scope.row.id'>
+                    <template v-if='isCurrentRowSelected(scope.row)'>
                         <QuestionForm :question='selectedQuestion'></QuestionForm>
                     </template>
                     <template v-else>
@@ -103,9 +109,22 @@
             <el-table-column fixed='right' width='256'>
                 <template #default="scope">
 
-                    <el-button type='warning'
-                               plain
-                               @click='editQuestionButtonClicked(scope.row)'>Редактировать</el-button>
+                    <template v-if='isCurrentRowSelected(scope.row)'>
+
+                        <el-button type='default'
+                                   class='edit-button'
+                                   plain
+                                   @click='cancelEditQuestionButtonClicked(scope.row)'>Отмена</el-button>
+
+                    </template>
+                    <template v-else>
+
+                        <el-button type='warning'
+                                   class='edit-button'
+                                   plain
+                                   @click='editQuestionButtonClicked(scope.row)'>Редактировать</el-button>
+
+                    </template>
 
                     <el-button type='danger'
                                plain
@@ -123,5 +142,9 @@
 </template>
 
 <style scoped>
+
+    .edit-button {
+        width: 116px;
+    }
 
 </style>
