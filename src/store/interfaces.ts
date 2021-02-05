@@ -52,6 +52,11 @@ export interface QuestionType extends BaseType {
     sectionId: number
 }
 
+export interface AnswerEmbryo {
+    text: string
+    questionId: number
+}
+
 export interface AnswerType extends BaseType {
     text: string
     isCorrect: boolean
