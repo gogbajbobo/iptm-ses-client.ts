@@ -1,12 +1,16 @@
 <script lang='ts'>
 
-    import { defineComponent } from 'vue'
+    import { defineComponent, computed } from 'vue'
     import { useStore } from 'vuex'
     import * as answerStore from '@/store/answers/types'
+
+    import AnswerForm from '@/components/AnswerForm.vue'
 
     export default defineComponent({
 
         name: 'AnswerList',
+
+        components: { AnswerForm },
 
         props: {
             questionId: { type: [ Number, String ], required: true },
@@ -16,7 +20,7 @@
 
             const store = useStore()
 
-            const answers = store.getters[`answers/${ answerStore.Getters.ITEM_LIST }`]
+            const answers = computed(() => store.getters[`answers/${ answerStore.Getters.ITEM_LIST }`])
 
             const getAnswers = () => {
 
@@ -38,8 +42,12 @@
 <template>
 
     <div>
+
         AnswerList {{ questionId }}
         {{ answers }}
+
+        <AnswerForm :question-id='questionId'></AnswerForm>
+
     </div>
 
 </template>
