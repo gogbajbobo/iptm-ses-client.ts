@@ -7,10 +7,7 @@
         name: 'AnswerList',
 
         props: {
-            questionId: {
-                type: [ Number, String ],
-                required: true,
-            },
+            questionId: { type: [ Number, String ], required: true },
         },
 
     })
