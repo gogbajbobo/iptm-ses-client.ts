@@ -20,7 +20,6 @@
 
         props: {
             questionId: { type: [ Number, String ], required: true },
-            sectionId: { type: [ Number, String ], required: true },
         },
 
         setup(props) {
@@ -30,8 +29,10 @@
             const questions = store.getters[`questions/${ questionStore.Getters.ITEM_LIST }`]
             const question: QuestionType = questions.find((q: QuestionType) => q.id === Number(props.questionId))
 
+            const sectionId = question?.sectionId
+
             const sections = store.getters[`sections/${ sectionStore.Getters.ITEM_LIST }`]
-            const section = sections.find((s: SectionType) => s.id === Number(props.sectionId))
+            const section = sections.find((s: SectionType) => s.id === Number(sectionId))
 
             const exam = section?.exam
 
