@@ -49,4 +49,5 @@ export interface QuestionEmbryo {
 export interface QuestionType extends BaseType {
     text: string
     section: SectionType
+    sectionId: number
 }
