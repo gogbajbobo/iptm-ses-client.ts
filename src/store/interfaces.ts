@@ -51,3 +51,10 @@ export interface QuestionType extends BaseType {
     section: SectionType
     sectionId: number
 }
+
+export interface AnswerType extends BaseType {
+    text: string
+    isCorrect: boolean
+    questionId: number
+    question: QuestionType
+}
