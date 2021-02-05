@@ -6,9 +6,12 @@
 
     import AnswerForm from '@/components/AnswerForm.vue'
 
+    const localname = 'Ответы на вопрос'
+
     export default defineComponent({
 
         name: 'AnswerList',
+        localname,
 
         components: { AnswerForm },
 
@@ -31,7 +34,7 @@
             }
             getAnswers().catch(() => {})
 
-            return { answers }
+            return { localname, answers }
 
         },
 
@@ -43,8 +46,26 @@
 
     <div>
 
-        AnswerList {{ questionId }}
-        {{ answers }}
+        <div>{{ localname }}</div>
+
+        <el-table :data="answers">
+
+            <el-table-column type="index" fixed width="50">
+            </el-table-column>
+
+            <el-table-column prop="id" fixed label="#" width="50">
+            </el-table-column>
+
+            <el-table-column prop="text" label="Ответ">
+            </el-table-column>
+
+            <el-table-column prop="isCorrect" label="Верный">
+            </el-table-column>
+
+            <el-table-column fixed='right' width='256'>
+            </el-table-column>
+
+        </el-table>
 
         <AnswerForm :question-id='questionId'></AnswerForm>
 
