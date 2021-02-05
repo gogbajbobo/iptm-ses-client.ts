@@ -38,6 +38,14 @@
 
         },
 
+        methods: {
+
+            isCorrectValueChanged(value: any) {
+                console.log('isCorrectValueChanged', value)
+            },
+
+        },
+
     })
 
 </script>
@@ -56,10 +64,16 @@
             <el-table-column prop="id" fixed label="#" width="50">
             </el-table-column>
 
-            <el-table-column prop="text" label="Ответ">
+            <el-table-column prop="isCorrect" label="Верный" width="72">
+                <template #default="scope">
+
+                    <el-switch :model='scope.row.isCorrect' @change='isCorrectValueChanged(scope.row)'>
+                    </el-switch>
+
+                </template>
             </el-table-column>
 
-            <el-table-column prop="isCorrect" label="Верный">
+            <el-table-column prop="text" label="Ответ">
             </el-table-column>
 
             <el-table-column fixed='right' width='256'>
