@@ -47,7 +47,7 @@
 
                 if (!this.question && this.section) {
 
-                    return this.addQuestion({ text: this.questionText, section: this.section })
+                    return this.addQuestion({ text: this.questionText, sectionId: this.section })
                         .then(() => { this.questionText = '' })
                         .catch(err => showError(err, false))
 
