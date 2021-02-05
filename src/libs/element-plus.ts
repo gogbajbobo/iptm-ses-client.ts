@@ -11,6 +11,7 @@ import {
     ElInput,
     ElOption,
     ElSelect,
+    ElSwitch,
     ElTable,
     ElTableColumn,
 
@@ -32,6 +33,7 @@ export const elements = [
     ElInput,
     ElOption,
     ElSelect,
+    ElSwitch,
     ElTable,
     ElTableColumn,
 
