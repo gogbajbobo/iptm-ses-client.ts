@@ -3,7 +3,8 @@
     import { defineComponent, computed } from 'vue'
     import { useStore } from 'vuex'
     import * as answerStore from '@/store/answers/types'
-
+    import { AnswerType } from '@/store/interfaces'
+    import { showError } from '@/services/messages'
     import AnswerForm from '@/components/AnswerForm.vue'
 
     const localname = 'Ответы на вопрос'
@@ -34,14 +35,23 @@
             }
             getAnswers().catch(() => {})
 
-            return { localname, answers }
+            const updateAnswer = (answer: AnswerType) => {
+                return store.dispatch(`answers/${ answerStore.Actions.UPDATE_ITEM }`, answer)
+            }
+
+            return { localname, answers, updateAnswer }
 
         },
 
         methods: {
 
-            isCorrectValueChanged(value: any) {
-                console.log('isCorrectValueChanged', value)
+            isCorrectValueChanged(answer: AnswerType) {
+
+                const { isCorrect } = answer
+
+                this.updateAnswer({ ...answer, isCorrect: !isCorrect })
+                    .catch(err => showError(err, false))
+
             },
 
         },
@@ -67,7 +77,7 @@
             <el-table-column prop="isCorrect" label="Верный" width="72">
                 <template #default="scope">
 
-                    <el-switch :model='scope.row.isCorrect' @change='isCorrectValueChanged(scope.row)'>
+                    <el-switch :value='scope.row.isCorrect' @change='isCorrectValueChanged(scope.row)'>
                     </el-switch>
 
                 </template>
