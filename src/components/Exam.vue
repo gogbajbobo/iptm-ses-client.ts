@@ -55,7 +55,7 @@
 
         <template v-if='exam'>
 
-            <div>{{ exam.title }}</div>
+            <div class='exam-title'>{{ exam.title }}</div>
 
             <SectionList :exam-id='Number(examId)'></SectionList>
 
@@ -75,8 +75,11 @@
 
 <style scoped>
 
-.exam-list-link {
-    margin: 16px;
-}
+    .exam-title {
+        font-weight: bold;
+    }
+    .exam-list-link {
+        margin: 16px;
+    }
 
 </style>
