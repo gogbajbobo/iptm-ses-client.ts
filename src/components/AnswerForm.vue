@@ -4,7 +4,7 @@
     import { useStore } from 'vuex'
     import * as answerStore from '@/store/answers/types'
     import { AnswerEmbryo, AnswerType } from '@/store/interfaces'
-    import {showError} from '@/services/messages';
+    import { showError } from '@/services/messages'
 
     export default defineComponent({
 
