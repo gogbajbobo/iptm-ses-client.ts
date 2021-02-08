@@ -151,4 +151,8 @@
 
 <style scoped>
 
+    .edit-button {
+        width: 116px;
+    }
+
 </style>
