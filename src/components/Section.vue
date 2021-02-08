@@ -50,12 +50,16 @@
 
     <div>
 
-        <div>{{ exam?.title }}</div>
-        <div>{{ localname }} {{ sectionId }}</div>
+        <template v-if='exam'>
+
+            <div>Экзамен #{{ exam.id }}</div>
+            <div class='exam-title'>{{ exam.title }}</div>
+
+        </template>
 
         <template v-if='section'>
 
-            <div>{{ section.title }}</div>
+            <div>{{ localname }}: {{ section.title }}</div>
 
             <QuestionList :section-id='section.id'></QuestionList>
 
@@ -73,4 +77,7 @@
 
 <style scoped>
 
+    .exam-title {
+        font-weight: bold;
+    }
 </style>
