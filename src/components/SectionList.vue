@@ -105,7 +105,7 @@
 
     <div>
 
-        <div>{{ localname }} {{ examId }}</div>
+        <div>{{ localname }}</div>
 
         <el-table :data="sections">
 
