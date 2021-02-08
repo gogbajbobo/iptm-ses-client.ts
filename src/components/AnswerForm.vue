@@ -23,9 +23,13 @@
                 return store.dispatch(`answers/${ answerStore.Actions.ADD_ITEM }`, answer)
             }
 
+            const updateAnswer = (answer: AnswerType) => {
+                return store.dispatch(`answers/${ answerStore.Actions.UPDATE_ITEM }`, answer)
+            }
+
             const answerText = ref(props.answer?.text || '')
 
-            return { answerText, addAnswer }
+            return { answerText, addAnswer, updateAnswer }
 
         },
 
@@ -33,10 +37,21 @@
 
             saveFormData() {
 
-                if (this.questionId) {
+                if (!this.answer && this.questionId) {
 
                     return this.addAnswer({ text: this.answerText, questionId: Number(this.questionId) })
                         .then(() => { this.answerText = '' })
+                        .catch(err => showError(err, false))
+
+                }
+
+                if (this.answer) {
+
+                    return this.updateAnswer({
+                        ...this.answer,
+                        text: this.answerText,
+                    })
+                        .then(() => { this.$emit('close-form') })
                         .catch(err => showError(err, false))
 
                 }
