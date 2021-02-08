@@ -5,7 +5,7 @@
     import * as questionStore from '@/store/questions/types'
     import * as sectionStore from '@/store/sections/types'
     import { QuestionType, SectionType } from '@/store/interfaces'
-    import { paths } from '@/router/paths'
+    import Section from '@/components/Section.vue'
 
     import AnswerList from '@/components/AnswerList.vue'
 
@@ -43,7 +43,7 @@
         methods: {
 
             backToListButtonClicked() {
-                this.$router.push(paths.EXAM_LIST)
+                this.$router.push({ name: Section.name, params: { sectionId: this.section?.id }})
             },
 
         },
@@ -74,16 +74,25 @@
 
         </template>
         <template v-else>
-
             <div>Такого вопроса не существует.</div>
-            <el-button type='text' @click='backToListButtonClicked'>К списку экзаменов</el-button>
-
         </template>
+
+        <el-button type='text'
+                   @click='backToListButtonClicked'
+                   class='question-list-link'>К списку вопросов</el-button>
 
     </div>
 
 </template>
 
 <style scoped>
+
+    .exam-title {
+        font-weight: bold;
+    }
+
+    .question-list-link {
+        margin: 16px;
+    }
 
 </style>
