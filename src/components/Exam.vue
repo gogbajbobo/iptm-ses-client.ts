@@ -49,7 +49,9 @@
 
     <div>
 
-        <div>{{ localname }} {{ examId }}</div>
+        <div>
+            <span>{{ localname }} #{{ examId }}</span>
+        </div>
 
         <template v-if='exam'>
 
@@ -58,17 +60,23 @@
             <SectionList :exam-id='Number(examId)'></SectionList>
 
         </template>
+
         <template v-else>
-
             <div>Такого экзамена не существует.</div>
-            <el-button type='text' @click='backToListButtonClicked'>К списку экзаменов</el-button>
-
         </template>
+
+        <el-button type='text'
+                   @click='backToListButtonClicked'
+                   class='exam-list-link'>К списку экзаменов</el-button>
 
     </div>
 
 </template>
 
 <style scoped>
+
+.exam-list-link {
+    margin: 16px;
+}
 
 </style>
