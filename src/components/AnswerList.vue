@@ -112,6 +112,21 @@
             </el-table-column>
 
             <el-table-column prop="text" label="Ответ">
+                <template #default="scope">
+
+                    <template v-if='isCurrentRowSelected(scope.row)'>
+
+                        <AnswerForm :answer='selectedAnswer'
+                                    @close-form='cancelEditButtonClicked'></AnswerForm>
+
+                    </template>
+                    <template v-else>
+
+                        {{ scope.row.text }}
+
+                    </template>
+
+                </template>
             </el-table-column>
 
             <el-table-column fixed='right' width='256'>
