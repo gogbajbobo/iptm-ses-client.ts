@@ -88,10 +88,6 @@
 
         <div> {{ localname }} </div>
 
-        <div>
-            <el-button type='primary' @click='addExamButtonClicked'>Добавить экзамен</el-button>
-        </div>
-
         <el-table :data="exams">
 
             <el-table-column type="index" fixed width="50">
@@ -124,10 +120,21 @@
 
         </el-table>
 
+        <div class='add-item-button'>
+
+            <el-button type='primary'
+                       @click='addExamButtonClicked'>Добавить экзамен</el-button>
+
+        </div>
+
     </div>
 
 </template>
 
 <style scoped>
+
+    .add-item-button {
+        margin-top: 16px;
+    }
 
 </style>
