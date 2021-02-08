@@ -1,6 +1,6 @@
 <script lang='ts'>
 
-    import { defineComponent, computed, ref, PropType } from 'vue'
+    import { defineComponent, ref, PropType } from 'vue'
     import { useStore } from 'vuex'
     import * as answerStore from '@/store/answers/types'
     import { AnswerEmbryo, AnswerType } from '@/store/interfaces'
