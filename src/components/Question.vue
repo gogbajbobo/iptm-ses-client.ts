@@ -56,14 +56,20 @@
 
     <div>
 
-        <div>{{ exam?.title }}</div>
-        <div>{{ section?.title }}</div>
-        <div>{{ localname }} {{ questionId }}</div>
+        <template v-if='exam'>
+
+            <div>Экзамен #{{ exam.id }}</div>
+            <div class='exam-title'>{{ exam.title }}</div>
+
+        </template>
+
+        <template v-if='section'>
+            <div>Раздел экзамена: {{ section.title }}</div>
+        </template>
 
         <template v-if='question'>
 
-            <div>{{ question.text }}</div>
-
+            <div>{{ localname }}: {{ question.text }}</div>
             <AnswerList :question-id='questionId'></AnswerList>
 
         </template>
