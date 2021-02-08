@@ -4,7 +4,7 @@
     import { useStore } from 'vuex'
     import * as answerStore from '@/store/answers/types'
     import { AnswerType } from '@/store/interfaces'
-    import { showError } from '@/services/messages'
+    import { showError, showWarningConfirm } from '@/services/messages'
     import AnswerForm from '@/components/AnswerForm.vue'
 
     const localname = 'Ответы на вопрос'
@@ -18,6 +18,12 @@
 
         props: {
             questionId: { type: [ Number, String ], required: true },
+        },
+
+        data() {
+            return {
+                selectedAnswer: null as AnswerType | null,
+            }
         },
 
         setup(props) {
@@ -39,7 +45,11 @@
                 return store.dispatch(`answers/${ answerStore.Actions.UPDATE_ITEM }`, answer)
             }
 
-            return { localname, answers, updateAnswer }
+            const deleteAnswer = (answer: AnswerType) => {
+                return store.dispatch(`answers/${ answerStore.Actions.DELETE_ITEM }`, answer.id)
+            }
+
+            return { localname, answers, updateAnswer, deleteAnswer }
 
         },
 
@@ -51,6 +61,24 @@
 
                 this.updateAnswer({ ...answer, isCorrect: !isCorrect })
                     .catch(err => showError(err, false))
+
+            },
+
+            isCurrentRowSelected(answer: AnswerType) { return this.selectedAnswer?.id === answer.id },
+
+            editButtonClicked(answer: AnswerType) {
+                this.selectedAnswer = answer
+            },
+
+            cancelEditButtonClicked() {
+                this.selectedAnswer = null
+            },
+
+            deleteButtonClicked(answer: AnswerType) {
+
+                showWarningConfirm(`Удалить ответ «${ answer.text }»?`, 'Внимание!')
+                    .then(() => this.deleteAnswer(answer))
+                    .catch(() => {})
 
             },
 
@@ -87,6 +115,30 @@
             </el-table-column>
 
             <el-table-column fixed='right' width='256'>
+                <template #default="scope">
+
+                    <template v-if='isCurrentRowSelected(scope.row)'>
+
+                        <el-button type='default'
+                                   class='edit-button'
+                                   plain
+                                   @click='cancelEditButtonClicked(scope.row)'>Отмена</el-button>
+
+                    </template>
+                    <template v-else>
+
+                        <el-button type='warning'
+                                   class='edit-button'
+                                   plain
+                                   @click='editButtonClicked(scope.row)'>Редактировать</el-button>
+
+                    </template>
+
+                    <el-button type='danger'
+                               plain
+                               @click='deleteButtonClicked(scope.row)'>Удалить</el-button>
+
+                </template>
             </el-table-column>
 
         </el-table>
