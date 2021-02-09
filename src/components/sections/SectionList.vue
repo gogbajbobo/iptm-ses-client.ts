@@ -129,7 +129,7 @@
                 </template>
             </el-table-column>
 
-            <el-table-column prop='questions.length' label='Вопросов'>
+            <el-table-column prop='questions.length' label='Вопросов' width='96'>
             </el-table-column>
 
             <el-table-column fixed='right' width='256'>
