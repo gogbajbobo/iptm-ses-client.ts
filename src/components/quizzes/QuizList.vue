@@ -3,7 +3,7 @@
     import { defineComponent, computed } from 'vue'
     import { useStore } from 'vuex'
     import * as categoryStore from '@/store/categories/types'
-    import { CategoryType } from '@/store/interfaces'
+    import QuizCreate from '@/components/quizzes/QuizCreate.vue'
 
     const localname = 'Тестирование'
 
@@ -14,7 +14,7 @@
 
         data() {
             return {
-                selectedCategory: null as CategoryType | null,
+                selectedCategory: null as number | null,
                 categoryFormVisible: false,
             }
         },
@@ -48,7 +48,10 @@
             },
 
             okForm() {
-                console.log('selectedCategory', this.selectedCategory)
+
+                if (this.selectedCategory)
+                    this.$router.push({ name: QuizCreate.name, params: { categoryId: this.selectedCategory } })
+
             },
 
         },
