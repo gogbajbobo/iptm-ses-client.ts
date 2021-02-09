@@ -5,7 +5,7 @@
     import components from '@/components'
     import { currentUser, checkRoles } from '@/services/helper'
 
-    const { Main, ExamineeList, CategoryList, ExamList } = components
+    const { Main, ExamineeList, CategoryList, ExamList, QuizList } = components
 
     export default defineComponent({
 
@@ -31,7 +31,8 @@
                 Main,
                 ExamineeList,
                 CategoryList,
-                ExamList
+                ExamList,
+                QuizList,
             ].map(menuItem)
 
             const user = computed(() => currentUser())

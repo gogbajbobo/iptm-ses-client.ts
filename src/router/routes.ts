@@ -12,6 +12,7 @@ const {
     Exam,
     Section,
     Question,
+    QuizList,
 } = components
 
 const root: RouteRecordRaw = {
@@ -91,6 +92,15 @@ const questionItem: RouteRecordRaw = {
     },
 }
 
+const quizList: RouteRecordRaw = {
+    path: paths.QUIZ_LIST,
+    name: QuizList.name,
+    component: QuizList,
+    meta: {
+        requireRoles: [ UserRole.EXAMINER ],
+    },
+}
+
 export const routes: RouteRecordRaw[] = [
     root,
     main,
@@ -101,4 +111,5 @@ export const routes: RouteRecordRaw[] = [
     examItem,
     sectionItem,
     questionItem,
+    quizList,
 ]
