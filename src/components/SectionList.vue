@@ -129,6 +129,9 @@
                 </template>
             </el-table-column>
 
+            <el-table-column prop='questions.length' label='Вопросов'>
+            </el-table-column>
+
             <el-table-column fixed='right' width='256'>
                 <template #default="scope">
 
