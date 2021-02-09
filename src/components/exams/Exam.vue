@@ -5,7 +5,7 @@
     import { ExamType } from '@/store/interfaces'
     import * as examStore from '@/store/exams/types'
     import { paths } from '@/router/paths'
-    import SectionList from '@/components/SectionList.vue'
+    import SectionList from '@/components/sections/SectionList.vue'
 
     const localname = 'Экзамен'
 

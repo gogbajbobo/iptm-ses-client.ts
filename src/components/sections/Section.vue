@@ -5,8 +5,8 @@
     import * as sectionStore from '@/store/sections/types'
     import * as examStore from '@/store/exams/types'
     import { SectionType, ExamType } from '@/store/interfaces'
-    import QuestionList from '@/components/QuestionList.vue'
-    import Exam from '@/components/Exam.vue'
+    import QuestionList from '@/components/questions/QuestionList.vue'
+    import Exam from '@/components/exams/Exam.vue'
 
     const localname = 'Раздел экзамена'
 

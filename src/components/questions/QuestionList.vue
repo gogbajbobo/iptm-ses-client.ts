@@ -6,8 +6,8 @@
     import { QuestionType } from '@/store/interfaces'
     import { showWarningConfirm } from '@/services/messages'
 
-    import QuestionForm from '@/components/QuestionForm.vue'
-    import Question from '@/components/Question.vue'
+    import QuestionForm from '@/components/questions/QuestionForm.vue'
+    import Question from '@/components/questions/Question.vue'
 
     const localname = 'Вопросы раздела'
 

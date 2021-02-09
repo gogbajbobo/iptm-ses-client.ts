@@ -5,7 +5,7 @@
     import * as examStore from '@/store/exams/types'
     import { showPrompt, showPromptWithValue, showWarningConfirm } from '@/services/messages'
     import { ExamType } from '@/store/interfaces'
-    import Exam from '@/components/Exam.vue'
+    import Exam from '@/components/exams/Exam.vue'
 
     const localname = 'Экзамены'
 

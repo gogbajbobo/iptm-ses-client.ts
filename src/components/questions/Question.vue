@@ -5,9 +5,9 @@
     import * as questionStore from '@/store/questions/types'
     import * as sectionStore from '@/store/sections/types'
     import { QuestionType, SectionType } from '@/store/interfaces'
-    import Section from '@/components/Section.vue'
+    import Section from '@/components/sections/Section.vue'
 
-    import AnswerList from '@/components/AnswerList.vue'
+    import AnswerList from '@/components/answers/AnswerList.vue'
 
     const localname = 'Вопрос'
 

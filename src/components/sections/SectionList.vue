@@ -9,8 +9,8 @@
 
     import { showWarningConfirm } from '@/services/messages'
 
-    import SectionForm from '@/components/SectionForm.vue'
-    import Section from '@/components/Section.vue'
+    import SectionForm from '@/components/sections/SectionForm.vue'
+    import Section from '@/components/sections/Section.vue'
 
     const localname = 'Разделы экзамена'
 
