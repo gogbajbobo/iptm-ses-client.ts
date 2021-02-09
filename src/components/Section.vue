@@ -61,14 +61,14 @@
         </template>
 
         <template v-if='section'>
-
             <div>{{ localname }}: {{ section.title }}</div>
-
-            <QuestionList :section-id='section.id'></QuestionList>
-
         </template>
         <template v-else>
             <div>Такого раздела не существует.</div>
+        </template>
+
+        <template v-if='section'>
+            <QuestionList :section-id='section.id'></QuestionList>
         </template>
 
         <el-button type='text'
