@@ -60,8 +60,11 @@
 
                 if (this.section) {
 
+                    const { id, examId } = this.section
+
                     const section = {
-                        ...this.section,
+                        id,
+                        examId,
                         title: this.sectionTitle,
                         category: this.selectedCategory
                     }
@@ -76,7 +79,7 @@
                     const section: SectionEmbryo = {
                         title: this.sectionTitle,
                         category: this.selectedCategory,
-                        exam: this.examId,
+                        examId: this.examId,
                     }
 
                     this.addSection(section)

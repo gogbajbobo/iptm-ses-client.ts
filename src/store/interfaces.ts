@@ -30,13 +30,13 @@ export interface ExamType extends BaseType {
 
 export interface SectionEmbryo {
     title: string
-    exam: number
+    examId: number
     category: number
 }
 
 export interface SectionType extends BaseType {
     title: string
-    exam: number
+    examId: number
     category: CategoryType
     questions?: any[]
 }
@@ -46,10 +46,7 @@ export interface QuestionEmbryo {
     sectionId: number
 }
 
-export interface QuestionType extends BaseType {
-    text: string
-    section: SectionType
-    sectionId: number
+export interface QuestionType extends BaseType, QuestionEmbryo {
 }
 
 export interface AnswerEmbryo {

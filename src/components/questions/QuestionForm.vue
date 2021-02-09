@@ -55,8 +55,11 @@
 
                 if (this.question) {
 
+                    const { id, sectionId } = this.question
+
                     return this.updateQuestion({
-                        ...this.question,
+                        id,
+                        sectionId,
                         text: this.questionText,
                     })
                         .then(() => { this.$emit('close-form') })
