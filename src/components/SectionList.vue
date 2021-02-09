@@ -42,7 +42,7 @@
 
                 return store.dispatch(
                     `sections/${ sectionStore.Actions.GET_ITEMS }`,
-                    { exam: props.examId }
+                    { examId: props.examId }
                     )
 
             }
