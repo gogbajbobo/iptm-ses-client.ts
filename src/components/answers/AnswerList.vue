@@ -105,7 +105,9 @@
             <el-table-column prop="isCorrect" label="Верный" width="72">
                 <template #default="scope">
 
-                    <el-switch :value='scope.row.isCorrect' @change='isCorrectValueChanged(scope.row)'>
+                    <el-switch :value='scope.row.isCorrect'
+                               @change='isCorrectValueChanged(scope.row)'
+                               :disabled='Boolean(selectedAnswer)'>
                     </el-switch>
 
                 </template>
