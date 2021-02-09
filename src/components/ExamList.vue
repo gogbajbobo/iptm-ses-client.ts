@@ -104,6 +104,9 @@
                 </template>
             </el-table-column>
 
+            <el-table-column prop='sections.length' label='Разделов' width='96'>
+            </el-table-column>
+
             <el-table-column fixed="right" width='256'>
                 <template #default="scope">
 
