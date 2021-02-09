@@ -4,7 +4,8 @@
     import { useStore } from 'vuex'
     import * as questionStore from '@/store/questions/types'
     import * as sectionStore from '@/store/sections/types'
-    import { QuestionType, SectionType } from '@/store/interfaces'
+    import * as examStore from '@/store/exams/types'
+    import { ExamType, QuestionType, SectionType } from '@/store/interfaces'
     import Section from '@/components/sections/Section.vue'
 
     import AnswerList from '@/components/answers/AnswerList.vue'
@@ -34,16 +35,18 @@
             const sections = store.getters[`sections/${ sectionStore.Getters.ITEM_LIST }`]
             const section = sections.find((s: SectionType) => s.id === Number(sectionId))
 
-            const exam = section?.exam
+            const examId = section?.examId
+            const exams = store.getters[`exams/${ examStore.Getters.ITEM_LIST }`]
+            const exam = exams.find((e: ExamType) => e.id === examId)
 
-            return { localname, question, section, exam }
+            return { localname, question, sectionId, section, examId, exam }
 
         },
 
         methods: {
 
             backToListButtonClicked() {
-                this.$router.push({ name: Section.name, params: { sectionId: this.section?.id }})
+                this.$router.push({ name: Section.name, params: { sectionId: this.sectionId }})
             },
 
         },
@@ -62,9 +65,15 @@
             <div class='exam-title'>{{ exam.title }}</div>
 
         </template>
+        <template v-else>
+            <el-alert title='Неизвестный экзамен' type='error' center show-icon :closable='false'></el-alert>
+        </template>
 
         <template v-if='section'>
             <div>Раздел экзамена: {{ section.title }}</div>
+        </template>
+        <template v-else>
+            <el-alert title='Неизвестный раздел' type='error' center show-icon :closable='false'></el-alert>
         </template>
 
         <template v-if='question'>
