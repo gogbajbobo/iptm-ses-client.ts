@@ -56,6 +56,9 @@
             <div class='exam-title'>{{ exam.title }}</div>
 
         </template>
+        <template v-else>
+            <el-alert title='Неизвестный экзамен' type='error' center show-icon :closable='false'></el-alert>
+        </template>
 
         <template v-if='section'>
 
