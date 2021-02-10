@@ -2,9 +2,7 @@
 
     import { defineComponent, computed, ref } from 'vue'
 
-    import { useStore } from 'vuex'
-    import * as sectionStore from '@/store/sections/types'
-    import * as categoryStore from '@/store/categories/types'
+    import { getSections, deleteSection, sections, getCategories } from '@/store/helper'
     import { SectionType } from '@/store/interfaces'
 
     import { showWarningConfirm } from '@/services/messages'
@@ -30,35 +28,20 @@
 
         setup(props) {
 
-            const store = useStore()
-
-            const sections = computed(() => store.getters[`sections/${ sectionStore.Getters.ITEM_LIST }`])
-
-            const getCategories = () => {
-                return store.dispatch(`categories/${ categoryStore.ActionTypes.GET_CATEGORIES }`)
-            }
-
-            const getSections = () => {
-
-                return store.dispatch(
-                    `sections/${ sectionStore.Actions.GET_ITEMS }`,
-                    { examId: props.examId }
-                    )
-
-            }
-
-            const deleteSection = (sectionId: number) => {
-                return store.dispatch(`sections/${ sectionStore.Actions.DELETE_ITEM }`, sectionId)
-            }
-
             let sectionFormVisible = ref(false)
             let selectedSection: any = null
 
-            getSections()
+            getSections({ examId: props.examId })
                 .then(getCategories)
                 .catch(() => {})
 
-            return { localname, sections, sectionFormVisible, selectedSection, deleteSection }
+            return {
+                localname,
+                sections: computed(sections),
+                sectionFormVisible,
+                selectedSection,
+                deleteSection
+            }
 
         },
 
