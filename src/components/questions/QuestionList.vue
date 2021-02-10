@@ -39,7 +39,7 @@
 
             const getQuestions = () => {
 
-                const payload = { sectionId: props.sectionId }
+                const payload = { section: props.sectionId }
                 return store.dispatch(`questions/${ questionStore.Actions.GET_ITEMS }`, payload)
 
             }

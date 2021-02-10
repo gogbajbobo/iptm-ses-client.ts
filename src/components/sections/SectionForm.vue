@@ -55,7 +55,7 @@
 
                     const section = {
                         id,
-                        examId,
+                        exam: examId,
                         title: this.sectionTitle,
                         category: this.selectedCategory
                     }
@@ -70,7 +70,7 @@
                     const section: SectionEmbryo = {
                         title: this.sectionTitle,
                         category: this.selectedCategory,
-                        examId: this.examId,
+                        exam: this.examId,
                     }
 
                     this.addSection(section)

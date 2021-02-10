@@ -47,7 +47,7 @@
 
                 if (!this.question && this.section) {
 
-                    return this.addQuestion({ text: this.questionText, sectionId: this.section })
+                    return this.addQuestion({ text: this.questionText, section: this.section })
                         .then(() => { this.questionText = '' })
                         .catch(err => showError(err, false))
 
@@ -59,7 +59,7 @@
 
                     return this.updateQuestion({
                         id,
-                        sectionId,
+                        section: sectionId,
                         text: this.questionText,
                     })
                         .then(() => { this.$emit('close-form') })

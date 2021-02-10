@@ -31,7 +31,7 @@
             let sectionFormVisible = ref(false)
             let selectedSection: any = null
 
-            getSections({ examId: props.examId })
+            getSections({ exam: props.examId })
                 .then(getCategories)
                 .catch(() => {})
 
@@ -112,7 +112,7 @@
                 </template>
             </el-table-column>
 
-            <el-table-column prop='questions.length' label='Вопросов' width='96'>
+            <el-table-column prop='questionIds.length' label='Вопросов' width='96'>
             </el-table-column>
 
             <el-table-column fixed='right' width='256'>
