@@ -9,8 +9,8 @@
 
     import { showWarningConfirm } from '@/services/messages'
 
-    import SectionForm from '@/components/SectionForm.vue'
-    import Section from '@/components/Section.vue'
+    import SectionForm from '@/components/sections/SectionForm.vue'
+    import Section from '@/components/sections/Section.vue'
 
     const localname = 'Разделы экзамена'
 
@@ -42,7 +42,7 @@
 
                 return store.dispatch(
                     `sections/${ sectionStore.Actions.GET_ITEMS }`,
-                    { exam: props.examId }
+                    { examId: props.examId }
                     )
 
             }
@@ -127,6 +127,9 @@
                 <template #default="scope">
                     {{ categoryTitle(scope.row) }}
                 </template>
+            </el-table-column>
+
+            <el-table-column prop='questions.length' label='Вопросов' width='96'>
             </el-table-column>
 
             <el-table-column fixed='right' width='256'>

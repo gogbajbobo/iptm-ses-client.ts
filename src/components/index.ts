@@ -1,11 +1,11 @@
 import Login  from './Login.vue'
 import Main from './Main.vue'
-import ExamineeList from '@/components/ExamineeList.vue'
-import CategoryList from '@/components/CategoryList.vue'
-import ExamList from '@/components/ExamList.vue'
-import Exam from '@/components/Exam.vue'
-import Section from '@/components/Section.vue'
-import Question from '@/components/Question.vue'
+import ExamineeList from '@/components/examinees/ExamineeList.vue'
+import CategoryList from '@/components/categories/CategoryList.vue'
+import ExamList from '@/components/exams/ExamList.vue'
+import Exam from '@/components/exams/Exam.vue'
+import Section from '@/components/sections/Section.vue'
+import Question from '@/components/questions/Question.vue'
 
 export default {
     Login,

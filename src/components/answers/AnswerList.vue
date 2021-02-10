@@ -5,7 +5,7 @@
     import * as answerStore from '@/store/answers/types'
     import { AnswerType } from '@/store/interfaces'
     import { showError, showWarningConfirm } from '@/services/messages'
-    import AnswerForm from '@/components/AnswerForm.vue'
+    import AnswerForm from '@/components/answers/AnswerForm.vue'
 
     const localname = 'Ответы на вопрос'
 
@@ -105,7 +105,9 @@
             <el-table-column prop="isCorrect" label="Верный" width="72">
                 <template #default="scope">
 
-                    <el-switch :value='scope.row.isCorrect' @change='isCorrectValueChanged(scope.row)'>
+                    <el-switch :value='scope.row.isCorrect'
+                               @change='isCorrectValueChanged(scope.row)'
+                               :disabled='Boolean(selectedAnswer)'>
                     </el-switch>
 
                 </template>

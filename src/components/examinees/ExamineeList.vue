@@ -4,7 +4,7 @@
     import { useStore } from 'vuex'
     import { ActionTypes, GetterTypes } from '@/store/examinees/types'
     import { UserType } from '@/store/interfaces'
-    import ExamineeForm from '@/components/ExamineeForm.vue'
+    import ExamineeForm from '@/components/examinees/ExamineeForm.vue'
 
     const localname = 'Пользователи'
 

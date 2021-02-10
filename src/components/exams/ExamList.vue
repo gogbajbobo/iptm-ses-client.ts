@@ -5,7 +5,7 @@
     import * as examStore from '@/store/exams/types'
     import { showPrompt, showPromptWithValue, showWarningConfirm } from '@/services/messages'
     import { ExamType } from '@/store/interfaces'
-    import Exam from '@/components/Exam.vue'
+    import Exam from '@/components/exams/Exam.vue'
 
     const localname = 'Экзамены'
 
@@ -102,6 +102,9 @@
                     <el-button type='text' @click='examTitleClicked(scope.row)'>{{ scope.row.title }}</el-button>
 
                 </template>
+            </el-table-column>
+
+            <el-table-column prop='sections.length' label='Разделов' width='96'>
             </el-table-column>
 
             <el-table-column fixed="right" width='256'>

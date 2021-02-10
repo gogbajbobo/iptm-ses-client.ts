@@ -1,5 +1,6 @@
 import {
 
+    ElAlert,
     ElButton,
     ElDialog,
     ElDivider,
@@ -22,6 +23,7 @@ import 'element-plus/lib/theme-chalk/el-reset.css'
 
 export const elements = [
 
+    ElAlert,
     ElButton,
     ElDialog,
     ElDivider,
