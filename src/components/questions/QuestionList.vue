@@ -1,8 +1,7 @@
 <script lang='ts'>
 
     import { defineComponent, computed } from 'vue'
-    import { useStore } from 'vuex'
-    import * as questionStore from '@/store/questions/types'
+    import { questions, getQuestions, deleteQuestion } from '@/store/helper'
     import { QuestionType } from '@/store/interfaces'
     import { showWarningConfirm } from '@/services/messages'
 
@@ -33,23 +32,13 @@
 
         setup(props) {
 
-            const store = useStore()
+            getQuestions({ section: props.sectionId }).catch(() => {})
 
-            const questions = computed(() => store.getters[`questions/${ questionStore.Getters.ITEM_LIST }`])
-
-            const getQuestions = () => {
-
-                const payload = { section: props.sectionId }
-                return store.dispatch(`questions/${ questionStore.Actions.GET_ITEMS }`, payload)
-
+            return {
+                localname,
+                questions: computed(questions),
+                deleteQuestion,
             }
-            getQuestions().catch(() => {})
-
-            const deleteQuestion = (question: QuestionType) => {
-                return store.dispatch(`questions/${ questionStore.Actions.DELETE_ITEM }`, question.id)
-            }
-
-            return { localname, questions, deleteQuestion }
 
         },
 
