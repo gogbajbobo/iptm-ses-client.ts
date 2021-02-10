@@ -1,7 +1,7 @@
 <script lang='ts'>
 
     import { defineComponent, computed } from 'vue'
-    import { sections, getSections, categories } from '@/store/helper'
+    import { sections, getSections, categories, getExaminees, examinees } from '@/store/helper'
     import { paths } from '@/router/paths'
 
     const localname = 'Новое тестирование'
@@ -19,15 +19,23 @@
 
             const category = categories().find(c => c.id === Number(props.categoryId))
 
-            if (!category)
-                return { localname, category }
+            if (category) {
 
-            getSections({ category: category.id }).catch(() => {})
+                const params = { category: category.id }
+
+                Promise.all([
+                    getSections(params),
+                    getExaminees(params)
+                ])
+                    .catch(() => {})
+
+            }
 
             return {
                 localname,
                 category,
-                sections: computed(sections)
+                sections: computed(sections),
+                examinees: computed(examinees),
             }
 
         },
@@ -48,7 +56,13 @@
 
         <template v-if='category'>
             <div>Категория: {{ category.title }}</div>
-            {{ sections }}
+            <div>
+                <div v-for='section in sections' :key='section.id'>{{ section }}</div>
+            </div>
+            <br>
+            <div>
+                <div v-for='examinee in examinees' :key='examinee.id'>{{ examinee }}</div>
+            </div>
         </template>
 
         <template v-else>
