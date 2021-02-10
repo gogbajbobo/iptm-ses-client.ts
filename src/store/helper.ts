@@ -4,11 +4,18 @@ import * as categoryStore from '@/store/categories/types'
 import * as sectionStore from '@/store/sections/types'
 import * as examStore from '@/store/exams/types'
 import * as questionStore from '@/store/questions/types'
+import * as examineeStore from '@/store/examinees/types'
 
 import { UserType, ExamType, CategoryType, SectionType, QuestionType, SectionEmbryo } from '@/store/interfaces'
 
 // AUTH
 export const currentUser = ():UserType|null => store.getters[`auth/${ authStore.GetterTypes.USER }`]
+
+// EXAMINEES
+export const getExaminees = (params:Record<string, string|number>):Promise<void> => {
+    return store.dispatch(`examinees/${ examineeStore.ActionTypes.GET_EXAMINEES }`, params)
+}
+export const examinees = ():UserType[] => store.getters[`examinees/${ examineeStore.GetterTypes.EXAMINEE_LIST }`]
 
 // CATEGORIES
 export const getCategories = ():Promise<void> => {
