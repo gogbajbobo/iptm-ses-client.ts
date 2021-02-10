@@ -1,9 +1,7 @@
 <script lang='ts'>
 
     import { defineComponent, computed } from 'vue'
-    import { useStore } from 'vuex'
-    import * as categoryStore from '@/store/categories/types'
-    import * as sectionStore from '@/store/sections/types'
+    import { sections, getSections, categories } from '@/store/helper'
     import { paths } from '@/router/paths'
 
     const localname = 'Новое тестирование'
@@ -19,22 +17,18 @@
 
         setup(props) {
 
-            const store = useStore()
-            const categories = store.getters[`categories/${ categoryStore.GetterTypes.CATEGORY_LIST }`]
-            const category = categories.find(c => c.id === Number(props.categoryId))
+            const category = categories().find(c => c.id === Number(props.categoryId))
 
             if (!category)
                 return { localname, category }
 
-            const params = { category: category.id }
-            const getSections = () => {
-                return store.dispatch(`sections/${ sectionStore.Actions.GET_ITEMS }`, params)
+            getSections({ category: category.id }).catch(() => {})
+
+            return {
+                localname,
+                category,
+                sections: computed(sections)
             }
-            getSections().catch(() => {})
-
-            const sections = computed(() => store.getters[`sections/${ sectionStore.Getters.ITEM_LIST }`])
-
-            return { localname, category, sections }
 
         },
 
