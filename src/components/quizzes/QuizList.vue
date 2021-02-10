@@ -1,8 +1,7 @@
 <script lang='ts'>
 
     import { defineComponent, computed } from 'vue'
-    import { useStore } from 'vuex'
-    import * as categoryStore from '@/store/categories/types'
+    import { categories, getCategories } from '@/store/helper'
     import QuizCreate from '@/components/quizzes/QuizCreate.vue'
 
     const localname = 'Тестирование'
@@ -21,17 +20,12 @@
 
         setup() {
 
-            const store = useStore()
+            getCategories().catch(() => {})
 
-            store
-                .dispatch(`categories/${ categoryStore.ActionTypes.GET_CATEGORIES }`)
-                .catch(() => {})
-
-            const categories = computed(() => {
-                return store.getters[`categories/${ categoryStore.GetterTypes.CATEGORY_LIST }`]
-            })
-
-            return { localname, categories }
+            return {
+                localname,
+                categories: computed(categories)
+            }
 
         },
 
