@@ -24,4 +24,16 @@
         color: #2c3e50;
     }
 
+    :root {
+
+        --color-blue: #409EFF;
+        --color-green: #67C23A;
+        --color-gray: #909399;
+        --color-ligth-gray: #E9E9EB;
+        --color-yellow: #E6A23C;
+        --color-ligth-yellow: #FDF6EC;
+        --color-red: #F56C6C;
+
+    }
+
 </style>
