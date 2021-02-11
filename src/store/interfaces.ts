@@ -61,3 +61,13 @@ export interface AnswerType extends BaseType {
     questionId: number
     question: QuestionType
 }
+
+export interface QuizEmbryo {
+    category: number
+    exam: number
+    section: number
+    examinees: number[]
+}
+
+export interface QuizType extends BaseType, QuestionEmbryo {
+}
