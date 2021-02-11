@@ -1,6 +1,7 @@
 <script lang='ts'>
 
-    import { defineComponent } from 'vue'
+    import { defineComponent, computed } from 'vue'
+    import { getQuizzes, quizzes } from '@/store/helper'
 
     const localname = 'Список экзаменов'
 
@@ -10,7 +11,14 @@
         localname,
 
         setup() {
-            return { localname }
+
+            getQuizzes().catch(() => {})
+
+            return {
+                localname,
+                quizzes: computed(quizzes),
+            }
+
         },
 
     })
@@ -22,6 +30,25 @@
     <div>
 
         <div>{{ localname }}</div>
+
+        <el-table :data='quizzes'>
+
+            <el-table-column type="index" fixed width="50">
+            </el-table-column>
+
+            <el-table-column prop="id" fixed label="#" width="50">
+            </el-table-column>
+
+            <el-table-column prop="section.exam.title" fixed label="Экзамен">
+            </el-table-column>
+
+            <el-table-column prop="section.title" fixed label="Раздел">
+            </el-table-column>
+
+            <el-table-column prop="section.category.title" fixed label="Категория">
+            </el-table-column>
+
+        </el-table>
 
     </div>
 
