@@ -57,7 +57,15 @@
         <template v-if='category'>
             <div>Категория: {{ category.title }}</div>
             <div>
-                <div v-for='section in sections' :key='section.id'>{{ section }}</div>
+                <el-table :data='sections'>
+
+                    <el-table-column prop="exam.title" label='Экзамен'>
+                    </el-table-column>
+
+                    <el-table-column prop="title" label='Раздел'>
+                    </el-table-column>
+
+                </el-table>
             </div>
             <br>
             <div>
