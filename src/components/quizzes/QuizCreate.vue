@@ -5,6 +5,7 @@
     import { paths } from '@/router/paths'
     import { sortBy } from 'lodash'
     import { SectionType, UserType } from '@/store/interfaces'
+    import { showAlert } from '@/services/messages'
 
     const localname = 'Новое тестирование'
 
@@ -61,6 +62,17 @@
                 this.examineeSelection = selection
             },
 
+            createQuiz() {
+
+                if (!this.examineeSelection.length || !this.sectionSelection.length)
+                    return showAlert('Не выбраны экзамены и/или пользователи!', 'Ошибка!')
+
+                console.log('create quiz')
+                console.log(this.sectionSelection)
+                console.log(this.examineeSelection)
+
+            },
+
         },
 
     })
@@ -109,6 +121,14 @@
             <el-alert title='Неизвестная категория' type='error' center show-icon :closable='false'></el-alert>
         </template>
 
+        <div>
+
+            <el-button type='primary'
+                       @click='createQuiz'
+                       class='create-quiz-button'>Создать тестирование</el-button>
+
+        </div>
+
         <el-button type='text'
                    @click='backToListButtonClicked'
                    class='back-to-list-link'>К списку тестов</el-button>
@@ -119,8 +139,12 @@
 
 <style scoped>
 
+    .create-quiz-button {
+        margin: 32px;
+    }
+
     .back-to-list-link {
-        margin: 16px;
+        /*margin: 16px;*/
     }
 
 </style>
