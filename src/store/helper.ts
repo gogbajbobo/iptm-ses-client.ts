@@ -54,6 +54,9 @@ export const deleteQuestion = (question: QuestionType):Promise<void> => {
 export const questions = ():QuestionType[] => store.getters[`questions/${ questionStore.Getters.ITEM_LIST }`]
 
 // QUIZZES
+export const getQuizzes = (params?:Record<string, string|number>):Promise<void> => {
+    return store.dispatch(`quizzes/${ quizStore.Actions.GET_ITEMS }`, params)
+}
 export const addQuiz = (quiz: QuizEmbryo):Promise<void> => {
     return store.dispatch(`quizzes/${ quizStore.Actions.ADD_ITEM }`, quiz)
 }
