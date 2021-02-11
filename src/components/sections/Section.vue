@@ -4,6 +4,7 @@
     import { sections, exams } from '@/store/helper'
     import { SectionType, ExamType } from '@/store/interfaces'
     import QuestionList from '@/components/questions/QuestionList.vue'
+    import { paths } from '@/router/paths'
     import Exam from '@/components/exams/Exam.vue'
 
     const localname = 'Раздел экзамена'
@@ -34,7 +35,13 @@
 
         methods: {
             backToListButtonClicked() {
-                this.$router.push({ name: Exam.name, params: { examId: this.examId } })
+
+                this.$router.push(
+                    this.examId
+                        ? { name: Exam.name, params: { examId: this.examId } }
+                        : paths.EXAM_LIST
+                )
+
             },
         },
 
