@@ -62,14 +62,34 @@
 
         <div>{{ localname }}</div>
 
-        <div>{{ quizzes }}</div>
-
         <div class='add-item-button'>
 
             <el-button type='primary'
                        @click='addButtonClicked'>Создать тестирование</el-button>
 
         </div>
+
+        <el-table :data='quizzes'>
+
+            <el-table-column type="index" fixed width="50">
+            </el-table-column>
+
+            <el-table-column prop="id" fixed label="#" width="50">
+            </el-table-column>
+
+            <el-table-column prop="section.exam.title" fixed label="Экзамен">
+            </el-table-column>
+
+            <el-table-column prop="section.title" fixed label="Раздел">
+            </el-table-column>
+
+            <el-table-column prop="section.category.title" fixed label="Категория">
+            </el-table-column>
+
+            <el-table-column prop="examineeIds.length" fixed label="Число участников">
+            </el-table-column>
+
+        </el-table>
 
         <el-dialog title="Выбирите категорию тестирования"
                    :model-value="categoryFormVisible"
