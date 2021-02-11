@@ -3,6 +3,7 @@
     import { defineComponent, computed } from 'vue'
     import { sections, getSections, categories, getExaminees, examinees } from '@/store/helper'
     import { paths } from '@/router/paths'
+    import { sortBy } from 'lodash'
 
     const localname = 'Новое тестирование'
 
@@ -34,7 +35,7 @@
             return {
                 localname,
                 category,
-                sections: computed(sections),
+                sections: computed(() => sortBy(sections(), [ 'examId' ])),
                 examinees: computed(examinees),
             }
 
