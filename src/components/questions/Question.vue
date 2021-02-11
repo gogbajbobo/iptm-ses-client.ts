@@ -30,7 +30,7 @@
             const questions = store.getters[`questions/${ questionStore.Getters.ITEM_LIST }`]
             const question: QuestionType = questions.find((q: QuestionType) => q.id === Number(props.questionId))
 
-            const sectionId = question?.sectionId
+            const sectionId = question?.section
 
             const sections = store.getters[`sections/${ sectionStore.Getters.ITEM_LIST }`]
             const section = sections.find((s: SectionType) => s.id === Number(sectionId))
