@@ -1,7 +1,7 @@
 <script lang='ts'>
 
     import { defineComponent, computed } from 'vue'
-    import { categories, getCategories } from '@/store/helper'
+    import { categories, getCategories, getQuizzes, quizzes } from '@/store/helper'
     import QuizCreate from '@/components/quizzes/QuizCreate.vue'
 
     const localname = 'Тестирование'
@@ -20,11 +20,13 @@
 
         setup() {
 
-            getCategories().catch(() => {})
+            Promise.all([ getCategories(), getQuizzes() ])
+                .catch(() => {})
 
             return {
                 localname,
-                categories: computed(categories)
+                categories: computed(categories),
+                quizzes: computed(quizzes),
             }
 
         },
@@ -59,6 +61,8 @@
     <div>
 
         <div>{{ localname }}</div>
+
+        <div>{{ quizzes }}</div>
 
         <div class='add-item-button'>
 
