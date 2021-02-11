@@ -4,6 +4,7 @@
     import { sections, getSections, categories, getExaminees, examinees } from '@/store/helper'
     import { paths } from '@/router/paths'
     import { sortBy } from 'lodash'
+    import { SectionType, UserType } from '@/store/interfaces'
 
     const localname = 'Новое тестирование'
 
@@ -14,6 +15,13 @@
 
         props: {
             categoryId: { type: [ Number, String ] },
+        },
+
+        data() {
+            return {
+                sectionSelection: [] as SectionType[],
+                examineeSelection: [] as UserType[],
+            }
         },
 
         setup(props) {
@@ -42,7 +50,17 @@
         },
 
         methods: {
-            backToListButtonClicked() { this.$router.push(paths.QUIZ_LIST) }
+
+            backToListButtonClicked() { this.$router.push(paths.QUIZ_LIST) },
+
+            sectionSelectionChange(selection: SectionType[]) {
+                this.sectionSelection = selection
+            },
+
+            examineeSelectionChange(selection: UserType[]) {
+                this.examineeSelection = selection
+            },
+
         },
 
     })
@@ -58,7 +76,10 @@
         <template v-if='category'>
             <div>Категория: {{ category.title }}</div>
             <div>
-                <el-table :data='sections'>
+                <el-table :data='sections' @selection-change="sectionSelectionChange">
+
+                    <el-table-column type="selection" width="55">
+                    </el-table-column>
 
                     <el-table-column prop="exam.title" label='Экзамен'>
                     </el-table-column>
@@ -68,9 +89,14 @@
 
                 </el-table>
             </div>
+
             <el-divider></el-divider>
+
             <div>
-                <el-table :data='examinees'>
+                <el-table :data='examinees' @selection-change="examineeSelectionChange">
+
+                    <el-table-column type="selection" width="55">
+                    </el-table-column>
 
                     <el-table-column prop="username" label='Имя пользователя'>
                     </el-table-column>
