@@ -68,9 +68,14 @@
 
                 </el-table>
             </div>
-            <br>
+            <el-divider></el-divider>
             <div>
-                <div v-for='examinee in examinees' :key='examinee.id'>{{ examinee }}</div>
+                <el-table :data='examinees'>
+
+                    <el-table-column prop="username" label='Имя пользователя'>
+                    </el-table-column>
+
+                </el-table>
             </div>
         </template>
 
