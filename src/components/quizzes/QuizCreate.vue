@@ -1,10 +1,10 @@
 <script lang='ts'>
 
     import { defineComponent, computed } from 'vue'
-    import { sections, getSections, categories, getExaminees, examinees } from '@/store/helper'
+    import { sections, getSections, categories, getExaminees, examinees, addQuiz } from '@/store/helper'
     import { paths } from '@/router/paths'
     import { sortBy } from 'lodash'
-    import { SectionType, UserType } from '@/store/interfaces'
+    import { QuizEmbryo, SectionType, UserType } from '@/store/interfaces'
     import { showAlert } from '@/services/messages'
 
     const localname = 'Новое тестирование'
@@ -67,9 +67,16 @@
                 if (!this.examineeSelection.length || !this.sectionSelection.length)
                     return showAlert('Не выбраны экзамены и/или пользователи!', 'Ошибка!')
 
-                console.log('create quiz')
-                console.log(this.sectionSelection)
-                console.log(this.examineeSelection)
+                const createQuizzes = this.sectionSelection.map(section => {
+                    return addQuiz({
+                        category: section.category.id,
+                        exam: section.examId,
+                        section: section.id,
+                        examinees: this.examineeSelection.map(e => e.id),
+                    })
+                })
+
+                Promise.all(createQuizzes).catch(() => {})
 
             },
 
