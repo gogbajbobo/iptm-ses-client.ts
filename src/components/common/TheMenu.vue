@@ -6,7 +6,7 @@
     import { checkRoles } from '@/services/helper'
     import { currentUser } from '@/store/helper'
 
-    const { Main, ExamineeList, CategoryList, ExamList, QuizList } = components
+    const { Main, ExamineeList, CategoryList, ExamList, QuizList, ExamineeQuizzesList } = components
 
     export default defineComponent({
 
@@ -34,6 +34,7 @@
                 CategoryList,
                 ExamList,
                 QuizList,
+                ExamineeQuizzesList,
             ].map(menuItem)
 
             const user = computed(() => currentUser())

@@ -14,6 +14,7 @@ const {
     Question,
     QuizList,
     QuizCreate,
+    ExamineeQuizzesList,
 } = components
 
 const root: RouteRecordRaw = {
@@ -112,6 +113,15 @@ const quizCreate: RouteRecordRaw = {
     },
 }
 
+const examineeQuizzesList: RouteRecordRaw = {
+    path: paths.EXAMINEE_QUIZZES,
+    name: ExamineeQuizzesList.name,
+    component: ExamineeQuizzesList,
+    meta: {
+        requireRoles: [ UserRole.EXAMINEE ],
+    },
+}
+
 export const routes: RouteRecordRaw[] = [
     root,
     main,
@@ -124,4 +134,5 @@ export const routes: RouteRecordRaw[] = [
     questionItem,
     quizList,
     quizCreate,
+    examineeQuizzesList,
 ]

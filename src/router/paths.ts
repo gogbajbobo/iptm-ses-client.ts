@@ -10,4 +10,5 @@ export const paths = {
     QUESTION_ITEM: '/questions/:questionId',
     QUIZ_LIST: '/quizzes',
     QUIZ_CREATE: '/quiz-create/:categoryId',
+    EXAMINEE_QUIZZES: '/examinee-quizzes',
 }

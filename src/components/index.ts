@@ -8,6 +8,7 @@ import Section from '@/components/sections/Section.vue'
 import Question from '@/components/questions/Question.vue'
 import QuizList from '@/components/quizzes/QuizList.vue'
 import QuizCreate from '@/components/quizzes/QuizCreate.vue'
+import ExamineeQuizzesList from '@/components/examineeQuizzes/ExamineeQuizzesList.vue'
 
 export default {
     Login,
@@ -20,4 +21,5 @@ export default {
     Question,
     QuizList,
     QuizCreate,
+    ExamineeQuizzesList,
 }
