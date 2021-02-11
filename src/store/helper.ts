@@ -5,8 +5,11 @@ import * as sectionStore from '@/store/sections/types'
 import * as examStore from '@/store/exams/types'
 import * as questionStore from '@/store/questions/types'
 import * as examineeStore from '@/store/examinees/types'
+import * as quizStore from '@/store/quizzes/types'
 
-import { UserType, ExamType, CategoryType, SectionType, QuestionType, SectionEmbryo } from '@/store/interfaces'
+import {
+    UserType, ExamType, CategoryType, SectionType, QuestionType, SectionEmbryo, QuizEmbryo, QuizType
+} from '@/store/interfaces'
 
 // AUTH
 export const currentUser = ():UserType|null => store.getters[`auth/${ authStore.GetterTypes.USER }`]
@@ -49,3 +52,9 @@ export const deleteQuestion = (question: QuestionType):Promise<void> => {
     return store.dispatch(`questions/${ questionStore.Actions.DELETE_ITEM }`, question.id)
 }
 export const questions = ():QuestionType[] => store.getters[`questions/${ questionStore.Getters.ITEM_LIST }`]
+
+// QUIZZES
+export const addQuiz = (quiz: QuizEmbryo):Promise<void> => {
+    return store.dispatch(`quizzes/${ quizStore.Actions.ADD_ITEM }`, quiz)
+}
+export const quizzes = ():QuizType[] => store.getters[`quizzes/${ quizStore.Getters.ITEM_LIST }`]
