@@ -1,1 +1,1 @@
-export type GetQueryParamsType = Record<string, string|string[]|number|number[]>
+export type GetQueryParamsType = Record<string, string|number>
