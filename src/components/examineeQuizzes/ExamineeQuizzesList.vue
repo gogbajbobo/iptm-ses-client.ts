@@ -39,13 +39,7 @@
             <el-table-column prop="id" fixed label="#" width="50">
             </el-table-column>
 
-            <el-table-column prop="section.exam.title" fixed label="Экзамен">
-            </el-table-column>
-
-            <el-table-column prop="section.title" fixed label="Раздел">
-            </el-table-column>
-
-            <el-table-column prop="section.category.title" fixed label="Категория">
+            <el-table-column prop="exam.title" fixed label="Экзамен">
             </el-table-column>
 
         </el-table>
