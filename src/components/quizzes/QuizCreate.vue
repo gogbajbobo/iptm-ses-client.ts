@@ -63,6 +63,7 @@
                     exam: Number(this.examId),
                     examinees: this.examineeSelection.map(e => Number(e.id)),
                 })
+                    .then(() => this.backToList())
                     .catch(() => {})
 
             },
