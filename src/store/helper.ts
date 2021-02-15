@@ -27,6 +27,9 @@ export const getCategories = ():Promise<void> => {
 export const categories = ():CategoryType[] => store.getters[`categories/${ categoryStore.GetterTypes.CATEGORY_LIST }`]
 
 // EXAMS
+export const getExams = (params?:Record<string, string|number>):Promise<void> => {
+    return store.dispatch(`exams/${ examStore.Actions.GET_ITEMS }`, params)
+}
 export const exams = ():ExamType[] => store.getters[`exams/${ examStore.Getters.ITEM_LIST }`]
 
 // SECTIONS
