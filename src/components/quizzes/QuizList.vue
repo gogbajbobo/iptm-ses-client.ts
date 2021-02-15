@@ -80,12 +80,6 @@
             <el-table-column prop="section.exam.title" fixed label="Экзамен">
             </el-table-column>
 
-            <el-table-column prop="section.title" fixed label="Раздел">
-            </el-table-column>
-
-            <el-table-column prop="section.category.title" fixed label="Категория">
-            </el-table-column>
-
             <el-table-column prop="examineeIds.length" fixed label="Число участников">
             </el-table-column>
 
