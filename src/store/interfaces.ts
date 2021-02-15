@@ -63,9 +63,7 @@ export interface AnswerType extends BaseType {
 }
 
 export interface QuizEmbryo {
-    category: number
     exam: number
-    section: number
     examinees: number[]
 }
 
