@@ -1,6 +1,7 @@
 import { ElLoading } from 'element-plus'
 import axiosInstance from '@/services/network'
 import { rejectError } from '@/services/helper'
+import { GetQueryParamsType } from '@/services/types'
 
 const request = (requestPromise: Promise<any>) => {
 
@@ -13,7 +14,7 @@ const request = (requestPromise: Promise<any>) => {
 
 }
 
-export const getRequest = (url: string, params?: Record<string, string|number>) => {
+export const getRequest = (url: string, params?: GetQueryParamsType) => {
     return request(axiosInstance.get(url, { params }))
 }
 

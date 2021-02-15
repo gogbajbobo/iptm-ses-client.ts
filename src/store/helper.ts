@@ -6,6 +6,7 @@ import * as examStore from '@/store/exams/types'
 import * as questionStore from '@/store/questions/types'
 import * as examineeStore from '@/store/examinees/types'
 import * as quizStore from '@/store/quizzes/types'
+import { GetQueryParamsType } from '@/services/types'
 
 import {
     UserType, ExamType, CategoryType, SectionType, QuestionType, SectionEmbryo, QuizEmbryo, QuizType
@@ -15,7 +16,7 @@ import {
 export const currentUser = ():UserType|null => store.getters[`auth/${ authStore.GetterTypes.USER }`]
 
 // EXAMINEES
-export const getExaminees = (params?:Record<string, string|number>):Promise<void> => {
+export const getExaminees = (params?:GetQueryParamsType):Promise<void> => {
     return store.dispatch(`examinees/${ examineeStore.ActionTypes.GET_EXAMINEES }`, params)
 }
 export const examinees = ():UserType[] => store.getters[`examinees/${ examineeStore.GetterTypes.EXAMINEE_LIST }`]
@@ -27,13 +28,13 @@ export const getCategories = ():Promise<void> => {
 export const categories = ():CategoryType[] => store.getters[`categories/${ categoryStore.GetterTypes.CATEGORY_LIST }`]
 
 // EXAMS
-export const getExams = (params?:Record<string, string|number>):Promise<void> => {
+export const getExams = (params?:GetQueryParamsType):Promise<void> => {
     return store.dispatch(`exams/${ examStore.Actions.GET_ITEMS }`, params)
 }
 export const exams = ():ExamType[] => store.getters[`exams/${ examStore.Getters.ITEM_LIST }`]
 
 // SECTIONS
-export const getSections = (params?:Record<string, string|number>):Promise<void> => {
+export const getSections = (params?:GetQueryParamsType):Promise<void> => {
     return store.dispatch(`sections/${ sectionStore.Actions.GET_ITEMS }`, params)
 }
 export const addSection = (section: SectionEmbryo):Promise<void> => {
@@ -48,7 +49,7 @@ export const deleteSection = (sectionId: number):Promise<void> => {
 export const sections = ():SectionType[] => store.getters[`sections/${ sectionStore.Getters.ITEM_LIST }`]
 
 // QUESTIONS
-export const getQuestions = (params?:Record<string, string|number>):Promise<void> => {
+export const getQuestions = (params?:GetQueryParamsType):Promise<void> => {
     return store.dispatch(`questions/${ questionStore.Actions.GET_ITEMS }`, params)
 }
 export const deleteQuestion = (question: QuestionType):Promise<void> => {
@@ -57,7 +58,7 @@ export const deleteQuestion = (question: QuestionType):Promise<void> => {
 export const questions = ():QuestionType[] => store.getters[`questions/${ questionStore.Getters.ITEM_LIST }`]
 
 // QUIZZES
-export const getQuizzes = (params?:Record<string, string|number>):Promise<void> => {
+export const getQuizzes = (params?:GetQueryParamsType):Promise<void> => {
     return store.dispatch(`quizzes/${ quizStore.Actions.GET_ITEMS }`, params)
 }
 export const addQuiz = (quiz: QuizEmbryo):Promise<void> => {

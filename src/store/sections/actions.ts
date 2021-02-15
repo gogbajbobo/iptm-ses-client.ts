@@ -1,5 +1,6 @@
 import { ActionContext, ActionTree } from 'vuex'
 
+import { GetQueryParamsType } from '@/services/types'
 import { IRootState, SectionType } from '@/store/interfaces'
 import { StoreState } from './state'
 import { Actions, Mutations } from './types'
@@ -13,7 +14,7 @@ type Context = ActionContext<StoreState, IRootState>
 type ActionsType = ActionTree <StoreState, IRootState>
 
 export interface IActions<T> {
-    [Actions.GET_ITEMS]: (context: Context, params: Record<string, string|number>) => Promise<void>
+    [Actions.GET_ITEMS]: (context: Context, params: GetQueryParamsType) => Promise<void>
     [Actions.ADD_ITEM]: (context: Context, item: T) => Promise<void>
     [Actions.UPDATE_ITEM]: (context: Context, item: T) => Promise<void>
     [Actions.DELETE_ITEM]: (context: Context, id: number) => Promise<void>
