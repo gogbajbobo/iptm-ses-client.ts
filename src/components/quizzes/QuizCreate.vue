@@ -1,10 +1,9 @@
 <script lang='ts'>
 
     import { defineComponent, computed } from 'vue'
-    import { getExams, exams, getSections, sections, getExaminees, examinees } from '@/store/helper'
+    import { getExams, exams, getSections, sections, getExaminees, examinees, addQuiz } from '@/store/helper'
     import { paths } from '@/router/paths'
-    import { sortBy } from 'lodash'
-    import { QuizEmbryo, SectionType, UserType } from '@/store/interfaces'
+    import { UserType } from '@/store/interfaces'
     import { showAlert } from '@/services/messages'
 
     const localname = 'Новое тестирование'
@@ -38,20 +37,6 @@
                 .then(() => getExaminees({ categories: categoryIds.value.join(',') }))
                 .catch(() => {})
 
-            // const category = categories().find(c => c.id === Number(props.categoryId))
-            //
-            // if (category) {
-            //
-            //     const params = { category: category.id }
-            //
-            //     Promise.all([
-            //         getSections(params),
-            //         getExaminees(params)
-            //     ])
-            //         .catch(() => {})
-            //
-            // }
-
             return {
                 localname,
                 exam,
@@ -63,33 +48,28 @@
 
         methods: {
 
-            // backToListButtonClicked() { this.$router.push(paths.QUIZ_LIST) },
-            //
-            // sectionSelectionChange(selection: SectionType[]) {
-            //     this.sectionSelection = selection
-            // },
-            //
-            // examineeSelectionChange(selection: UserType[]) {
-            //     this.examineeSelection = selection
-            // },
-            //
-            // createQuiz() {
-            //
-            //     if (!this.examineeSelection.length || !this.sectionSelection.length)
-            //         return showAlert('Не выбраны экзамены и/или пользователи!', 'Ошибка!')
-            //
-            //     const createQuizzes = this.sectionSelection.map(section => {
-            //         return addQuiz({
-            //             category: section.category.id,
-            //             exam: section.examId,
-            //             section: section.id,
-            //             examinees: this.examineeSelection.map(e => e.id),
-            //         })
-            //     })
-            //
-            //     Promise.all(createQuizzes).catch(() => {})
-            //
-            // },
+            backToListButtonClicked() { this.$router.push(paths.QUIZ_LIST) },
+
+            examineeSelectionChange(selection: UserType[]) {
+                this.examineeSelection = selection
+            },
+
+            createQuiz() {
+
+                if (!this.examineeSelection.length)
+                    return showAlert('Не выбраны пользователи', 'Ошибка!')
+
+                return addQuiz({
+                    exam: Number(this.examId),
+                    examinees: this.examineeSelection.map(e => Number(e.id)),
+                })
+                    .catch(() => {})
+
+            },
+
+            categoriesString(examinee: UserType) {
+                return examinee.categories.map(category => category.title).join(',')
+            },
 
         },
 
@@ -110,34 +90,43 @@
             <div v-for='category in categories' :key='category.id'>{{ category.title }}</div>
             <el-divider></el-divider>
 
-<!--            <div>-->
-<!--                <el-table :data='examinees' @selection-change="examineeSelectionChange">-->
+            <div>
+                <el-table :data='examinees' @selection-change="examineeSelectionChange">
 
-<!--                    <el-table-column type="selection" width="55">-->
-<!--                    </el-table-column>-->
+                    <el-table-column type="selection" width="55">
+                    </el-table-column>
 
-<!--                    <el-table-column prop="username" label='Имя пользователя'>-->
-<!--                    </el-table-column>-->
+                    <el-table-column prop="username" label='Имя пользователя'>
+                    </el-table-column>
 
-<!--                </el-table>-->
-<!--            </div>-->
+                    <el-table-column label="Категории">
+
+                        <template #default="scope">
+                            {{ categoriesString(scope.row) }}
+                        </template>
+
+                    </el-table-column>
+
+                </el-table>
+            </div>
+
         </template>
 
         <template v-else>
             <el-alert title='Неизвестный экзамен' type='error' center show-icon :closable='false'></el-alert>
         </template>
 
-<!--        <div>-->
+        <div>
 
-<!--            <el-button type='primary'-->
-<!--                       @click='createQuiz'-->
-<!--                       class='create-quiz-button'>Создать тестирование</el-button>-->
+            <el-button type='primary'
+                       @click='createQuiz'
+                       class='create-quiz-button'>Создать тестирование</el-button>
 
-<!--        </div>-->
+        </div>
 
-<!--        <el-button type='text'-->
-<!--                   @click='backToListButtonClicked'-->
-<!--                   class='back-to-list-link'>К списку тестов</el-button>-->
+        <el-button type='text'
+                   @click='backToListButtonClicked'
+                   class='back-to-list-link'>К списку тестов</el-button>
 
     </div>
 
