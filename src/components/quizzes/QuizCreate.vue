@@ -35,7 +35,7 @@
                 getExams(),
                 getSections({ exam: props.examId })
             ])
-                .then(() => getExaminees({ categories: categoryIds.value }))
+                .then(() => getExaminees({ categories: categoryIds.value.join(',') }))
                 .catch(() => {})
 
             // const category = categories().find(c => c.id === Number(props.categoryId))
