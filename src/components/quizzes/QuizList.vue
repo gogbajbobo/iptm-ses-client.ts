@@ -1,7 +1,7 @@
 <script lang='ts'>
 
     import { defineComponent, computed } from 'vue'
-    import { categories, getCategories, getQuizzes, quizzes } from '@/store/helper'
+    import { getQuizzes, quizzes, getExams, exams } from '@/store/helper'
     import QuizCreate from '@/components/quizzes/QuizCreate.vue'
 
     const localname = 'Тестирование'
@@ -13,40 +13,40 @@
 
         data() {
             return {
-                selectedCategory: null as number | null,
-                categoryFormVisible: false,
+                selectedExam: null as number | null,
+                examFormVisible: false,
             }
         },
 
         setup() {
 
-            Promise.all([ getCategories(), getQuizzes() ])
+            Promise.all([ getExams(), getQuizzes() ])
                 .catch(() => {})
 
             return {
                 localname,
-                categories: computed(categories),
                 quizzes: computed(quizzes),
+                exams: computed(exams),
             }
 
         },
 
         methods: {
 
-            addButtonClicked() { this.categoryFormVisible = true },
-            closeForm() { this.categoryFormVisible = false },
+            addButtonClicked() { this.examFormVisible = true },
+            closeForm() { this.examFormVisible = false },
 
             cancelForm() {
 
-                this.selectedCategory = null
+                this.selectedExam = null
                 this.closeForm()
 
             },
 
             okForm() {
 
-                if (this.selectedCategory)
-                    this.$router.push({ name: QuizCreate.name, params: { categoryId: this.selectedCategory } })
+                if (this.selectedExam)
+                    this.$router.push({ name: QuizCreate.name, params: { examId: this.selectedExam } })
 
             },
 
@@ -91,24 +91,24 @@
 
         </el-table>
 
-        <el-dialog title="Выбирите категорию тестирования"
-                   :model-value="categoryFormVisible"
+        <el-dialog title="Выберите экзамен"
+                   :model-value="examFormVisible"
                    @closed='closeForm'
                    :destroy-on-close='true'
                    width="30%">
 
-            <el-select v-model="selectedCategory" placeholder="Категория">
-                <el-option v-for="category in categories"
-                           :key="category.id"
-                           :label="category.title"
-                           :value="category.id">
+            <el-select v-model="selectedExam" placeholder="Экзамен">
+                <el-option v-for="exam in exams"
+                           :key="exam.id"
+                           :label="exam.title"
+                           :value="exam.id">
                 </el-option>
             </el-select>
 
             <div class='form-buttons'>
 
                 <el-button @click="cancelForm">Отменить</el-button>
-                <el-button type="primary" @click="okForm" :disabled='!selectedCategory'>Ок</el-button>
+                <el-button type="primary" @click="okForm" :disabled='!selectedExam'>Ок</el-button>
 
             </div>
 
