@@ -48,7 +48,7 @@
 
         methods: {
 
-            backToListButtonClicked() { this.$router.push(paths.QUIZ_LIST) },
+            backToList() { this.$router.push(paths.QUIZ_LIST) },
 
             examineeSelectionChange(selection: UserType[]) {
                 this.examineeSelection = selection
@@ -125,7 +125,7 @@
         </div>
 
         <el-button type='text'
-                   @click='backToListButtonClicked'
+                   @click='backToList'
                    class='back-to-list-link'>К списку тестов</el-button>
 
     </div>
