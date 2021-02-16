@@ -3,6 +3,7 @@ export enum Actions {
     ADD_ITEM = 'ADD_ITEM',
     UPDATE_ITEM = 'UPDATE_ITEM',
     DELETE_ITEM = 'DELETE_ITEM',
+    RECREATE_ITEMS = 'RECREATE_ITEMS',
 }
 
 export enum Getters {

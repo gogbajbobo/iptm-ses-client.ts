@@ -7,6 +7,8 @@ import * as questionStore from '@/store/questions/types'
 import * as examineeStore from '@/store/examinees/types'
 import * as quizStore from '@/store/quizzes/types'
 import { GetQueryParamsType } from '@/services/types'
+import { isProduction } from '@/services/helper'
+import { logger } from '@/services/logger'
 
 import {
     UserType, ExamType, CategoryType, SectionType, QuestionType, SectionEmbryo, QuizEmbryo, QuizType
@@ -30,6 +32,12 @@ export const categories = ():CategoryType[] => store.getters[`categories/${ cate
 // EXAMS
 export const getExams = (params?:GetQueryParamsType):Promise<void> => {
     return store.dispatch(`exams/${ examStore.Actions.GET_ITEMS }`, params)
+}
+export const recreateExams = ():Promise<void> => {
+
+    isProduction && logger.error('this method should not be executed in production mode!')
+    return store.dispatch(`exams/${ examStore.Actions.RECREATE_ITEMS }`)
+
 }
 export const exams = ():ExamType[] => store.getters[`exams/${ examStore.Getters.ITEM_LIST }`]
 
