@@ -1,12 +1,10 @@
 <script lang='ts'>
 
     import { defineComponent } from 'vue'
-    import { useStore } from 'vuex'
-    import * as questionStore from '@/store/questions/types'
-    import * as sectionStore from '@/store/sections/types'
-    import * as examStore from '@/store/exams/types'
+    import { exams, questions, sections } from '@/store/helper'
     import { ExamType, QuestionType, SectionType } from '@/store/interfaces'
     import Section from '@/components/sections/Section.vue'
+    import ExamList from '@/components/exams/ExamList.vue'
 
     import AnswerList from '@/components/answers/AnswerList.vue'
 
@@ -25,19 +23,15 @@
 
         setup(props) {
 
-            const store = useStore()
+            const qId = Number(props.questionId)
+            const question: QuestionType|undefined = questions().find((q: QuestionType) => q.id === qId)
 
-            const questions = store.getters[`questions/${ questionStore.Getters.ITEM_LIST }`]
-            const question: QuestionType = questions.find((q: QuestionType) => q.id === Number(props.questionId))
+            const sectionId = question?.sectionId
 
-            const sectionId = question?.section
-
-            const sections = store.getters[`sections/${ sectionStore.Getters.ITEM_LIST }`]
-            const section = sections.find((s: SectionType) => s.id === Number(sectionId))
+            const section = sections().find((s: SectionType) => s.id === Number(sectionId))
 
             const examId = section?.examId
-            const exams = store.getters[`exams/${ examStore.Getters.ITEM_LIST }`]
-            const exam = exams.find((e: ExamType) => e.id === examId)
+            const exam = exams().find((e: ExamType) => e.id === examId)
 
             return { localname, question, sectionId, section, examId, exam }
 
@@ -46,7 +40,12 @@
         methods: {
 
             backToListButtonClicked() {
-                this.$router.push({ name: Section.name, params: { sectionId: this.sectionId }})
+
+                if (this.sectionId)
+                    return this.$router.push({ name: Section.name, params: { sectionId: this.sectionId }})
+
+                this.$router.push({ name: ExamList.name })
+
             },
 
         },
