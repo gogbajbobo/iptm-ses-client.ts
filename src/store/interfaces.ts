@@ -48,7 +48,7 @@ export interface SectionType extends BaseType {
 export interface QuestionEmbryo {
     text: string
     section: number
-    sectionId?: number
+    sectionId?: number // TODO: have to put relation fields in order
 }
 
 export interface QuestionType extends BaseType, QuestionEmbryo {
