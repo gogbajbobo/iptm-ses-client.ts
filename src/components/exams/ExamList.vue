@@ -6,6 +6,7 @@
     import { showPrompt, showPromptWithValue, showWarningConfirm } from '@/services/messages'
     import { ExamType } from '@/store/interfaces'
     import Exam from '@/components/exams/Exam.vue'
+    import { isProduction } from '@/services/helper'
 
     const localname = 'Экзамены'
 
@@ -33,7 +34,7 @@
             const getExams = () => store.dispatch(`exams/${ examStore.Actions.GET_ITEMS }`)
             getExams().catch(() => {})
 
-            return { localname, exams, addExam, updateExam, deleteExam }
+            return { localname, exams, addExam, updateExam, deleteExam, isProduction }
 
         },
 
@@ -134,7 +135,7 @@
 
         </div>
 
-        <div class='recreate-exams-button'>
+        <div v-if='!isProduction' class='recreate-exams-button'>
 
             <el-button type='danger'
                        @click='recreateExamsButtonPressed'>Пересоздать тестовую базу экзаменов</el-button>
