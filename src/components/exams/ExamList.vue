@@ -6,6 +6,7 @@
     import { ExamType } from '@/store/interfaces'
     import Exam from '@/components/exams/Exam.vue'
     import { isProduction } from '@/services/helper'
+    import { logger } from '@/services/logger'
 
     const localname = 'Экзамены'
 
@@ -69,7 +70,12 @@
             },
 
             recreateExamsButtonPressed() {
-                console.log('recreateExamsButtonPressed')
+
+                if (isProduction)
+                    logger.error('this method should not be called in production mode')
+
+                recreateExams().catch(() => {})
+
             },
 
         },
