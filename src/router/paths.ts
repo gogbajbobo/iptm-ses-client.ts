@@ -8,4 +8,7 @@ export const paths = {
     EXAM_ITEM: '/exams/:examId',
     SECTION_ITEM: '/sections/:sectionId',
     QUESTION_ITEM: '/questions/:questionId',
+    QUIZ_LIST: '/quizzes',
+    QUIZ_CREATE: '/quiz-create/:examId',
+    EXAMINEE_QUIZZES: '/examinee-quizzes',
 }

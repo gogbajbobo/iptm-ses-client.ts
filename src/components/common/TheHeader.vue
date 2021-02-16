@@ -4,7 +4,7 @@
     import { store } from '@/store'
     import * as authStore from '@/store/auth/types'
     import { showError } from '@/services/messages'
-    import { currentUser } from '@/services/helper'
+    import { currentUser } from '@/store/helper'
     import TheMenu from '@/components/common/TheMenu.vue'
 
     export default defineComponent({

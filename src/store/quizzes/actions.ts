@@ -1,14 +1,14 @@
 import { ActionContext, ActionTree } from 'vuex'
 
 import { GetQueryParamsType } from '@/services/types'
-import { IRootState, AnswerType } from '@/store/interfaces'
+import { IRootState, QuizType } from '@/store/interfaces'
 import { StoreState } from './state'
 import { Actions, Mutations } from './types'
 
-import { answersUrl } from '@/services/network/urls'
+import { quizzesUrl } from '@/services/network/urls'
 import { apiRequests } from '@/services/network/modules'
 
-const { getItems, addItem, updateItem, deleteItem } = apiRequests<AnswerType>(answersUrl)
+const { getItems, addItem, updateItem, deleteItem } = apiRequests<QuizType>(quizzesUrl)
 
 type Context = ActionContext<StoreState, IRootState>
 type ActionsType = ActionTree <StoreState, IRootState>
@@ -20,7 +20,7 @@ export interface IActions<T> {
     [Actions.DELETE_ITEM]: (context: Context, id: number) => Promise<void>
 }
 
-export const actions: ActionsType & IActions<AnswerType> = {
+export const actions: ActionsType & IActions<QuizType> = {
 
     [Actions.GET_ITEMS]: ({ commit }, params) => {
         return getItems(params).then(items => commit(Mutations.SET_ITEMS, items))

@@ -3,9 +3,10 @@
     import { defineComponent, computed } from 'vue'
     import { routes } from '@/router/routes'
     import components from '@/components'
-    import { currentUser, checkRoles } from '@/services/helper'
+    import { checkRoles } from '@/services/helper'
+    import { currentUser } from '@/store/helper'
 
-    const { Main, ExamineeList, CategoryList, ExamList } = components
+    const { Main, ExamineeList, CategoryList, ExamList, QuizList, ExamineeQuizzesList } = components
 
     export default defineComponent({
 
@@ -31,7 +32,9 @@
                 Main,
                 ExamineeList,
                 CategoryList,
-                ExamList
+                ExamList,
+                QuizList,
+                ExamineeQuizzesList,
             ].map(menuItem)
 
             const user = computed(() => currentUser())

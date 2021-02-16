@@ -1,9 +1,8 @@
 <script lang='ts'>
 
     import { defineComponent, computed } from 'vue'
-    import { useStore } from 'vuex'
-    import * as questionStore from '@/store/questions/types'
-    import { QuestionType } from '@/store/interfaces'
+    import { questions, getQuestions, deleteQuestion } from '@/store/helper'
+    import { AnswerType, QuestionType } from '@/store/interfaces'
     import { showWarningConfirm } from '@/services/messages'
 
     import QuestionForm from '@/components/questions/QuestionForm.vue'
@@ -33,23 +32,13 @@
 
         setup(props) {
 
-            const store = useStore()
+            getQuestions({ section: props.sectionId }).catch(() => {})
 
-            const questions = computed(() => store.getters[`questions/${ questionStore.Getters.ITEM_LIST }`])
-
-            const getQuestions = () => {
-
-                const payload = { sectionId: props.sectionId }
-                return store.dispatch(`questions/${ questionStore.Actions.GET_ITEMS }`, payload)
-
+            return {
+                localname,
+                questions: computed(questions),
+                deleteQuestion,
             }
-            getQuestions().catch(() => {})
-
-            const deleteQuestion = (question: QuestionType) => {
-                return store.dispatch(`questions/${ questionStore.Actions.DELETE_ITEM }`, question.id)
-            }
-
-            return { localname, questions, deleteQuestion }
 
         },
 
@@ -79,6 +68,18 @@
                 showWarningConfirm(`Удалить вопрос «${ question.text }»?`, 'Внимание!')
                     .then(() => this.deleteQuestion(question))
                     .catch(() => {})
+
+            },
+
+            classForNumberOfAnswers(answers: AnswerType[]) {
+
+                if (answers.length === 0)
+                    return 'gray-number'
+
+                if (answers.filter(a => a.isCorrect).length !== 1)
+                    return 'red-number'
+
+                return 'blue-number'
 
             },
 
@@ -123,6 +124,11 @@
             </el-table-column>
 
             <el-table-column prop='answers.length' label='Ответов' width='96'>
+                <template #default="scope">
+                    <span :class='classForNumberOfAnswers(scope.row.answers)' class='number-of-answers'>
+                        {{ scope.row.answers.length }}
+                    </span>
+                </template>
             </el-table-column>
 
             <el-table-column fixed='right' width='256'>
@@ -164,6 +170,25 @@
 
     .edit-button {
         width: 116px;
+    }
+
+    .number-of-answers {
+        color: white;
+        font-weight: bold;
+        padding: 0 4px;
+        border-radius: 5px;
+    }
+
+    .gray-number {
+        background-color: var(--color-gray);
+    }
+
+    .red-number {
+        background-color: var(--color-red);
+    }
+
+    .blue-number {
+        background-color: var(--color-blue);
     }
 
 </style>

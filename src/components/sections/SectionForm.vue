@@ -1,9 +1,7 @@
 <script lang='ts'>
 
     import { defineComponent, computed, PropType, ref } from 'vue'
-    import { useStore } from 'vuex'
-    import * as categoryStore from '@/store/categories/types'
-    import * as sectionStore from '@/store/sections/types'
+    import { categories, addSection, updateSection } from '@/store/helper'
     import { SectionEmbryo, SectionType } from '@/store/interfaces'
     import { showAlert } from '@/services/messages'
 
@@ -24,23 +22,16 @@
 
         setup(props) {
 
-            const store = useStore()
-
-            const categories = computed(() => {
-                return store.getters[`categories/${ categoryStore.GetterTypes.CATEGORY_LIST }`]
-            })
-
-            const addSection = (section: SectionEmbryo) => {
-                return store.dispatch(`sections/${ sectionStore.Actions.ADD_ITEM }`, section)
-            }
-            const updateSection = (section: any) => {
-                return store.dispatch(`sections/${ sectionStore.Actions.UPDATE_ITEM }`, section)
-            }
-
             const selectedCategory = ref(props.section?.category.id)
             const sectionTitle = ref(props.section?.title || '')
 
-            return { categories, selectedCategory, sectionTitle, addSection, updateSection }
+            return {
+                categories: computed(categories),
+                selectedCategory,
+                sectionTitle,
+                addSection,
+                updateSection
+            }
 
         },
 
@@ -64,7 +55,7 @@
 
                     const section = {
                         id,
-                        examId,
+                        exam: examId,
                         title: this.sectionTitle,
                         category: this.selectedCategory
                     }
@@ -79,7 +70,7 @@
                     const section: SectionEmbryo = {
                         title: this.sectionTitle,
                         category: this.selectedCategory,
-                        examId: this.examId,
+                        exam: this.examId,
                     }
 
                     this.addSection(section)

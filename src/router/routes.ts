@@ -12,6 +12,9 @@ const {
     Exam,
     Section,
     Question,
+    QuizList,
+    QuizCreate,
+    ExamineeQuizzesList,
 } = components
 
 const root: RouteRecordRaw = {
@@ -91,6 +94,34 @@ const questionItem: RouteRecordRaw = {
     },
 }
 
+const quizList: RouteRecordRaw = {
+    path: paths.QUIZ_LIST,
+    name: QuizList.name,
+    component: QuizList,
+    meta: {
+        requireRoles: [ UserRole.EXAMINER ],
+    },
+}
+
+const quizCreate: RouteRecordRaw = {
+    path: paths.QUIZ_CREATE,
+    name: QuizCreate.name,
+    component: QuizCreate,
+    props: true,
+    meta: {
+        requireRoles: [ UserRole.EXAMINER ],
+    },
+}
+
+const examineeQuizzesList: RouteRecordRaw = {
+    path: paths.EXAMINEE_QUIZZES,
+    name: ExamineeQuizzesList.name,
+    component: ExamineeQuizzesList,
+    meta: {
+        requireRoles: [ UserRole.EXAMINEE ],
+    },
+}
+
 export const routes: RouteRecordRaw[] = [
     root,
     main,
@@ -101,4 +132,7 @@ export const routes: RouteRecordRaw[] = [
     examItem,
     sectionItem,
     questionItem,
+    quizList,
+    quizCreate,
+    examineeQuizzesList,
 ]

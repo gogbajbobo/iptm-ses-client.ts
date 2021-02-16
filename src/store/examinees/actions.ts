@@ -1,5 +1,6 @@
 import { ActionContext, ActionTree } from 'vuex'
 
+import { GetQueryParamsType } from '@/services/types'
 import { IRootState, UserType } from '@/store/interfaces'
 import { StoreState } from './state'
 import { ActionTypes, MutationTypes } from './types'
@@ -13,14 +14,14 @@ type Context = ActionContext<StoreState, IRootState>
 type Actions = ActionTree <StoreState, IRootState>
 
 export interface IActions {
-    [ActionTypes.GET_EXAMINEES]: (context: Context) => Promise<any>
+    [ActionTypes.GET_EXAMINEES]: (context: Context, params: GetQueryParamsType) => Promise<any>
     [ActionTypes.UPDATE_EXAMINEE]: (context: Context, examinee: UserType) => Promise<any>
 }
 
 export const actions: Actions & IActions = {
 
-    [ActionTypes.GET_EXAMINEES]: ({ commit }) => {
-        return getItems().then(items => commit(MutationTypes.SET_EXAMINEES, items))
+    [ActionTypes.GET_EXAMINEES]: ({ commit }, params) => {
+        return getItems(params).then(items => commit(MutationTypes.SET_EXAMINEES, items))
     },
 
     [ActionTypes.UPDATE_EXAMINEE]: ({ commit }, item) => {

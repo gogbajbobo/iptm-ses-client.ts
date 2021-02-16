@@ -1,8 +1,7 @@
 <script lang='ts'>
 
     import { defineComponent, computed, ref } from 'vue'
-    import { useStore } from 'vuex'
-    import { ActionTypes, GetterTypes } from '@/store/examinees/types'
+    import { getExaminees, examinees } from '@/store/helper'
     import { UserType } from '@/store/interfaces'
     import ExamineeForm from '@/components/examinees/ExamineeForm.vue'
 
@@ -17,11 +16,6 @@
 
         setup() {
 
-            const store = useStore()
-
-            const examinees = computed(() => store.getters[`examinees/${ GetterTypes.EXAMINEE_LIST }`])
-
-            const getExaminees = () => store.dispatch(`examinees/${ ActionTypes.GET_EXAMINEES }`)
             getExaminees().catch(() => {})
 
             let examineeFormVisible = ref(false)
@@ -29,7 +23,7 @@
 
             return {
                 localname,
-                examinees,
+                examinees: computed(examinees),
                 examineeFormVisible,
                 selectedExaminee,
             }

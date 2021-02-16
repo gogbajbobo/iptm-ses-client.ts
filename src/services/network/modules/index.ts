@@ -1,9 +1,10 @@
 import { getRequest, postRequest, putRequest, deleteRequest } from '@/services/network/methods'
+import { GetQueryParamsType } from '@/services/types'
 
 type ItemKey = 'item'
 
 export type RequestCollection<T> = {
-    getItems: (params?: Record<string, string|number>) => Promise<T[]>
+    getItems: (params?: GetQueryParamsType) => Promise<T[]>
     addItem: (item: Record<ItemKey, T>) => Promise<T>
     updateItem: (id: number, item: Record<ItemKey, T>) => Promise<T>
     deleteItem: (id: number) => Promise<string|number>
