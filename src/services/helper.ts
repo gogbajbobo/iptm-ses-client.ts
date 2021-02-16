@@ -5,6 +5,8 @@ export const isProduction = process.env.NODE_ENV === 'production'
 
 export const isAuthenticated = () => !!currentUser()
 
+export const isAdmin = () => currentUser()?.roles.includes(UserRole.ADMIN)
+
 export const isExaminer = () => currentUser()?.roles.includes(UserRole.EXAMINER)
 
 export const isExaminee = () => currentUser()?.roles.includes(UserRole.EXAMINEE)

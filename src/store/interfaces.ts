@@ -23,8 +23,11 @@ export interface CategoryType extends BaseType {
     title: string
 }
 
-export interface ExamType extends BaseType {
+export interface ExamEmbryo {
     title: string
+}
+
+export interface ExamType extends BaseType, ExamEmbryo {
     sections?: SectionType[]
 }
 
@@ -45,6 +48,7 @@ export interface SectionType extends BaseType {
 export interface QuestionEmbryo {
     text: string
     section: number
+    sectionId?: number // TODO: have to put relation fields in order
 }
 
 export interface QuestionType extends BaseType, QuestionEmbryo {

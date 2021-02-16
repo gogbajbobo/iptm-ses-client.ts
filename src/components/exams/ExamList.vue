@@ -1,11 +1,12 @@
 <script lang='ts'>
 
     import { defineComponent, computed } from 'vue'
-    import { useStore } from 'vuex'
-    import * as examStore from '@/store/exams/types'
+    import { getExams, addExam, updateExam, deleteExam, recreateExams, exams } from '@/store/helper'
     import { showPrompt, showPromptWithValue, showWarningConfirm } from '@/services/messages'
     import { ExamType } from '@/store/interfaces'
     import Exam from '@/components/exams/Exam.vue'
+    import { isProduction, isAdmin } from '@/services/helper'
+    import { logger } from '@/services/logger'
 
     const localname = 'Экзамены'
 
@@ -16,24 +17,17 @@
 
         setup() {
 
-            const store = useStore()
-
-            const exams = computed(() => store.getters[`exams/${ examStore.Getters.ITEM_LIST }`])
-
-            const addExam = (exam: Record<'title', string>) => {
-                return store.dispatch(`exams/${ examStore.Actions.ADD_ITEM }`, exam)
-            }
-            const updateExam = (exam: ExamType) => {
-                return store.dispatch(`exams/${ examStore.Actions.UPDATE_ITEM }`, exam)
-            }
-            const deleteExam = (examId: number) => {
-                return store.dispatch(`exams/${ examStore.Actions.DELETE_ITEM }`, examId)
-            }
-
-            const getExams = () => store.dispatch(`exams/${ examStore.Actions.GET_ITEMS }`)
             getExams().catch(() => {})
 
-            return { localname, exams, addExam, updateExam, deleteExam }
+            return {
+                localname,
+                exams: computed(exams),
+                addExam,
+                updateExam,
+                deleteExam,
+                isProduction,
+                isAdmin,
+            }
 
         },
 
@@ -74,6 +68,17 @@
 
             examTitleClicked(exam: ExamType) {
                 this.$router.push({ name: Exam.name, params: { examId: exam.id }})
+            },
+
+            recreateExamsButtonPressed() {
+
+                if (isProduction)
+                    logger.error('this method should not be called in production mode')
+                if (!isAdmin())
+                    logger.error('you should be admin to call this method')
+
+                recreateExams().catch(() => {})
+
             },
 
         },
@@ -130,13 +135,20 @@
 
         </div>
 
+        <div v-if='!isProduction && isAdmin()' class='recreate-exams-button'>
+
+            <el-button type='danger'
+                       @click='recreateExamsButtonPressed'>Пересоздать тестовую базу экзаменов</el-button>
+
+        </div>
+
     </div>
 
 </template>
 
 <style scoped>
 
-    .add-item-button {
+    .add-item-button, .recreate-exams-button {
         margin-top: 16px;
     }
 

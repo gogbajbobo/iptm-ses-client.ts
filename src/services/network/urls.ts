@@ -10,3 +10,5 @@ export const sectionsUrl = '/sections'
 export const questionsUrl = '/questions'
 export const answersUrl = '/answers'
 export const quizzesUrl = '/quizzes'
+
+export const recreateExamsUrl = '/recreate-exams'

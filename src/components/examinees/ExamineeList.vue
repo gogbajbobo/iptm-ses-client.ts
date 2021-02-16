@@ -46,6 +46,10 @@
 
             },
 
+            rolesString(examinee: UserType) {
+                return examinee.roles.join(', ')
+            },
+
             categoriesString(examinee: UserType) {
                 return examinee.categories.map(category => category.title).join(',')
             },
@@ -73,6 +77,14 @@
             </el-table-column>
 
             <el-table-column prop="username" label="Имя">
+            </el-table-column>
+
+            <el-table-column label="Роли">
+
+                <template #default="scope">
+                    {{ rolesString(scope.row) }}
+                </template>
+
             </el-table-column>
 
             <el-table-column label="Категории">
