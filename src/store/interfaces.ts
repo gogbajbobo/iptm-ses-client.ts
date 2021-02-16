@@ -23,8 +23,11 @@ export interface CategoryType extends BaseType {
     title: string
 }
 
-export interface ExamType extends BaseType {
+export interface ExamEmbryo {
     title: string
+}
+
+export interface ExamType extends BaseType, ExamEmbryo {
     sections?: SectionType[]
 }
 
