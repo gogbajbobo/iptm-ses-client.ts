@@ -76,6 +76,10 @@
                 this.$router.push({ name: Exam.name, params: { examId: exam.id }})
             },
 
+            recreateExamsButtonPressed() {
+                console.log('recreateExamsButtonPressed')
+            },
+
         },
 
     })
@@ -130,13 +134,20 @@
 
         </div>
 
+        <div class='recreate-exams-button'>
+
+            <el-button type='danger'
+                       @click='recreateExamsButtonPressed'>Пересоздать тестовую базу экзаменов</el-button>
+
+        </div>
+
     </div>
 
 </template>
 
 <style scoped>
 
-    .add-item-button {
+    .add-item-button, .recreate-exams-button {
         margin-top: 16px;
     }
 
