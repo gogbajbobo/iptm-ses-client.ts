@@ -11,7 +11,12 @@ import { isProduction } from '@/services/helper'
 import { logger } from '@/services/logger'
 
 import {
-    UserType, ExamType, CategoryType, SectionType, QuestionType, SectionEmbryo, QuizEmbryo, QuizType
+    UserType,
+    ExamEmbryo, ExamType,
+    CategoryType,
+    SectionEmbryo, SectionType,
+    QuestionType,
+    QuizEmbryo, QuizType
 } from '@/store/interfaces'
 
 // AUTH
@@ -30,8 +35,17 @@ export const getCategories = ():Promise<void> => {
 export const categories = ():CategoryType[] => store.getters[`categories/${ categoryStore.GetterTypes.CATEGORY_LIST }`]
 
 // EXAMS
-export const getExams = (params?:GetQueryParamsType):Promise<void> => {
+export const getExams = (params?: GetQueryParamsType): Promise<void> => {
     return store.dispatch(`exams/${ examStore.Actions.GET_ITEMS }`, params)
+}
+export const addExam = (exam: ExamEmbryo): Promise<void> => {
+    return store.dispatch(`exams/${ examStore.Actions.ADD_ITEM }`, exam)
+}
+export const updateExam = (exam: ExamType): Promise<void> => {
+    return store.dispatch(`exams/${ examStore.Actions.UPDATE_ITEM }`, exam)
+}
+export const deleteExam = (examId: number): Promise<void> => {
+    return store.dispatch(`exams/${ examStore.Actions.DELETE_ITEM }`, examId)
 }
 export const recreateExams = ():Promise<void> => {
 

@@ -1,8 +1,7 @@
 <script lang='ts'>
 
     import { defineComponent, computed } from 'vue'
-    import { useStore } from 'vuex'
-    import * as examStore from '@/store/exams/types'
+    import { getExams, addExam, updateExam, deleteExam, recreateExams, exams } from '@/store/helper'
     import { showPrompt, showPromptWithValue, showWarningConfirm } from '@/services/messages'
     import { ExamType } from '@/store/interfaces'
     import Exam from '@/components/exams/Exam.vue'
@@ -17,24 +16,16 @@
 
         setup() {
 
-            const store = useStore()
-
-            const exams = computed(() => store.getters[`exams/${ examStore.Getters.ITEM_LIST }`])
-
-            const addExam = (exam: Record<'title', string>) => {
-                return store.dispatch(`exams/${ examStore.Actions.ADD_ITEM }`, exam)
-            }
-            const updateExam = (exam: ExamType) => {
-                return store.dispatch(`exams/${ examStore.Actions.UPDATE_ITEM }`, exam)
-            }
-            const deleteExam = (examId: number) => {
-                return store.dispatch(`exams/${ examStore.Actions.DELETE_ITEM }`, examId)
-            }
-
-            const getExams = () => store.dispatch(`exams/${ examStore.Actions.GET_ITEMS }`)
             getExams().catch(() => {})
 
-            return { localname, exams, addExam, updateExam, deleteExam, isProduction }
+            return {
+                localname,
+                exams: computed(exams),
+                addExam,
+                updateExam,
+                deleteExam,
+                isProduction,
+            }
 
         },
 
