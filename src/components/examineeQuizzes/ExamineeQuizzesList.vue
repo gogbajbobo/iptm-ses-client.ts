@@ -1,7 +1,7 @@
 <script lang='ts'>
 
     import { defineComponent, computed } from 'vue'
-    import { getQuizzes, quizzes } from '@/store/helper'
+    import { getQuizzes, quizzes, getQuestions, questions } from '@/store/helper'
     import { QuizType } from '@/store/interfaces'
 
     const localname = 'Список экзаменов'
@@ -18,6 +18,7 @@
             return {
                 localname,
                 quizzes: computed(quizzes),
+                questions: computed(questions),
             }
 
         },
@@ -25,7 +26,7 @@
         methods: {
 
             trainingButtonPressed(quiz: QuizType) {
-                console.log('training', quiz)
+                getQuestions({ quiz: quiz.id }).catch(() => {})
             },
 
             startQuizButtonPressed(quiz: QuizType) {
