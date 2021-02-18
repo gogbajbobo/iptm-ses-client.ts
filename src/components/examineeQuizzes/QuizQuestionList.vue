@@ -1,6 +1,8 @@
 <script lang='ts'>
 
-    import { defineComponent } from 'vue'
+    // TODO: have to check are questions from quiz request
+    import { defineComponent, computed } from 'vue'
+    import { questions } from '@/store/helper'
 
     const localname = 'Вопросы экзамена'
 
@@ -10,7 +12,12 @@
         localname,
 
         setup() {
-            return { localname }
+
+            return {
+                localname,
+                questions: computed(questions),
+            }
+
         },
 
     })
@@ -22,6 +29,19 @@
     <div>
 
         <div>{{ localname }}</div>
+
+        <el-table :data='questions'>
+
+            <el-table-column type="index" fixed width="50">
+            </el-table-column>
+
+            <el-table-column prop="id" fixed label="#" width="50">
+            </el-table-column>
+
+            <el-table-column prop="text" label="Вопрос">
+            </el-table-column>
+
+        </el-table>
 
     </div>
 
