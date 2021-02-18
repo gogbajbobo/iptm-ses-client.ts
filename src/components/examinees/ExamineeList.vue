@@ -48,7 +48,7 @@
             },
 
             categoriesString(examinee: UserType) {
-                return examinee.categories.map(category => category.title).join(',')
+                return examinee.categories.map(category => category.title).join(', ')
             },
 
         },
