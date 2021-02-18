@@ -3,6 +3,7 @@
     import { defineComponent, computed } from 'vue'
     import { getQuizzes, quizzes, getQuestions, questions } from '@/store/helper'
     import { QuizType } from '@/store/interfaces'
+    import { paths } from '@/router/paths'
 
     const localname = 'Список экзаменов'
 
@@ -26,7 +27,11 @@
         methods: {
 
             trainingButtonPressed(quiz: QuizType) {
-                getQuestions({ quiz: quiz.id }).catch(() => {})
+
+                getQuestions({ quiz: quiz.id })
+                    .then(() => this.$router.push(paths.QUIZ_QUESTIONS))
+                    .catch(() => {})
+
             },
 
             startQuizButtonPressed(quiz: QuizType) {
