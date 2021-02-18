@@ -40,10 +40,7 @@
             },
 
             closeExamineeForm() {
-
                 this.examineeFormVisible = false
-                // this.selectedExaminee = null
-
             },
 
             rolesString(examinee: UserType) {
