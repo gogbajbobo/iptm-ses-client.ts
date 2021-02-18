@@ -55,12 +55,17 @@
 
         <div>{{ examinee.username }}</div>
 
-        <el-select v-model="selectedCategories" multiple placeholder="Категории">
+        <el-select v-if='categories?.length'
+                   v-model="selectedCategories"
+                   multiple
+                   placeholder="Категории">
+
             <el-option v-for="category in categories"
                        :key="category.id"
                        :label="category.title"
                        :value="category.id">
             </el-option>
+
         </el-select>
 
         <div class='form-buttons'>
