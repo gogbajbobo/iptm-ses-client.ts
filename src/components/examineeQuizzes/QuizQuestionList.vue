@@ -28,7 +28,9 @@
         },
 
         methods: {
-
+            sendAnswers() {
+                console.log(this.answers)
+            },
         },
 
     })
@@ -77,7 +79,8 @@
 
         <el-button type='primary'
                    class='send-button'
-                   :disabled='sendButtonDisabled'>
+                   :disabled='sendButtonDisabled'
+                   @click='sendAnswers'>
 
             Отправить ответы
 
