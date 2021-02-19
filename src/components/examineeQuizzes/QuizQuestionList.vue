@@ -1,8 +1,9 @@
 <script lang='ts'>
 
     // TODO: have to check are questions from quiz request
-    import { defineComponent, reactive } from 'vue'
+    import { defineComponent, reactive, computed } from 'vue'
     import { questions } from '@/store/helper'
+    import { NUMBER_OF_QUESTIONS } from '@/services/constants'
 
     const localname = 'Вопросы экзамена'
 
@@ -15,11 +16,13 @@
 
             const quizQuestions = questions()
             const answers = reactive({})
+            const sendButtonDisabled = computed(() => Object.keys(answers).length !== NUMBER_OF_QUESTIONS)
 
             return {
                 localname,
                 quizQuestions,
                 answers,
+                sendButtonDisabled,
             }
 
         },
@@ -72,6 +75,14 @@
 
         </el-table>
 
+        <el-button type='primary'
+                   class='send-button'
+                   :disabled='sendButtonDisabled'>
+
+            Отправить ответы
+
+        </el-button>
+
     </div>
 
 </template>
@@ -81,6 +92,10 @@
     .answer-text {
         display: block;
         padding-top: 8px;
+    }
+
+    .send-button {
+        margin: 16px 0;
     }
 
 </style>
