@@ -4,6 +4,7 @@
     import { defineComponent, reactive, computed } from 'vue'
     import { questions } from '@/store/helper'
     import { NUMBER_OF_QUESTIONS } from '@/services/constants'
+    import { sendAnswers } from '@/store/helper'
 
     const localname = 'Вопросы экзамена'
 
@@ -16,7 +17,8 @@
 
             const quizQuestions = questions()
             const answers = reactive({})
-            const sendButtonDisabled = computed(() => Object.keys(answers).length !== NUMBER_OF_QUESTIONS)
+            // const sendButtonDisabled = computed(() => Object.keys(answers).length !== NUMBER_OF_QUESTIONS)
+            const sendButtonDisabled = false
 
             return {
                 localname,
@@ -28,8 +30,8 @@
         },
 
         methods: {
-            sendAnswers() {
-                console.log(this.answers)
+            sendAnswersButtonPressed() {
+                sendAnswers(this.answers).catch(() => {})
             },
         },
 
@@ -80,7 +82,7 @@
         <el-button type='primary'
                    class='send-button'
                    :disabled='sendButtonDisabled'
-                   @click='sendAnswers'>
+                   @click='sendAnswersButtonPressed'>
 
             Отправить ответы
 

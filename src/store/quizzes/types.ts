@@ -3,6 +3,7 @@ export enum Actions {
     ADD_ITEM = 'ADD_ITEM',
     UPDATE_ITEM = 'UPDATE_ITEM',
     DELETE_ITEM = 'DELETE_ITEM',
+    SEND_ANSWERS = 'SEND_ANSWERS',
 }
 
 export enum Getters {

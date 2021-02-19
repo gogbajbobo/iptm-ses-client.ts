@@ -24,6 +24,8 @@ export const apiRequests = <T>(url: string): RequestCollection<T> => {
 
 }
 
+export const sendAnswers = (url: string, answers: Record<number, number>) => postRequest(url, answers)
+
 export const recreateExams = (url: string) =>
     isProduction
         ? Promise.reject(new Error('recreate exams is forbidden in production mode'))

@@ -12,3 +12,4 @@ export const answersUrl = '/answers'
 export const quizzesUrl = '/quizzes'
 
 export const recreateExamsUrl = '/recreate-exams'
+export const quizAnswersUrl = '/quiz-answers'

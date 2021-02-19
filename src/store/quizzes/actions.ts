@@ -5,8 +5,8 @@ import { IRootState, QuizType } from '@/store/interfaces'
 import { StoreState } from './state'
 import { Actions, Mutations } from './types'
 
-import { quizzesUrl } from '@/services/network/urls'
-import { apiRequests } from '@/services/network/modules'
+import { quizzesUrl, quizAnswersUrl } from '@/services/network/urls'
+import { apiRequests, sendAnswers } from '@/services/network/modules'
 
 const { getItems, addItem, updateItem, deleteItem } = apiRequests<QuizType>(quizzesUrl)
 
@@ -18,6 +18,7 @@ export interface IActions<T> {
     [Actions.ADD_ITEM]: (context: Context, item: T) => Promise<void>
     [Actions.UPDATE_ITEM]: (context: Context, item: T) => Promise<void>
     [Actions.DELETE_ITEM]: (context: Context, id: number) => Promise<void>
+    [Actions.SEND_ANSWERS]: (context: Context, answers: Record<number, number>) => Promise<void>
 }
 
 export const actions: ActionsType & IActions<QuizType> = {
@@ -39,6 +40,10 @@ export const actions: ActionsType & IActions<QuizType> = {
 
     [Actions.DELETE_ITEM]: ({ commit }, id) => {
         return deleteItem(id).then(() => commit(Mutations.DELETE_ITEM, id))
+    },
+
+    [Actions.SEND_ANSWERS]: (context, answers) => {
+        return sendAnswers(quizAnswersUrl, answers)
     },
 
 }
