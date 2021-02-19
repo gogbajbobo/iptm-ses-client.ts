@@ -5,6 +5,8 @@
     import { questions } from '@/store/helper'
     import { NUMBER_OF_QUESTIONS } from '@/services/constants'
     import { sendAnswers } from '@/store/helper'
+    import { showConfirm } from '@/services/messages'
+    import { paths } from '@/router/paths'
 
     const localname = 'Вопросы экзамена'
 
@@ -31,7 +33,20 @@
 
         methods: {
             sendAnswersButtonPressed() {
-                sendAnswers(this.answers).catch(() => {})
+
+                sendAnswers(this.answers)
+                    .then(({ numberOfIncorrectAnswers }) => {
+
+                        const title = `Неправильных ответов: ${ numberOfIncorrectAnswers }`
+                        const confirmText = `Вернуться к списку экзаменов?`
+
+                        showConfirm(confirmText, title)
+                            .then(() => this.$router.push(paths.EXAMINEE_QUIZZES))
+                            .catch(() => {})
+
+                    })
+                    .catch(() => {})
+
             },
         },
 
