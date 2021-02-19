@@ -89,7 +89,7 @@ export const getQuizzes = (params?:GetQueryParamsType):Promise<void> => {
 export const addQuiz = (quiz: QuizEmbryo):Promise<void> => {
     return store.dispatch(`quizzes/${ quizStore.Actions.ADD_ITEM }`, quiz)
 }
-export const sendAnswers = (answers: Record<number, number>):Promise<void> => {
+export const sendAnswers = (answers: Record<number, number>):Promise<Record<'numberOfIncorrectAnswers', number>> => {
     return store.dispatch(`quizzes/${ quizStore.Actions.SEND_ANSWERS }`, answers)
 }
 export const quizzes = ():QuizType[] => store.getters[`quizzes/${ quizStore.Getters.ITEM_LIST }`]
