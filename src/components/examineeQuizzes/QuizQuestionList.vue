@@ -14,7 +14,7 @@
         setup() {
 
             const quizQuestions = questions()
-            const answers = reactive({ selected: Array(quizQuestions.length) })
+            const answers = reactive({})
 
             return {
                 localname,
@@ -25,14 +25,6 @@
         },
 
         methods: {
-
-            groupChange(value: any) {
-                console.log(value)
-                console.log(this.answers)
-            },
-            radioChange(value: any) {
-                console.log(value)
-            },
 
         },
 
@@ -62,12 +54,11 @@
 
                     <div>Ответы:</div>
 
-                    <el-radio-group :value='answers.selected[quizQuestions.indexOf(props.row)]' @change='groupChange'>
+                    <el-radio-group v-model='answers[props.row.id]'>
 
                         <el-radio v-for='answer in props.row.answers'
                                   :key='answer.id'
                                   :label='answer.id'
-                                  @change='radioChange'
                                   class='answer-text'>
 
                             {{ answer.text }}
