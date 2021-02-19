@@ -40,10 +40,7 @@
             },
 
             closeExamineeForm() {
-
                 this.examineeFormVisible = false
-                // this.selectedExaminee = null
-
             },
 
             rolesString(examinee: UserType) {
@@ -51,7 +48,7 @@
             },
 
             categoriesString(examinee: UserType) {
-                return examinee.categories.map(category => category.title).join(',')
+                return examinee.categories.map(category => category.title).join(', ')
             },
 
         },

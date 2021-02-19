@@ -26,6 +26,9 @@ export const currentUser = ():UserType|null => store.getters[`auth/${ authStore.
 export const getExaminees = (params?:GetQueryParamsType):Promise<void> => {
     return store.dispatch(`examinees/${ examineeStore.ActionTypes.GET_EXAMINEES }`, params)
 }
+export const updateExaminee = (examinee: UserType): Promise<void> => {
+    return store.dispatch(`examinees/${ examineeStore.ActionTypes.UPDATE_EXAMINEE }`, examinee)
+}
 export const examinees = ():UserType[] => store.getters[`examinees/${ examineeStore.GetterTypes.EXAMINEE_LIST }`]
 
 // CATEGORIES
@@ -85,5 +88,8 @@ export const getQuizzes = (params?:GetQueryParamsType):Promise<void> => {
 }
 export const addQuiz = (quiz: QuizEmbryo):Promise<void> => {
     return store.dispatch(`quizzes/${ quizStore.Actions.ADD_ITEM }`, quiz)
+}
+export const sendAnswers = (answers: Record<number, number>):Promise<Record<'numberOfIncorrectAnswers', number>> => {
+    return store.dispatch(`quizzes/${ quizStore.Actions.SEND_ANSWERS }`, answers)
 }
 export const quizzes = ():QuizType[] => store.getters[`quizzes/${ quizStore.Getters.ITEM_LIST }`]

@@ -1,7 +1,9 @@
 <script lang='ts'>
 
     import { defineComponent, computed } from 'vue'
-    import { getQuizzes, quizzes } from '@/store/helper'
+    import { getQuizzes, quizzes, getQuestions, questions } from '@/store/helper'
+    import { QuizType } from '@/store/interfaces'
+    import { paths } from '@/router/paths'
 
     const localname = 'Список экзаменов'
 
@@ -17,7 +19,24 @@
             return {
                 localname,
                 quizzes: computed(quizzes),
+                questions: computed(questions),
             }
+
+        },
+
+        methods: {
+
+            trainingButtonPressed(quiz: QuizType) {
+
+                getQuestions({ quiz: quiz.id })
+                    .then(() => this.$router.push(paths.QUIZ_QUESTIONS))
+                    .catch(() => {})
+
+            },
+
+            startQuizButtonPressed(quiz: QuizType) {
+                console.log('start quiz', quiz)
+            },
 
         },
 
@@ -40,6 +59,18 @@
             </el-table-column>
 
             <el-table-column prop="exam.title" fixed label="Экзамен">
+            </el-table-column>
+
+            <el-table-column fixed='right' width='256'>
+                <template #default="scope">
+
+                    <el-button type='success'
+                               @click='trainingButtonPressed(scope.row)'>Тренировка</el-button>
+
+                    <el-button type='primary'
+                               @click='startQuizButtonPressed(scope.row)'>Сдать экзамен</el-button>
+
+                </template>
             </el-table-column>
 
         </el-table>
