@@ -1,8 +1,7 @@
 <script lang='ts'>
 
     import { defineComponent, computed } from 'vue'
-    import { useStore } from 'vuex'
-    import * as answerStore from '@/store/answers/types'
+    import { answers, getAnswers, updateAnswer, deleteAnswer } from '@/store/helper'
     import { AnswerType } from '@/store/interfaces'
     import { showError, showWarningConfirm } from '@/services/messages'
     import AnswerForm from '@/components/answers/AnswerForm.vue'
@@ -28,28 +27,13 @@
 
         setup(props) {
 
-            const store = useStore()
+            getAnswers({ question: props.questionId })
+                .catch(() => {})
 
-            const answers = computed(() => store.getters[`answers/${ answerStore.Getters.ITEM_LIST }`])
-
-            const getAnswers = () => {
-
-                const payload = { question: props.questionId }
-
-                return store.dispatch(`answers/${ answerStore.Actions.GET_ITEMS }`, payload)
-
+            return {
+                localname,
+                answers: computed(answers),
             }
-            getAnswers().catch(() => {})
-
-            const updateAnswer = (answer: AnswerType) => {
-                return store.dispatch(`answers/${ answerStore.Actions.UPDATE_ITEM }`, answer)
-            }
-
-            const deleteAnswer = (answer: AnswerType) => {
-                return store.dispatch(`answers/${ answerStore.Actions.DELETE_ITEM }`, answer.id)
-            }
-
-            return { localname, answers, updateAnswer, deleteAnswer }
 
         },
 
@@ -57,9 +41,11 @@
 
             isCorrectValueChanged(answer: AnswerType) {
 
+                console.log(answer)
+
                 const { isCorrect } = answer
 
-                this.updateAnswer({ ...answer, isCorrect: !isCorrect })
+                updateAnswer({ ...answer, isCorrect: !isCorrect })
                     .catch(err => showError(err, false))
 
             },
@@ -77,7 +63,7 @@
             deleteButtonClicked(answer: AnswerType) {
 
                 showWarningConfirm(`Удалить ответ «${ answer.text }»?`, 'Внимание!')
-                    .then(() => this.deleteAnswer(answer))
+                    .then(() => deleteAnswer(answer.id))
                     .catch(() => {})
 
             },

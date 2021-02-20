@@ -1,9 +1,8 @@
 <script lang='ts'>
 
     import { defineComponent, ref, PropType } from 'vue'
-    import { useStore } from 'vuex'
-    import * as answerStore from '@/store/answers/types'
-    import { AnswerEmbryo, AnswerType } from '@/store/interfaces'
+    import { addAnswer, updateAnswer } from '@/store/helper'
+    import { AnswerType } from '@/store/interfaces'
     import { showError } from '@/services/messages'
 
     export default defineComponent({
@@ -17,19 +16,9 @@
 
         setup(props) {
 
-            const store = useStore()
-
-            const addAnswer = (answer: AnswerEmbryo) => {
-                return store.dispatch(`answers/${ answerStore.Actions.ADD_ITEM }`, answer)
-            }
-
-            const updateAnswer = (answer: AnswerType) => {
-                return store.dispatch(`answers/${ answerStore.Actions.UPDATE_ITEM }`, answer)
-            }
-
             const answerText = ref(props.answer?.text || '')
 
-            return { answerText, addAnswer, updateAnswer }
+            return { answerText }
 
         },
 
@@ -39,7 +28,7 @@
 
                 if (!this.answer && this.questionId) {
 
-                    return this.addAnswer({ text: this.answerText, questionId: Number(this.questionId) })
+                    return addAnswer({ text: this.answerText, question: Number(this.questionId) })
                         .then(() => { this.answerText = '' })
                         .catch(err => showError(err, false))
 
@@ -47,7 +36,9 @@
 
                 if (this.answer) {
 
-                    return this.updateAnswer({
+                    console.log(this.answer)
+
+                    return updateAnswer({
                         ...this.answer,
                         text: this.answerText,
                     })
