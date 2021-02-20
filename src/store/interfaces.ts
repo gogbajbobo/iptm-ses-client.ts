@@ -56,7 +56,7 @@ export interface QuestionType extends BaseType, QuestionEmbryo {
 
 export interface AnswerEmbryo {
     text: string
-    questionId: number
+    question: number
 }
 
 export interface AnswerType extends BaseType {
