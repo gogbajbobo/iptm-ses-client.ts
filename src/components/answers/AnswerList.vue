@@ -34,7 +34,7 @@
 
             const getAnswers = () => {
 
-                const payload = { questionId: props.questionId }
+                const payload = { question: props.questionId }
 
                 return store.dispatch(`answers/${ answerStore.Actions.GET_ITEMS }`, payload)
 
