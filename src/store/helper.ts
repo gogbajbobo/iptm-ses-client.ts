@@ -4,6 +4,7 @@ import * as categoryStore from '@/store/categories/types'
 import * as sectionStore from '@/store/sections/types'
 import * as examStore from '@/store/exams/types'
 import * as questionStore from '@/store/questions/types'
+import * as answerStore from '@/store/answers/types'
 import * as examineeStore from '@/store/examinees/types'
 import * as quizStore from '@/store/quizzes/types'
 import { GetQueryParamsType } from '@/services/types'
@@ -16,6 +17,7 @@ import {
     CategoryType,
     SectionEmbryo, SectionType,
     QuestionType,
+    AnswerEmbryo, AnswerType,
     QuizEmbryo, QuizType
 } from '@/store/interfaces'
 
@@ -81,6 +83,21 @@ export const deleteQuestion = (question: QuestionType):Promise<void> => {
     return store.dispatch(`questions/${ questionStore.Actions.DELETE_ITEM }`, question.id)
 }
 export const questions = ():QuestionType[] => store.getters[`questions/${ questionStore.Getters.ITEM_LIST }`]
+
+// ANSWERS
+export const getAnswers = (params?:GetQueryParamsType):Promise<void> => {
+    return store.dispatch(`answers/${ answerStore.Actions.GET_ITEMS }`, params)
+}
+export const addAnswer = (answer: AnswerEmbryo):Promise<void> => {
+    return store.dispatch(`answers/${ answerStore.Actions.ADD_ITEM }`, answer)
+}
+export const updateAnswer = (answer: AnswerType):Promise<void> => {
+    return store.dispatch(`answers/${ answerStore.Actions.UPDATE_ITEM }`, answer)
+}
+export const deleteAnswer = (answerId: number):Promise<void> => {
+    return store.dispatch(`answers/${ answerStore.Actions.DELETE_ITEM }`, answerId)
+}
+export const answers = ():AnswerType[] => store.getters[`answers/${ answerStore.Getters.ITEM_LIST }`]
 
 // QUIZZES
 export const getQuizzes = (params?:GetQueryParamsType):Promise<void> => {
