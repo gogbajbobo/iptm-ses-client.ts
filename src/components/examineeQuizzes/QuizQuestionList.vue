@@ -1,9 +1,9 @@
 <script lang='ts'>
 
     // TODO: have to check are questions from quiz request
-    import { defineComponent, reactive, computed } from 'vue'
+    import { defineComponent, reactive/*, computed*/ } from 'vue'
     import { questions } from '@/store/helper'
-    import { NUMBER_OF_QUESTIONS } from '@/services/constants'
+    // import { NUMBER_OF_QUESTIONS } from '@/services/constants'
     import { sendAnswers } from '@/store/helper'
     import { showConfirm } from '@/services/messages'
     import { paths } from '@/router/paths'
