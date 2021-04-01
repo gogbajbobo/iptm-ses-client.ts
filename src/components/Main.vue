@@ -13,7 +13,9 @@
             return { localname }
         },
 
-        methods: {},
+        methods: {
+            mode() { return process.env.NODE_ENV },
+        },
 
     })
 
@@ -25,6 +27,9 @@
 
         <div>
             {{ localname }}
+            <div>
+                mode: {{ mode() }}
+            </div>
         </div>
 
     </div>
