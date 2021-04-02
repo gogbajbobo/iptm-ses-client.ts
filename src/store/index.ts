@@ -12,6 +12,7 @@ import { store as sections } from '@/store/sections'
 import { store as questions } from '@/store/questions'
 import { store as answers } from '@/store/answers'
 import { store as quizzes } from '@/store/quizzes'
+import { isProduction } from '@/services/constants'
 
 import * as authStore from '@/store/auth/types'
 
@@ -36,7 +37,11 @@ export const store = createStore({
     strict: process.env.NODE_ENV !== 'production',
 
     plugins: [
-        createLogger(),
+        createLogger({
+            logActions: !isProduction,
+            logMutations: !isProduction,
+            logger: isProduction ? undefined : console,
+        }),
         createPersistedState(),
         // createMultiTabState(),
     ],
