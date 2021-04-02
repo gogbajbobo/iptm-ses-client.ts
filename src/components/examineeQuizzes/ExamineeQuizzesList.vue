@@ -4,6 +4,7 @@
     import { getQuizzes, quizzes, getQuestions, questions } from '@/store/helper'
     import { QuizType } from '@/store/interfaces'
     import { paths } from '@/router/paths'
+    import { logger } from '@/services/logger'
 
     const localname = 'Список экзаменов'
 
@@ -35,7 +36,7 @@
             },
 
             startQuizButtonPressed(quiz: QuizType) {
-                console.log('start quiz', quiz)
+                logger.info('start quiz', quiz)
             },
 
         },

@@ -2,12 +2,15 @@ import { Router, RouteLocationNormalized } from 'vue-router'
 import { paths } from './paths'
 import { isAuthenticated, checkRoles } from '@/services/helper'
 import { currentUser } from '@/store/helper'
+import { UserRole } from '@/services/constants'
 
 const checkRequiredRoles = (to: RouteLocationNormalized): string | boolean => {
 
     if (!to.meta.requireRoles) return true
 
-    return checkRoles(currentUser(), to.meta.requireRoles)
+    const requireRoles = to.meta.requireRoles as UserRole[]
+
+    return checkRoles(currentUser(), requireRoles)
         ? true
         : paths.MAIN
 
