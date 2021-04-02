@@ -8,7 +8,7 @@ import * as answerStore from '@/store/answers/types'
 import * as examineeStore from '@/store/examinees/types'
 import * as quizStore from '@/store/quizzes/types'
 import { GetQueryParamsType } from '@/services/types'
-import { isProduction } from '@/services/helper'
+import { isProduction } from '@/services/constants'
 import { logger } from '@/services/logger'
 
 import {

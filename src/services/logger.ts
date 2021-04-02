@@ -1,4 +1,4 @@
-import { isProduction } from '@/services/helper'
+import { isProduction } from '@/services/constants'
 
 /* eslint-disable no-console */
 export const logger = {
