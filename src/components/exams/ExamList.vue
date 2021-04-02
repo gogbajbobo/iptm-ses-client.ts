@@ -5,7 +5,8 @@
     import { showPrompt, showPromptWithValue, showWarningConfirm } from '@/services/messages'
     import { ExamType } from '@/store/interfaces'
     import Exam from '@/components/exams/Exam.vue'
-    import { isProduction, isAdmin } from '@/services/helper'
+    import { isAdmin } from '@/services/helper'
+    import { isProduction } from '@/services/constants'
     import { logger } from '@/services/logger'
 
     const localname = 'Экзамены'

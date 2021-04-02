@@ -1,7 +1,6 @@
 import { currentUser } from '@/store/helper'
 import { UserRole } from '@/services/constants'
 
-export const isProduction = process.env.NODE_ENV === 'production'
 
 export const isAuthenticated = () => !!currentUser()
 

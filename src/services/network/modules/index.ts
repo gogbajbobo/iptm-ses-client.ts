@@ -1,6 +1,6 @@
 import { getRequest, postRequest, putRequest, deleteRequest } from '@/services/network/methods'
 import { GetQueryParamsType } from '@/services/types'
-import { isProduction } from '@/services/helper'
+import { isProduction } from '@/services/constants'
 
 type ItemKey = 'item'
 
