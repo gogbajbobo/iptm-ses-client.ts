@@ -41,7 +41,7 @@
 
             isCorrectValueChanged(answer: AnswerType) {
 
-                console.log(answer)
+                // console.log(answer)
 
                 const { isCorrect } = answer
 

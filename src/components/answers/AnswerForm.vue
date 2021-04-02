@@ -36,7 +36,7 @@
 
                 if (this.answer) {
 
-                    console.log(this.answer)
+                    // console.log(this.answer)
 
                     return updateAnswer({
                         ...this.answer,
