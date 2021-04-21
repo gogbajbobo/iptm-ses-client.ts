@@ -73,10 +73,10 @@
 
             recreateExamsButtonPressed() {
 
-                if (isProduction)
-                    logger.error('this method should not be called in production mode')
+                // if (isProduction)
+                //     logger.error('this method should not be called in production mode')
                 if (!isAdmin())
-                    logger.error('you should be admin to call this method')
+                    logger.error('you should be an admin to call this method')
 
                 recreateExams().catch(() => {})
 
@@ -136,7 +136,8 @@
 
         </div>
 
-        <div v-if='!isProduction && isAdmin()' class='recreate-exams-button'>
+<!--        <div v-if='!isProduction && isAdmin()' class='recreate-exams-button'>-->
+        <div v-if='isAdmin()' class='recreate-exams-button'>
 
             <el-button type='danger'
                        @click='recreateExamsButtonPressed'>Пересоздать тестовую базу экзаменов</el-button>

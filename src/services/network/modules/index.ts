@@ -1,6 +1,6 @@
 import { getRequest, postRequest, putRequest, deleteRequest } from '@/services/network/methods'
 import { GetQueryParamsType } from '@/services/types'
-import { isProduction } from '@/services/constants'
+// import { isProduction } from '@/services/constants'
 
 type ItemKey = 'item'
 
@@ -26,7 +26,7 @@ export const apiRequests = <T>(url: string): RequestCollection<T> => {
 
 export const sendAnswers = (url: string, answers: Record<number, number>) => postRequest(url, answers)
 
-export const recreateExams = (url: string) =>
-    isProduction
-        ? Promise.reject(new Error('recreate exams is forbidden in production mode'))
-        : getRequest(url)
+export const recreateExams = (url: string) => getRequest(url)
+    // isProduction
+    //     ? Promise.reject(new Error('recreate exams is forbidden in production mode'))
+    //     : getRequest(url)

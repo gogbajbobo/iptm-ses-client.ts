@@ -8,8 +8,8 @@ import * as answerStore from '@/store/answers/types'
 import * as examineeStore from '@/store/examinees/types'
 import * as quizStore from '@/store/quizzes/types'
 import { GetQueryParamsType } from '@/services/types'
-import { isProduction } from '@/services/constants'
-import { logger } from '@/services/logger'
+// import { isProduction } from '@/services/constants'
+// import { logger } from '@/services/logger'
 
 import {
     UserType,
@@ -54,7 +54,7 @@ export const deleteExam = (examId: number): Promise<void> => {
 }
 export const recreateExams = ():Promise<void> => {
 
-    isProduction && logger.error('this method should not be executed in production mode!')
+    // isProduction && logger.error('this method should not be executed in production mode!')
     return store.dispatch(`exams/${ examStore.Actions.RECREATE_ITEMS }`)
 
 }
